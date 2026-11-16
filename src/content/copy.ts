@@ -21,6 +21,13 @@ export const hero = {
   description:
     "Tell us about your business for 15 minutes. We build the website, you finalise it and you pay once you're satisfied.",
   cta: "Get Started",
+  /** Hero brief card (added with the hero redesign; see docs/copy.md). */
+  brief: {
+    label: "Describe your business",
+    placeholder: "Describe your business: your name, business name, location and what you do.",
+    industryLabel: "Your industry",
+    cta: "I want my website",
+  },
 };
 
 export const work = {

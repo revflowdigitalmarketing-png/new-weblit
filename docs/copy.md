@@ -10,6 +10,10 @@ Badge above the heading: Built 10+ business websites in 30 days.
 Heading: Websites built to get you more customers, published in 72 hours.
 Description: Tell us about your business for 15 minutes. We build the website, you finalise it and you pay once you're satisfied.
 CTA button: Get Started
+Hero redesign (on request): the badge sits under the card, and the Get Started button is replaced by a brief card:
+* Textarea placeholder: Describe your business: your name, business name, location and what you do.
+* Industry chips: the six industries from Our Work
+* CTA button: I want my website (opens the contact page with the brief prefilled)
 3. Our Work
 Heading: Find your industry. See the website we built for it.
 Description: Scroll through the industries we build for. Each one comes with a real website on the right.

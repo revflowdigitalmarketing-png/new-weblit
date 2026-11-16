@@ -9,7 +9,18 @@ import { contact } from "@/content/copy";
 import { pageHead } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
+type ContactSearch = { brief?: string; industry?: string };
+
 export const Route = createFileRoute("/contact")({
+  // The hero brief card passes what the visitor typed so the form starts prefilled.
+  validateSearch: (search: Record<string, unknown>): ContactSearch => {
+    const out: ContactSearch = {};
+    if (typeof search["brief"] === "string" && search["brief"])
+      out.brief = search["brief"].slice(0, 2000);
+    if (typeof search["industry"] === "string" && search["industry"])
+      out.industry = search["industry"].slice(0, 80);
+    return out;
+  },
   head: () =>
     pageHead({
       title: "Contact WEBLIT | Tell us about your business",
@@ -89,6 +100,8 @@ const field =
 function ContactForm() {
   const id = useId();
   const [sent, setSent] = useState(false);
+  const { brief, industry } = Route.useSearch();
+  const prefill = [industry, brief].filter(Boolean).join("\n\n");
 
   // TODO: no backend yet, so answers aren't sent anywhere (see docs/todo.md).
   // Wire this to an email service or form endpoint.
@@ -182,6 +195,7 @@ function ContactForm() {
             id={`${id}-message`}
             name="message"
             required
+            defaultValue={prefill}
             rows={5}
             placeholder={f.messagePlaceholder}
             className={cn(field, "resize-y py-4 leading-relaxed")}

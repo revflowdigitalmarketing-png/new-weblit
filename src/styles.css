@@ -282,6 +282,23 @@
       linear-gradient(160deg, oklch(0.2 0.04 150), oklch(0.13 0.009 134.1));
   }
 
+  /* Hero aurora flow. Disabled under prefers-reduced-motion by the base rule. */
+  .flow-a {
+    animation: flow-a 22s ease-in-out infinite alternate;
+  }
+  .flow-b {
+    animation: flow-b 28s ease-in-out infinite alternate;
+  }
+  .flow-c {
+    animation: flow-a 34s ease-in-out infinite alternate-reverse;
+  }
+  .wave-drift {
+    animation: wave-drift 30s linear infinite;
+  }
+  .wave-drift-slow {
+    animation: wave-drift 46s linear infinite reverse;
+  }
+
   /* Scroll reveal (see components/site/Reveal.tsx). Visible by default without JS. */
   .reveal {
     transition:
@@ -335,5 +352,38 @@
   .inline-field::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+}
+
+@keyframes flow-a {
+  0% {
+    transform: translate3d(-6%, 2%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(5%, -5%, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(-2%, 4%, 0) scale(0.95);
+  }
+}
+
+@keyframes flow-b {
+  0% {
+    transform: translate3d(8%, 0, 0) scale(1.05) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-6%, -6%, 0) scale(0.92) rotate(6deg);
+  }
+  100% {
+    transform: translate3d(3%, 5%, 0) scale(1.08) rotate(-4deg);
+  }
+}
+
+@keyframes wave-drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
