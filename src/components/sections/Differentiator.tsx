@@ -62,38 +62,34 @@ function OwnersCard() {
       <ul className="mt-5 flex flex-col gap-2 text-left">
         {owners.clients.map((c, i) => {
           const body = (
-            <>
-              <div className="flex items-center gap-3.5">
-                {/* Plain white avatar until client photos are supplied */}
-                <span
-                  aria-hidden
-                  className="grid size-10 shrink-0 place-items-center rounded-full bg-white text-[11px] font-semibold tracking-wide text-paper"
-                >
-                  {initials(c.name)}
-                </span>
-                <div className="min-w-0 leading-tight">
-                  <p className="truncate text-xs text-ink/65">
-                    {c.role ? `${c.name}, ${c.role}` : c.name}
-                  </p>
-                  <p className="mt-0.5 truncate text-base font-medium tracking-[-0.01em] text-ink">
-                    {c.business}
-                  </p>
-                </div>
-              </div>
-              <div className="mt-3 flex items-center justify-between gap-3 border-t border-ink/[0.07] pt-3">
-                <span className="truncate text-xs text-ink/70">
+            <div className="flex items-center gap-3">
+              {/* Plain white avatar until client photos are supplied */}
+              <span
+                aria-hidden
+                className="grid size-10 shrink-0 place-items-center rounded-full bg-white text-[11px] font-semibold tracking-wide text-paper"
+              >
+                {initials(c.name)}
+              </span>
+              <div className="min-w-0 flex-1 leading-tight">
+                <p className="truncate text-xs text-ink/65">
+                  {c.role ? `${c.name}, ${c.role}` : c.name}
+                </p>
+                <p className="mt-0.5 text-[0.9375rem] font-medium leading-snug tracking-[-0.01em] text-ink">
+                  {c.business}
+                </p>
+                <p className="mt-0.5 truncate text-xs text-ink/50">
                   {c.url.replace(/^https?:\/\//, "")}
-                </span>
-                <span
-                  aria-hidden
-                  className="grid size-8 shrink-0 place-items-center rounded-full bg-brand text-paper transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                >
-                  <ArrowUpRight className="size-3.5" strokeWidth={2} />
-                </span>
+                </p>
               </div>
-            </>
+              <span
+                aria-hidden
+                className="grid size-8 shrink-0 place-items-center rounded-full bg-brand text-paper transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              >
+                <ArrowUpRight className="size-3.5" strokeWidth={2} />
+              </span>
+            </div>
           );
-          const cls = "group block rounded-[1.25rem] bg-surface p-3";
+          const cls = "group block rounded-[1.1rem] bg-surface p-2.5 pr-3";
           return (
             <li key={i}>
               <a
@@ -118,11 +114,11 @@ function OfferCard() {
   return (
     <div className={cn(card, "aurora-card relative overflow-hidden text-ink")}>
       <h3 className={cardHeading}>{offer.heading}</h3>
-      <ol className="mt-6 flex flex-col gap-2.5 text-left">
+      <ol className="mt-5 flex flex-col gap-2 text-left">
         {offer.steps.map((s, i) => (
           <li
             key={s}
-            className="flex gap-3 rounded-[1.25rem] bg-paper/35 p-3.5 text-[0.9375rem] leading-snug backdrop-blur-sm"
+            className="flex gap-3 rounded-[1.1rem] bg-paper/35 p-2.5 text-sm leading-snug backdrop-blur-sm"
           >
             <span
               aria-hidden

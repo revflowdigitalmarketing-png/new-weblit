@@ -128,16 +128,16 @@ function AuroraBackdrop() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-paper">
       {/* the glowing hill: deep emerald on the left, electric green through the middle, bright mint on the right */}
-      <div className="flow-a absolute -bottom-[58%] left-1/2 h-[112%] w-[140%] -translate-x-1/2 rounded-[50%] bg-[linear-gradient(90deg,oklch(0.3_0.11_160)_0%,oklch(0.45_0.17_152)_28%,oklch(0.58_0.21_148)_52%,oklch(0.66_0.2_152)_74%,oklch(0.46_0.16_156)_100%)] blur-[42px] will-change-transform" />
+      <div className="flow-a absolute -bottom-[58%] left-1/2 h-[112%] w-[140%] -translate-x-1/2 rounded-[50%] bg-[linear-gradient(90deg,oklch(0.36_0.1_153)_0%,oklch(0.55_0.14_153)_26%,oklch(0.718_0.16_153)_52%,oklch(0.78_0.15_153)_74%,oklch(0.6_0.15_153)_100%)] blur-[42px] will-change-transform" />
 
       {/* saturated depth at the left edge, like the reference's indigo */}
-      <div className="flow-b absolute -bottom-[10%] -left-[18%] h-[70%] w-[55%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.3_0.13_165/0.95),transparent_72%)] blur-3xl will-change-transform" />
+      <div className="flow-b absolute -bottom-[10%] -left-[18%] h-[70%] w-[55%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.36_0.1_153/0.95),transparent_72%)] blur-3xl will-change-transform" />
 
       {/* electric highlight on the right */}
-      <div className="flow-c absolute -right-[10%] bottom-[5%] h-[55%] w-[50%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.66_0.21_148/0.85),transparent_70%)] blur-3xl will-change-transform" />
+      <div className="flow-c absolute -right-[10%] bottom-[5%] h-[55%] w-[50%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.718_0.16_153/0.9),transparent_70%)] blur-3xl will-change-transform" />
 
       {/* white light core rising from the bottom */}
-      <div className="flow-b absolute -bottom-[22%] left-1/2 h-[55%] w-[85%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,oklch(1_0_0/0.95),oklch(0.85_0.12_150/0.8)_38%,transparent_75%)] blur-2xl will-change-transform" />
+      <div className="flow-b absolute -bottom-[22%] left-1/2 h-[55%] w-[85%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,oklch(1_0_0/0.95),oklch(0.86_0.1_153/0.8)_38%,transparent_75%)] blur-2xl will-change-transform" />
 
       {/* clean bright finish along the bottom edge */}
       <div className="absolute inset-x-0 bottom-0 h-[26%] bg-[linear-gradient(to_top,oklch(1_0_0)_0%,oklch(0.97_0.04_150/0.92)_22%,transparent_100%)]" />
