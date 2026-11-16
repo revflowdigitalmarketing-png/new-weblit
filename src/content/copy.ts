@@ -111,7 +111,8 @@ export const leadMagnet = {
   description:
     "A page-by-page guide to what a website needs to turn visitors into clients. Read it, then let us build yours.",
   cta: "Get the free blueprint",
-  href: "/blueprint",
+  /** The Converting Site Blueprint PDF (cover image is its first page). */
+  href: "/downloads/WEBLIT-Converting-Site-Blueprint.pdf",
 };
 
 export const faq = {

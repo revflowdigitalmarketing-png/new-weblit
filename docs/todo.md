@@ -36,10 +36,13 @@ Then set `ratesArePlaceholders: false`.
 
 ## Links to pages not built yet
 
-- **Get the free blueprint** links to `/blueprint` (blueprint page, "built later" per copy).
 - **Privacy** and **Terms** in the footer link to `/privacy` and `/terms`. No copy supplied yet.
 
 ## Check before launch
+
+- **Blueprint PDF vs pricing:** the last page of the blueprint says "Get a free landing page or
+  website… Free, with no obligation", while the site says pricing starts at INR 22,000. Make
+  the PDF and the site say the same thing.
 
 - **Second phone number** `+91 79820139` has 8 digits after +91. Indian mobiles have 10.
   Confirm it against the Google Business Profile and fix it in `src/config/business.ts`.

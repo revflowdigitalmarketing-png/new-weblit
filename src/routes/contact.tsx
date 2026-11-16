@@ -67,14 +67,22 @@ function ContactPage() {
 
 /** Left panel: heading and next steps over rising green and white light bars. */
 function LightPanel() {
-  const bars = [
-    { left: "0%", width: "13%", height: "46%", color: "oklch(0.99 0.01 150)" },
-    { left: "12%", width: "13%", height: "58%", color: "oklch(0.9 0.09 152)" },
-    { left: "24%", width: "13%", height: "64%", color: "oklch(0.718 0.16 153)" },
-    { left: "36%", width: "13%", height: "50%", color: "oklch(0.634 0.147 152.1)" },
-    { left: "48%", width: "13%", height: "40%", color: "oklch(0.5 0.13 151)" },
-    { left: "60%", width: "12%", height: "28%", color: "oklch(0.38 0.1 148)" },
-  ];
+  // Many thin streaks in deep greens, after the reference: brightest in the
+  // middle, falling away to the sides. Deterministic so SSR and client match.
+  const COUNT = 34;
+  const bars = Array.from({ length: COUNT }, (_, i) => {
+    const t = i / (COUNT - 1);
+    const centre = 1 - Math.abs(t - 0.42) * 1.7;
+    const jitter = ((i * 37) % 11) / 11;
+    const height = Math.max(14, Math.round((0.35 + 0.55 * centre + 0.18 * jitter) * 100));
+    const light = 0.3 + 0.24 * Math.max(0, centre) + 0.06 * jitter;
+    return {
+      left: `${(t * 100).toFixed(2)}%`,
+      width: `${(100 / COUNT) * (0.55 + 0.4 * jitter)}%`,
+      height: `${Math.min(height, 66)}%`,
+      color: `oklch(${light.toFixed(3)} 0.12 152)`,
+    };
+  });
   return (
     <div className="relative isolate flex min-h-[440px] flex-col overflow-hidden rounded-[1.75rem] bg-[oklch(0.09_0.006_150)] p-7 sm:min-h-[420px] sm:p-10 lg:h-full lg:min-h-[640px]">
       <div
@@ -84,12 +92,12 @@ function LightPanel() {
         {bars.map((b, i) => (
           <div
             key={i}
-            className="absolute bottom-0 blur-[6px]"
+            className="absolute bottom-0 blur-[2px]"
             style={{
               left: b.left,
               width: b.width,
               height: b.height,
-              background: `linear-gradient(to top, ${b.color} 0%, ${b.color} 25%, transparent 100%)`,
+              background: `linear-gradient(to top, ${b.color} 0%, ${b.color} 20%, transparent 100%)`,
             }}
           />
         ))}
