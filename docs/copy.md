@@ -57,6 +57,7 @@ Heading: Free stuff for you
 Sub heading: The blueprint behind converting sites we build
 Description: A page-by-page guide to what a website needs to turn visitors into clients. Read it, then let us build yours.
 CTA button: Get the free blueprint (links to the blueprint page, built later)
+Changed on request: the description line is no longer shown; the sub heading now sits as the description, in white. The button and cover open the PDF at /downloads/WEBLIT-Converting-Site-Blueprint.pdf.
 6. FAQ
 Heading: Questions before you say yes
 Content:
