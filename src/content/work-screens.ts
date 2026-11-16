@@ -6,10 +6,10 @@
 export const workScreens = [
   { image: "/work/real-estate.webp", url: "nirvishikhara.com", placeholder: "" },
   { image: "/work/healthcare.webp", url: "lalithaclinics.org", placeholder: "" },
-  { image: "/work/education.webp", url: "", placeholder: "" },
+  { image: "/work/education.webp", url: "dollardreams.lovable.app", placeholder: "" },
   { image: "/work/b2b-agency.webp", url: "revflowmarketing.in", placeholder: "" },
-  { image: "/work/construction.webp", url: "", placeholder: "" },
-  { image: "", url: "", placeholder: "[Car Retailer website screenshot]" },
+  { image: "/work/construction.webp", url: "araconstructions.com", placeholder: "" },
+  { image: "/work/car-retailer.webp", url: "carzspa.lovable.app", placeholder: "" },
 ] as const;
 
 export const workUrlPlaceholder = "[website URL]";

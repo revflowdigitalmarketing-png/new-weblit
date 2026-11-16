@@ -8,8 +8,6 @@ name, address and phone live in `src/config/business.ts`.
 
 | Where | Placeholder | What to supply | File |
 | --- | --- | --- | --- |
-| Our Work: mockup, Car Retailer | `[Car Retailer website screenshot]` | Screenshot | `src/content/work-screens.ts` |
-| Our Work: mockup address bar | `[website URL]` for Education, Construction Companies and Car Retailer | Live URL (Dollar Dreams and ARA Constructions sites) | `src/content/work-screens.ts` |
 | Footer: map | `[Google Maps embed]` | Google Maps "Embed a map" iframe `src` for the business location | `src/config/business.ts` → `mapEmbedSrc` |
 
 ## Price calculator
