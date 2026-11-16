@@ -13,7 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { BUSINESS, localBusinessJsonLd } from "@/config/business";
-import { MobileCta, Nav } from "@/components/sections/Nav";
+import { Nav } from "@/components/sections/Nav";
 import { Footer } from "@/components/sections/Footer";
 
 function NotFoundComponent() {
@@ -140,7 +140,6 @@ function RootComponent() {
       <Nav />
       <Outlet />
       <Footer />
-      <MobileCta />
     </QueryClientProvider>
   );
 }
