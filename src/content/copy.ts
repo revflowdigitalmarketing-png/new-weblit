@@ -77,19 +77,16 @@ export const differentiator = {
     clients: [
       {
         name: "Rahul Chandra",
-        role: "Founder",
         business: "RevFlow Marketing",
         url: "https://revflowmarketing.in",
       },
       {
         name: "Vinay & Vijay",
-        role: "Directors",
         business: "Nirvishikhara",
         url: "https://nirvishikhara.com",
       },
       {
         name: "Dr. Rajeshwar Prasad",
-        role: "",
         business: "Lalitha Clinics",
         url: "https://lalithaclinics.org",
       },

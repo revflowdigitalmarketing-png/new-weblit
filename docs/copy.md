@@ -124,7 +124,7 @@ Page copy (written for the page, drawn from the PDF and existing site copy):
 11. Changes on request (this round)
 * Headings no longer end in a full stop anywhere except the hero heading.
 * Our Work: mockup on the left, industries on the right, left-aligned, larger names, no numbers.
-* Owners we've built for (business names removed on request): Rahul Chandra, Founder, revflowmarketing.in; Vinay & Vijay, Directors, nirvishikhara.com; Dr. Rajeshwar Prasad, lalithaclinics.org.
+* Owners we've built for (business names and roles removed on request), plain text rows: Rahul Chandra, revflowmarketing.in; Vinay & Vijay, nirvishikhara.com; Dr. Rajeshwar Prasad, lalithaclinics.org.
 * Price calculator (block 2): "Price your website", fields Monthly visitors / Monthly enquiries / Clients per 10 enquiries / Value per client, the price, and "Get this website". Placeholder-rates tag and the text beside the amount removed.
 * Block 3: "Say no and the ledger keeps running. Say yes and you have a finished website to judge." removed.
 * FAQ heading: Common Questions. Removed: How can you build it in 72 hours? / Do I own the website? / What do you need from me?
