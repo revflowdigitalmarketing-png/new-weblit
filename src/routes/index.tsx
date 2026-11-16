@@ -3,16 +3,19 @@ import { Hero } from "@/components/sections/Hero";
 import { OurWork } from "@/components/sections/OurWork";
 import { Differentiator } from "@/components/sections/Differentiator";
 import { LeadMagnet } from "@/components/sections/LeadMagnet";
+import { Faq, faqJsonLd } from "@/components/sections/Faq";
 import { hero } from "@/content/copy";
 import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () =>
-    pageHead({
+  head: () => ({
+    ...pageHead({
       title: "WEBLIT | Websites built to get you more customers, published in 72 hours",
       description: hero.description,
       path: "/",
     }),
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(faqJsonLd()) }],
+  }),
   component: Index,
 });
 
@@ -23,6 +26,7 @@ function Index() {
       <OurWork />
       <Differentiator />
       <LeadMagnet />
+      <Faq />
     </main>
   );
 }
