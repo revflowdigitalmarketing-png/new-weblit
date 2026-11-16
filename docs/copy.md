@@ -78,6 +78,7 @@ Name, address, phone: WEBLIT, Global Designing Agency, +91 8074398610
 Email: weblitofficial@gmail.com
 Links: Work, FAQ, Contact, Privacy, Terms
 Map: Google Maps embed of the business location
+Column labels (UI, added with the footer redesign): Contact, Pages, Location
 Small print: © 2026 WEBLIT, [www.weblit.online](https://www.weblit.online)
 9. Contact page
 Heading: Tell us about your business and we'll build your website.

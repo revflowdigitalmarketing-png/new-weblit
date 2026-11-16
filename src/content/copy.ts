@@ -159,6 +159,8 @@ export const footer = {
     { label: "Terms", href: "/terms" },
   ],
   copyright: "© 2026 WEBLIT,",
+  /** Column labels for the footer layout (UI labels, see docs/copy.md). */
+  labels: { contact: "Contact", pages: "Pages", location: "Location" },
 };
 
 export const contact = {
