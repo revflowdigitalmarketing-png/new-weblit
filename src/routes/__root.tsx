@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { BUSINESS, localBusinessJsonLd } from "@/config/business";
 
 function NotFoundComponent() {
   return (
@@ -75,27 +76,26 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
-    // Replace these placeholders with the app's name and description when first building the app.
-    // Each content route, / included, must still set its own head(). Never add og:image or
-    // twitter:image here: every page without its own would inherit the root's preview image.
+    // Each content route sets its own title, description and canonical.
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "WEBLIT" },
-      { name: "description", content: "WEBLIT" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "WEBLIT" },
-      { property: "og:description", content: "WEBLIT" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
+      { title: BUSINESS.name },
+      { name: "theme-color", content: "#103713" },
+      { property: "og:site_name", content: BUSINESS.name },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "preload", href: "/fonts/Satoshi-Medium.otf", as: "font", type: "font/otf", crossOrigin: "anonymous" },
+      { rel: "preload", href: "/fonts/InterTight-Variable-latin.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+    ],
+    scripts: [
+      // Marks JS as available so reveal animations can start hidden (content stays visible without JS).
+      { children: "document.documentElement.classList.add('js')" },
+      { type: "application/ld+json", children: JSON.stringify(localBusinessJsonLd()) },
     ],
   }),
   shellComponent: RootShell,
@@ -106,7 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
