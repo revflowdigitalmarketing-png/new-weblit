@@ -1,7 +1,15 @@
 import { BUSINESS } from "@/config/business";
 
 /** Per-page title, description, canonical and Open Graph tags. */
-export function pageHead({ title, description, path }: { title: string; description: string; path: string }) {
+export function pageHead({
+  title,
+  description,
+  path,
+}: {
+  title: string;
+  description: string;
+  path: string;
+}) {
   const url = `${BUSINESS.url}${path}`;
   return {
     meta: [

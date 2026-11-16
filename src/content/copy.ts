@@ -62,8 +62,7 @@ export const work = {
 
 export const differentiator = {
   heading: "We build websites that pay you back.",
-  description:
-    "Every page we build has one job, turning the visitors you get into real enquiries.",
+  description: "Every page we build has one job, turning the visitors you get into real enquiries.",
   owners: {
     heading: "Owners we've built for",
     /** Placeholders until real clients are supplied. Set url to the live site. */
@@ -171,8 +170,7 @@ export const contact = {
     phone: "WhatsApp or phone",
     website: "Your current website (optional)",
     message: "What do we need to know about you?",
-    messagePlaceholder:
-      "Your business, who your clients are and what you want the website to do.",
+    messagePlaceholder: "Your business, who your clients are and what you want the website to do.",
   },
   cta: "I want my website",
   underButton: "We reply within 4 hours",

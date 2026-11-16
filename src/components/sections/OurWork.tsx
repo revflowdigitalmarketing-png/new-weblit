@@ -59,7 +59,9 @@ export function OurWork() {
                 screen.url ? (
                   screen.url
                 ) : (
-                  <Placeholder className="text-[10px] sm:text-[11px]">{workUrlPlaceholder}</Placeholder>
+                  <Placeholder className="text-[10px] sm:text-[11px]">
+                    {workUrlPlaceholder}
+                  </Placeholder>
                 )
               }
             >

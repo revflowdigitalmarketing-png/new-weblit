@@ -58,6 +58,7 @@ export function ButtonIcon({
 
 type ButtonLinkProps = {
   to: string;
+  id?: string | undefined;
   children: ReactNode;
   variant?: Variant;
   size?: Size;
@@ -65,7 +66,14 @@ type ButtonLinkProps = {
 };
 
 /** Pill CTA. Internal routes use the router; hash links fall back to <a>. */
-export function ButtonLink({ to, children, variant = "primary", size = "lg", className }: ButtonLinkProps) {
+export function ButtonLink({
+  to,
+  id,
+  children,
+  variant = "primary",
+  size = "lg",
+  className,
+}: ButtonLinkProps) {
   const cls = buttonClasses(variant, size, className);
   const inner = (
     <>
@@ -75,13 +83,13 @@ export function ButtonLink({ to, children, variant = "primary", size = "lg", cla
   );
   if (to.includes("#")) {
     return (
-      <a href={to} className={cls}>
+      <a id={id} href={to} className={cls}>
         {inner}
       </a>
     );
   }
   return (
-    <Link to={to} className={cls}>
+    <Link id={id} to={to} className={cls}>
       {inner}
     </Link>
   );

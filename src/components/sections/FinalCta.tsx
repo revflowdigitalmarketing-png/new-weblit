@@ -24,7 +24,11 @@ export function FinalCta() {
               </p>
             </Reveal>
             <Reveal delay={160} className="shrink-0">
-              <ButtonLink to="/contact" variant="inverse" className="w-full sm:w-auto sm:min-w-[240px]">
+              <ButtonLink
+                to="/contact"
+                variant="inverse"
+                className="w-full sm:w-auto sm:min-w-[240px]"
+              >
                 {finalCta.cta}
               </ButtonLink>
             </Reveal>

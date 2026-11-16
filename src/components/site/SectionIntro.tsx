@@ -9,7 +9,13 @@ type SectionIntroProps = {
   tone?: "light" | "dark";
 };
 
-export function SectionIntro({ id, heading, description, className, tone = "light" }: SectionIntroProps) {
+export function SectionIntro({
+  id,
+  heading,
+  description,
+  className,
+  tone = "light",
+}: SectionIntroProps) {
   return (
     <div className={cn("max-w-[56rem]", className)}>
       <Reveal>

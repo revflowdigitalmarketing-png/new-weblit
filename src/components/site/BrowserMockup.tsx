@@ -14,7 +14,7 @@ export function BrowserMockup({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-[1.25rem] bg-fill p-1.5 shadow-[0_40px_80px_-40px_oklch(0.148_0.003_145.4/0.35)] sm:rounded-[1.5rem] sm:p-2",
+        "overflow-hidden rounded-[1.25rem] bg-fill p-1.5 sm:rounded-[1.5rem] sm:p-2 lg:shadow-[0_40px_80px_-40px_oklch(0.148_0.003_145.4/0.35)]",
         className,
       )}
     >

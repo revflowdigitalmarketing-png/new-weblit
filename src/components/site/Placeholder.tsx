@@ -8,7 +8,13 @@ export const isPlaceholder = (text: string) => /^\[.*\]$/.test(text.trim());
  * Renders a clearly marked placeholder (striped amber chip).
  * Every placeholder on the site is listed in docs/todo.md.
  */
-export function Placeholder({ children, className }: { children: ReactNode; className?: string | undefined }) {
+export function Placeholder({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string | undefined;
+}) {
   return (
     <span className={cn("placeholder-chip", className)} data-placeholder="">
       {children}

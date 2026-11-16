@@ -33,11 +33,19 @@ export function LeadMagnet() {
 
 /** Decorative stack of guide pages. No text, purely visual. */
 function BlueprintStack() {
-  const page = "absolute inset-0 rounded-[1.25rem] bg-white shadow-[0_30px_60px_-35px_oklch(0.148_0.003_145.4/0.35)]";
+  const page =
+    "absolute inset-0 rounded-[1.25rem] bg-white shadow-[0_30px_60px_-35px_oklch(0.148_0.003_145.4/0.35)]";
   return (
-    <div aria-hidden className="group relative mx-auto aspect-[4/5] w-full max-w-[340px] lg:max-w-[380px]">
-      <div className={`${page} -rotate-6 opacity-60 transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:-rotate-9`} />
-      <div className={`${page} rotate-3 opacity-80 transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:rotate-6`} />
+    <div
+      aria-hidden
+      className="group relative mx-auto aspect-[4/5] w-full max-w-[340px] lg:max-w-[380px]"
+    >
+      <div
+        className={`${page} -rotate-6 opacity-60 transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:-rotate-9`}
+      />
+      <div
+        className={`${page} rotate-3 opacity-80 transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:rotate-6`}
+      />
       <div className={`${page} flex flex-col gap-4 p-7`}>
         <div className="h-2.5 w-16 rounded-full bg-brand" />
         <div className="mt-2 h-4 w-[85%] rounded-md bg-ink/[0.08]" />

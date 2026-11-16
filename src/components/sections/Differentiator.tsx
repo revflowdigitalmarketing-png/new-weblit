@@ -116,31 +116,25 @@ function MathsCard() {
     <div className={cn(card, "flex flex-col bg-fill")}>
       <h3 className="text-display-md">{maths.heading}</h3>
 
-      <ul className="mt-8 flex flex-col gap-5 text-lg leading-[2.2] text-ink sm:text-xl">
+      <ul className="mt-8 flex flex-col gap-4 text-lg leading-[1.9] text-ink sm:gap-5 sm:text-xl sm:leading-[2.1]">
         <li>
           <label htmlFor={`${id}-value`}>{maths.lines[0]![0]}</label>{" "}
           <span className="inline-flex items-baseline">
-            <span className="mr-0.5 text-ink/50" aria-hidden>₹</span>
-            <SlotInput
-              id={`${id}-value`}
-              value={value}
-              onChange={setValue}
-            />
+            <span className="mr-0.5 text-ink/50" aria-hidden>
+              ₹
+            </span>
+            <SlotInput id={`${id}-value`} value={value} onChange={setValue} />
           </span>{" "}
           {maths.lines[0]![1]}
         </li>
         <li>
           <label htmlFor={`${id}-visitors`}>{maths.lines[1]![0]}</label>{" "}
-          <SlotInput
-            id={`${id}-visitors`}
-            value={visitors}
-            onChange={setVisitors}
-          />{" "}
+          <SlotInput id={`${id}-visitors`} value={visitors} onChange={setVisitors} />{" "}
           {maths.lines[1]![1]}
         </li>
         <li>
-          {maths.lines[2]![0]}{" "}
-          <Slot>{n > 0 ? num1.format(enquiriesMonth) : null}</Slot> {maths.lines[2]![1]}
+          {maths.lines[2]![0]} <Slot>{n > 0 ? num1.format(enquiriesMonth) : null}</Slot>{" "}
+          {maths.lines[2]![1]}
         </li>
         <li>
           {maths.lines[3]![0]} <Slot>{n > 0 ? num1.format(clientsYear) : null}</Slot>{" "}
@@ -223,8 +217,14 @@ function OfferCard() {
               </li>
             ))}
           </ol>
-          <p className="mt-8 max-w-[30rem] text-lg leading-relaxed text-white/70">{offer.closing}</p>
-          <ButtonLink to="/contact" variant="inverse" className="mt-10 w-full sm:w-auto sm:min-w-[240px]">
+          <p className="mt-8 max-w-[30rem] text-lg leading-relaxed text-white/70">
+            {offer.closing}
+          </p>
+          <ButtonLink
+            to="/contact"
+            variant="inverse"
+            className="mt-10 w-full sm:w-auto sm:min-w-[240px]"
+          >
             {offer.cta}
           </ButtonLink>
         </div>
