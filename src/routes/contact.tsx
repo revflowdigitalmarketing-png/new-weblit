@@ -41,7 +41,7 @@ function ContactPage() {
         <Reveal delay={160} className="lg:col-start-1 lg:row-start-2">
           <aside className="flex flex-col gap-12">
             <div>
-              <h2 className="font-display text-2xl tracking-[-0.03em]">{contact.nextHeading}</h2>
+              <h2 className="font-display text-2xl tracking-[-0.045em]">{contact.nextHeading}</h2>
               <ol className="mt-6 flex flex-col">
                 {contact.next.map((step, i) => (
                   <li
@@ -110,7 +110,7 @@ function ContactForm() {
             <path d="M5 12.5l4.5 4.5L19 7.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </span>
-        <p className="text-display-md max-w-[20ch] font-display tracking-[-0.03em]">
+        <p className="text-display-md max-w-[20ch] font-display tracking-[-0.045em]">
           {contact.success}
         </p>
       </div>

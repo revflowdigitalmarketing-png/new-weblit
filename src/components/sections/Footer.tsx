@@ -13,7 +13,7 @@ export function Footer() {
           <div className="grid gap-12 lg:grid-cols-[1fr_1fr_1.1fr] lg:gap-10">
             <div>
               <Logo className="w-[132px]" />
-              <p className="mt-5 max-w-[16rem] font-display text-2xl leading-tight tracking-[-0.03em] text-ink">
+              <p className="mt-5 max-w-[16rem] font-display text-2xl leading-tight tracking-[-0.045em] text-ink">
                 {BUSINESS.tagline}
               </p>
             </div>

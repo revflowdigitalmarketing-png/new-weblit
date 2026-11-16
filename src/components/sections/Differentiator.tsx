@@ -146,7 +146,7 @@ function MathsCard() {
         <div className="rounded-[1.5rem] bg-white p-6 sm:p-7" aria-live="polite">
           <p
             className={cn(
-              "font-display text-[clamp(2.25rem,1.6rem+2.4vw,3.5rem)] leading-none tracking-[-0.03em] transition-colors duration-500",
+              "font-display text-[clamp(2.25rem,1.6rem+2.4vw,3.5rem)] leading-none tracking-[-0.045em] transition-colors duration-500",
               ready ? "text-brand" : "text-ink/20",
             )}
           >
