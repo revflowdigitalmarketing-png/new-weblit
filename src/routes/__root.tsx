@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { BUSINESS, localBusinessJsonLd } from "@/config/business";
 import { MobileCta, Nav } from "@/components/sections/Nav";
+import { Footer } from "@/components/sections/Footer";
 
 function NotFoundComponent() {
   return (
@@ -133,6 +134,7 @@ function RootComponent() {
       </a>
       <Nav />
       <Outlet />
+      <Footer />
       <MobileCta />
     </QueryClientProvider>
   );
