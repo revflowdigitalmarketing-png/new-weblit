@@ -26,6 +26,7 @@ export const hero = {
     label: "Describe your business",
     placeholder: "Describe your business: your name, business name, location and what you do.",
     industryLabel: "Your industry",
+    industries: ["Real Estate", "Healthcare", "Education", "B2B Agencies", "Hospitality"],
     cta: "I want my website",
   },
 };

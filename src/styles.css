@@ -292,12 +292,6 @@
   .flow-c {
     animation: flow-a 34s ease-in-out infinite alternate-reverse;
   }
-  .wave-drift {
-    animation: wave-drift 30s linear infinite;
-  }
-  .wave-drift-slow {
-    animation: wave-drift 46s linear infinite reverse;
-  }
 
   /* Scroll reveal (see components/site/Reveal.tsx). Visible by default without JS. */
   .reveal {
@@ -376,14 +370,5 @@
   }
   100% {
     transform: translate3d(3%, 5%, 0) scale(1.08) rotate(-4deg);
-  }
-}
-
-@keyframes wave-drift {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
   }
 }

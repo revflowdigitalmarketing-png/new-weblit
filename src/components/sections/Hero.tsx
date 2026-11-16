@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
 import { Container } from "@/components/site/Container";
 import { Reveal } from "@/components/site/Reveal";
-import { hero, work } from "@/content/copy";
+import { hero } from "@/content/copy";
 import { cn } from "@/lib/utils";
 
 /** Split the heading after its first comma so it always sets in two lines. */
@@ -14,37 +14,37 @@ const [line1, line2] = (() => {
 
 export function Hero() {
   return (
-    <section aria-labelledby="hero-heading" className="relative isolate overflow-hidden">
-      <AuroraBackdrop />
+    <section aria-labelledby="hero-heading" className="p-2 sm:p-3">
+      <div className="relative isolate overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem]">
+        <AuroraBackdrop />
 
-      <Container className="relative flex min-h-[100svh] flex-col items-center justify-center pb-24 pt-28 text-center sm:pb-28 sm:pt-32">
-        <Reveal>
-          <h1
-            id="hero-heading"
-            className="mx-auto text-[clamp(0.95rem,5.1vw,2.5rem)] font-medium leading-[1.15] text-ink"
-          >
-            <span className="block whitespace-nowrap">{line1}</span>
-            {line2 ? <span className="block whitespace-nowrap">{line2}</span> : null}
-          </h1>
-        </Reveal>
+        <Container className="relative flex min-h-[calc(100svh-1rem)] flex-col items-center justify-center pb-28 pt-28 text-center sm:min-h-[calc(100svh-1.5rem)] sm:pb-32 sm:pt-32">
+          <Reveal>
+            <h1
+              id="hero-heading"
+              className="mx-auto text-[clamp(0.95rem,5.1vw,2.5rem)] font-medium leading-[1.15] text-ink"
+            >
+              <span className="block whitespace-nowrap">{line1}</span>
+              {line2 ? <span className="block whitespace-nowrap">{line2}</span> : null}
+            </h1>
+          </Reveal>
 
-        <Reveal delay={90}>
-          <p className="mx-auto mt-4 max-w-[30rem] text-[0.8125rem] leading-relaxed text-ink/65 sm:text-[0.9375rem]">
-            {hero.description}
-          </p>
-        </Reveal>
+          <Reveal delay={90}>
+            <p className="mx-auto mt-4 max-w-[30rem] text-[0.8125rem] leading-relaxed text-ink/70 sm:text-[0.9375rem]">
+              {hero.description}
+            </p>
+          </Reveal>
 
-        <Reveal delay={180} className="mt-9 w-full max-w-[560px]">
-          <BriefCard />
-        </Reveal>
+          <Reveal delay={180} className="mt-8 w-full max-w-[600px]">
+            <BriefCard />
+          </Reveal>
+        </Container>
 
-        <Reveal delay={260}>
-          <p className="mt-8 inline-flex items-center gap-2 text-xs text-ink/75">
-            <span aria-hidden className="size-1 rounded-full bg-ink/80" />
-            {hero.badge}
-          </p>
-        </Reveal>
-      </Container>
+        {/* badge sits in the white finish, after the reference */}
+        <p className="absolute inset-x-0 bottom-6 z-10 px-4 text-center text-sm font-medium tracking-[-0.01em] text-paper/80 sm:bottom-8 sm:text-base">
+          {hero.badge}
+        </p>
+      </div>
     </section>
   );
 }
@@ -67,7 +67,7 @@ function BriefCard() {
   return (
     <form
       onSubmit={submit}
-      className="rounded-[1.5rem] bg-[oklch(0.96_0.02_150/0.78)] p-3.5 text-left text-[oklch(0.16_0.01_150)] shadow-[0_30px_80px_-30px_oklch(0.718_0.16_153/0.55),inset_0_1px_0_0_oklch(1_0_0/0.8)] backdrop-blur-xl sm:p-4"
+      className="rounded-[1.25rem] bg-[oklch(0.97_0.015_150/0.8)] p-3 text-left text-[oklch(0.16_0.01_150)] shadow-[0_30px_80px_-30px_oklch(0.718_0.16_153/0.55),inset_0_1px_0_0_oklch(1_0_0/0.8)] backdrop-blur-xl sm:p-4"
     >
       <label htmlFor={`${id}-brief`} className="sr-only">
         {hero.brief.label}
@@ -76,35 +76,39 @@ function BriefCard() {
         id={`${id}-brief`}
         value={brief}
         onChange={(e) => setBrief(e.target.value)}
-        rows={3}
+        rows={2}
         placeholder={hero.brief.placeholder}
         className="w-full resize-none bg-transparent px-1.5 pt-1 text-base leading-relaxed sm:text-sm outline-none placeholder:text-black/40"
       />
-      <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
-        <div className="flex flex-wrap gap-1.5" role="group" aria-label={hero.brief.industryLabel}>
-          {work.industries.map((it) => {
-            const on = industry === it.name;
+      <div className="mt-1 flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
+        <div
+          className="-mx-1 flex gap-1.5 overflow-x-auto px-1 pr-6 [mask-image:linear-gradient(to_right,black_85%,transparent)] [scrollbar-width:none] sm:pr-1 sm:[mask-image:none] [&::-webkit-scrollbar]:hidden"
+          role="group"
+          aria-label={hero.brief.industryLabel}
+        >
+          {hero.brief.industries.map((name) => {
+            const on = industry === name;
             return (
               <button
-                key={it.name}
+                key={name}
                 type="button"
                 aria-pressed={on}
-                onClick={() => setIndustry(on ? null : it.name)}
+                onClick={() => setIndustry(on ? null : name)}
                 className={cn(
-                  "rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors duration-200",
+                  "shrink-0 whitespace-nowrap rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors duration-200",
                   on
                     ? "bg-[oklch(0.299_0.076_144.7)] text-white"
                     : "bg-white/70 text-black/60 hover:bg-white",
                 )}
               >
-                {it.name}
+                {name}
               </button>
             );
           })}
         </div>
         <button
           type="submit"
-          className="group ml-auto inline-flex h-9 shrink-0 items-center gap-2 rounded-full bg-[oklch(0.13_0.009_134.1)] pl-4 pr-1.5 text-[0.8125rem] font-medium text-white transition-transform active:scale-[0.98]"
+          className="group inline-flex h-9 shrink-0 items-center justify-between gap-2 self-stretch sm:self-auto rounded-full bg-[oklch(0.13_0.009_134.1)] pl-4 pr-1.5 text-[0.8125rem] font-medium text-white transition-transform active:scale-[0.98]"
         >
           {hero.brief.cta}
           <span className="grid size-6 place-items-center rounded-full bg-brand text-[oklch(0.13_0.009_134.1)] transition-transform duration-300 group-hover:translate-x-0.5">
@@ -116,55 +120,27 @@ function BriefCard() {
   );
 }
 
-/** Black sky with a slowly flowing green aurora and drifting wave lines. Decorative only. */
+/**
+ * Black sky with a slowly flowing green aurora that finishes clean into
+ * bright white at the bottom edge, after the reference. Decorative only.
+ */
 function AuroraBackdrop() {
-  // One wave period is 720 units; the path spans two copies so a -50% drift loops seamlessly.
-  const wave = (amp: number, y: number, phase: number) => {
-    let d = `M0,${y}`;
-    for (let x = 0; x <= 2880; x += 360) {
-      const dir = (x / 360 + phase) % 2 === 0 ? -1 : 1;
-      d += ` Q${x + 180},${y + dir * amp} ${x + 360},${y}`;
-    }
-    return d;
-  };
-
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-paper">
-      {/* flowing glows */}
-      <div className="flow-a absolute -bottom-[35%] left-1/2 h-[95%] w-[140%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.718_0.16_153/0.95),oklch(0.45_0.11_150/0.7)_45%,transparent_75%)] blur-3xl will-change-transform" />
-      <div className="flow-b absolute -bottom-[20%] -left-[15%] h-[70%] w-[70%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.299_0.076_144.7/0.95),transparent_70%)] blur-3xl will-change-transform" />
-      <div className="flow-c absolute -bottom-[25%] -right-[10%] h-[70%] w-[65%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.634_0.147_152.1/0.8),transparent_70%)] blur-3xl will-change-transform" />
-      {/* pale mint wash along the bottom, after the reference */}
-      <div className="flow-a absolute -bottom-[18%] left-1/2 h-[38%] w-[110%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.95_0.05_150/0.85),transparent_75%)] blur-2xl" />
+      {/* flowing green glows */}
+      <div className="flow-a absolute -bottom-[30%] left-1/2 h-[95%] w-[150%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.718_0.16_153),oklch(0.5_0.13_151/0.85)_45%,transparent_75%)] blur-3xl will-change-transform" />
+      <div className="flow-b absolute -bottom-[15%] -left-[15%] h-[75%] w-[70%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.38_0.1_148/0.95),transparent_70%)] blur-3xl will-change-transform" />
+      <div className="flow-c absolute -bottom-[20%] -right-[12%] h-[75%] w-[65%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.78_0.15_155/0.85),transparent_70%)] blur-3xl will-change-transform" />
 
-      {/* faint vertical lines */}
-      <div className="absolute inset-x-0 bottom-0 h-[70%] bg-[repeating-linear-gradient(90deg,transparent_0,transparent_119px,oklch(1_0_0/0.05)_119px,oklch(1_0_0/0.05)_120px)] [mask-image:linear-gradient(to_top,black,transparent)]" />
+      {/* white light rising through the green */}
+      <div className="flow-b absolute -bottom-[12%] left-[30%] h-[45%] w-[45%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.99_0.01_150/0.9),transparent_72%)] blur-2xl will-change-transform" />
+      <div className="flow-a absolute -bottom-[8%] right-[8%] h-[30%] w-[35%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.97_0.03_150/0.75),transparent_72%)] blur-2xl will-change-transform" />
 
-      {/* drifting wave lines */}
-      <svg
-        className="wave-drift absolute bottom-[9%] left-0 h-[22%] w-[200%]"
-        viewBox="0 0 2880 200"
-        preserveAspectRatio="none"
-      >
-        <path d={wave(46, 100, 0)} fill="none" stroke="oklch(1 0 0 / 0.35)" strokeWidth="1.2" />
-        <path d={wave(30, 120, 1)} fill="none" stroke="oklch(1 0 0 / 0.22)" strokeWidth="1" />
-      </svg>
-      <svg
-        className="wave-drift-slow absolute bottom-[7%] left-0 h-[18%] w-[200%]"
-        viewBox="0 0 2880 200"
-        preserveAspectRatio="none"
-      >
-        <path
-          d={wave(38, 90, 1)}
-          fill="none"
-          stroke="oklch(0.86 0.12 150 / 0.35)"
-          strokeWidth="1"
-        />
-      </svg>
+      {/* clean bright finish along the bottom edge */}
+      <div className="absolute inset-x-0 bottom-0 h-[34%] bg-[linear-gradient(to_top,oklch(0.995_0.004_150)_0%,oklch(0.96_0.03_152/0.95)_14%,oklch(0.85_0.09_153/0.6)_38%,transparent_100%)]" />
 
-      {/* top darkness and a soft hand-off into the next section */}
-      <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-paper via-paper/70 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-paper" />
+      {/* keep the top black behind the heading */}
+      <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-paper via-paper/80 to-transparent" />
     </div>
   );
 }
