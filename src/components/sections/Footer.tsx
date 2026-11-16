@@ -69,9 +69,16 @@ export function Footer() {
         </div>
       </Container>
 
-      {/* Irregular green ridge with the logo, after the reference */}
+      {/* Green globe crest with the logo */}
       <div className="relative mt-2 pt-[64px] sm:mt-10 sm:pt-[150px] lg:pt-[190px]">
-        <Ridge />
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          {/* soft halo above the crest */}
+          <div className="absolute -left-[10%] top-0 h-[80%] w-[120%] rotate-[-4deg] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.718_0.16_153/0.35),transparent)] blur-2xl" />
+          {/* the crest: a wide globe edge, bright rim fading into deep green and black */}
+          <div className="absolute -left-[25%] top-[22%] h-[220%] w-[150%] rotate-[-5deg] rounded-[50%] bg-[linear-gradient(180deg,oklch(0.97_0.03_140)_0%,oklch(0.86_0.12_150)_3%,oklch(0.718_0.16_153)_8%,oklch(0.45_0.11_150)_18%,oklch(0.299_0.076_144.7)_28%,oklch(0.13_0.009_134.1)_48%)] blur-[10px]" />
+          {/* fine bright rim */}
+          <div className="absolute -left-[25%] top-[22%] h-[220%] w-[150%] rotate-[-5deg] rounded-[50%] shadow-[0_-2px_24px_0_oklch(0.95_0.05_145/0.55)] blur-[2px]" />
+        </div>
         <Container className="relative flex items-end justify-between gap-4 pb-4 sm:pb-8">
           <Logo className="w-[min(46vw,340px)]" />
           <p className="shrink-0 pb-0.5 text-right text-[10px] leading-relaxed text-ink/60 sm:text-xs">
@@ -83,53 +90,5 @@ export function Footer() {
         </Container>
       </div>
     </footer>
-  );
-}
-
-/**
- * One smooth, gentle hill: rising from the left, a soft peak left of centre,
- * then a long easy slope to the right. Stacked blurred copies of the same edge, each shifted down and darker,
- * so the bright rim follows the curve (cream > bright green > logo green > black).
- * Stretches to any width, so phones keep the same silhouette.
- */
-const RIDGE =
-  "M0,215 C300,120 470,92 620,92 C840,92 1120,138 1440,170 L1440,900 L0,900 Z";
-
-const LAYERS = [
-  { dy: -18, fill: "#3dc072", opacity: 0.22, blur: 26 },
-  { dy: 0, fill: "#f2f6e6", opacity: 0.95, blur: 5 },
-  { dy: 7, fill: "#a6e6b6", opacity: 1, blur: 8 },
-  { dy: 20, fill: "#3dc072", opacity: 1, blur: 14 },
-  { dy: 55, fill: "#1f7a3f", opacity: 1, blur: 22 },
-  { dy: 105, fill: "#103713", opacity: 1, blur: 28 },
-  { dy: 175, fill: "#060805", opacity: 1, blur: 30 },
-] as const;
-
-function Ridge() {
-  return (
-    <svg
-      aria-hidden
-      className="pointer-events-none absolute inset-0 size-full"
-      viewBox="0 0 1440 400"
-      preserveAspectRatio="none"
-    >
-      <defs>
-        {LAYERS.map((l, i) => (
-          <filter key={i} id={`ridge-blur-${i}`} x="-10%" y="-50%" width="120%" height="200%">
-            <feGaussianBlur stdDeviation={l.blur} />
-          </filter>
-        ))}
-      </defs>
-      {LAYERS.map((l, i) => (
-        <path
-          key={i}
-          d={RIDGE}
-          fill={l.fill}
-          opacity={l.opacity}
-          transform={`translate(0 ${l.dy})`}
-          filter={`url(#ridge-blur-${i})`}
-        />
-      ))}
-    </svg>
   );
 }
