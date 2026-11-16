@@ -91,13 +91,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       {
         rel: "preload",
-        href: "/fonts/Satoshi-Medium.otf",
-        as: "font",
-        type: "font/otf",
-        crossOrigin: "anonymous",
-      },
-      {
-        rel: "preload",
         href: "/fonts/InterTight-Variable-latin.woff2",
         as: "font",
         type: "font/woff2",

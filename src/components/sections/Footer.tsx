@@ -11,7 +11,7 @@ export function Footer() {
       <Container>
         <div className="mx-auto max-w-[1120px] rounded-[2rem] bg-fill p-6 text-center sm:p-10 lg:p-12">
           <Logo className="mx-auto w-[120px]" />
-          <p className="mt-4 font-display text-xl leading-tight tracking-[-0.045em] text-ink sm:text-2xl">
+          <p className="mt-4 font-display text-xl leading-tight tracking-[-0.035em] text-ink sm:text-2xl">
             {BUSINESS.tagline}
           </p>
 

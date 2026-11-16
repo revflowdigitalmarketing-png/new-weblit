@@ -96,7 +96,7 @@ export function Nav() {
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="block py-3 font-display text-3xl tracking-[-0.045em] text-ink"
+                  className="block py-3 font-display text-3xl tracking-[-0.035em] text-ink"
                 >
                   {l.label}
                 </a>

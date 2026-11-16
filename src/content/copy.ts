@@ -72,15 +72,17 @@ export const differentiator = {
       { name: "[Client name]", industry: "[Industry]", url: "", urlLabel: "[website URL]" },
     ],
   },
-  maths: {
-    heading: "Do the maths on waiting",
-    lines: [
-      ["One new client is worth", "to you."],
-      ["Your site gets", "visitors a month."],
-      ["Get 1 more visitor in 100 to enquire and that is", "extra enquiries a month."],
-      ["Close 1 in 4 and that is", "clients a year who went to someone else."],
-    ],
-    total: "That total is what your current site costs you every year.",
+  /** Block 2: price calculator. Labels written for the calculator (see docs/copy.md). */
+  price: {
+    heading: "Price your website",
+    note: "Our pricing is from INR 22,000 onwards.",
+    extrasLabel: "pages and add-ons",
+    baseLabel: "from",
+    pagesLabel: "Pages",
+    pagesUnit: "pages",
+    addOnsLabel: "Add-ons",
+    addOnsUnit: "add-ons",
+    cta: "Get this website",
   },
   offer: {
     heading: "Get your website first. Pay then.",

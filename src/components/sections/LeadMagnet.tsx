@@ -17,7 +17,7 @@ export function LeadMagnet() {
               <h2 id="blueprint-heading" className="text-display-lg">
                 {leadMagnet.heading}
               </h2>
-              <p className="mx-auto mt-4 max-w-[26ch] font-display text-xl leading-tight tracking-[-0.045em] text-brand sm:text-2xl">
+              <p className="mx-auto mt-4 max-w-[26ch] font-display text-xl leading-tight tracking-[-0.035em] text-brand sm:text-2xl">
                 {leadMagnet.subheading}
               </p>
               <p className="mx-auto mt-5 max-w-[32rem] text-base leading-relaxed text-muted-foreground sm:text-lg">

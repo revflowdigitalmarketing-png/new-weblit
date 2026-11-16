@@ -21,6 +21,19 @@ name, address and phone live in `src/config/business.ts`.
 | Differentiator: Owners we've built for | `[website URL]` × 3 | Live website URL (set `url` too, so the arrow link goes live) | same |
 | Footer: map | `[Google Maps embed]` | Google Maps "Embed a map" iframe `src` for the business location | `src/config/business.ts` → `mapEmbedSrc` |
 
+## Price calculator rates (placeholders)
+
+The calculator in the Differentiator section shows a `[placeholder rates]` marker until real
+rates are in `src/content/pricing.ts`. Only the ₹22,000 base is confirmed. Supply:
+
+- Pages included in the ₹22,000 base (placeholder: 5)
+- Price per extra page (placeholder: ₹2,500)
+- Maximum pages on the slider (currently 15)
+- Add-ons and their prices (placeholders: Booking system ₹6,000, WhatsApp chat ₹2,000,
+  Blog ₹4,000, Online payments ₹5,000)
+
+Then set `ratesArePlaceholders: false`.
+
 ## Links to pages not built yet
 
 - **Get the free blueprint** links to `/blueprint` (blueprint page, "built later" per copy).
@@ -33,8 +46,6 @@ name, address and phone live in `src/config/business.ts`.
 - **Address** is `Global Designing Agency`, as given. If the Google Business Profile shows a
   street address, put it in `BUSINESS.address` exactly as written there (it feeds the
   footer, the contact page and the LocalBusiness JSON-LD).
-- **Satoshi SemiBold** wasn't supplied, so headings use Satoshi Medium (500). Drop
-  `Satoshi-SemiBold` into `public/fonts/` and add an `@font-face` for weight 600 if wanted.
 - **Contact form** has no backend yet. It validates and shows the success message, but the
   answers aren't sent anywhere. Wire `handleSubmit` in `src/routes/contact.tsx` to an
   email service, a Lovable Cloud function or a form endpoint.

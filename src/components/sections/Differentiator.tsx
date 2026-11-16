@@ -1,14 +1,14 @@
 import { ArrowUpRight } from "lucide-react";
-import { useId, useState } from "react";
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { Container } from "@/components/site/Container";
 import { CopyText } from "@/components/site/Placeholder";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionIntro } from "@/components/site/SectionIntro";
+import { PriceCalculator } from "@/components/sections/PriceCalculator";
 import { differentiator } from "@/content/copy";
 import { cn } from "@/lib/utils";
 
-const { owners, maths, offer } = differentiator;
+const { owners, offer } = differentiator;
 
 export function Differentiator() {
   return (
@@ -30,7 +30,7 @@ export function Differentiator() {
             <OwnersCard />
           </Reveal>
           <Reveal className="h-full" delay={80}>
-            <MathsCard />
+            <PriceCalculator />
           </Reveal>
           <Reveal className="h-full" delay={160}>
             <OfferCard />
@@ -42,7 +42,7 @@ export function Differentiator() {
 }
 
 const card = "flex h-full flex-col rounded-[1.75rem] p-5 text-center sm:p-6";
-const cardHeading = "font-display text-xl leading-tight tracking-[-0.045em] sm:text-[1.375rem]";
+const cardHeading = "font-display text-xl leading-tight tracking-[-0.035em] sm:text-[1.375rem]";
 
 /* Block 1 */
 function OwnersCard() {
@@ -98,108 +98,6 @@ function OwnersCard() {
         })}
       </ul>
     </div>
-  );
-}
-
-/* Block 2: live calculator */
-const inr = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 0 });
-const num1 = new Intl.NumberFormat("en-IN", { maximumFractionDigits: 1 });
-const digits = (v: string) => v.replace(/[^\d]/g, "").slice(0, 12);
-
-function MathsCard() {
-  const id = useId();
-  const [value, setValue] = useState("");
-  const [visitors, setVisitors] = useState("");
-
-  const v = Number(value) || 0;
-  const n = Number(visitors) || 0;
-  const enquiriesMonth = n / 100; // 1 more visitor in 100 enquires
-  const clientsYear = (enquiriesMonth * 12) / 4; // close 1 in 4, over 12 months
-  const total = clientsYear * v;
-  const ready = v > 0 && n > 0;
-
-  return (
-    <div className={cn(card, "bg-fill")}>
-      <h3 className={cardHeading}>{maths.heading}</h3>
-
-      <ul className="mt-6 flex flex-col gap-3 text-[0.9375rem] leading-[1.9] text-ink/90">
-        <li>
-          <label htmlFor={`${id}-value`}>{maths.lines[0]![0]}</label>{" "}
-          <span className="inline-flex items-baseline">
-            <span className="mr-0.5 text-ink/50" aria-hidden>
-              ₹
-            </span>
-            <SlotInput id={`${id}-value`} value={value} onChange={setValue} />
-          </span>{" "}
-          {maths.lines[0]![1]}
-        </li>
-        <li>
-          <label htmlFor={`${id}-visitors`}>{maths.lines[1]![0]}</label>{" "}
-          <SlotInput id={`${id}-visitors`} value={visitors} onChange={setVisitors} />{" "}
-          {maths.lines[1]![1]}
-        </li>
-        <li>
-          {maths.lines[2]![0]} <Slot>{n > 0 ? num1.format(enquiriesMonth) : null}</Slot>{" "}
-          {maths.lines[2]![1]}
-        </li>
-        <li>
-          {maths.lines[3]![0]} <Slot>{n > 0 ? num1.format(clientsYear) : null}</Slot>{" "}
-          {maths.lines[3]![1]}
-        </li>
-      </ul>
-
-      <div className="mt-auto pt-6">
-        <div className="rounded-[1.25rem] bg-surface p-5" aria-live="polite">
-          <p
-            className={cn(
-              "font-display text-[2rem] leading-none tracking-[-0.045em] transition-colors duration-500",
-              ready ? "text-brand" : "text-ink/20",
-            )}
-          >
-            ₹{ready ? inr.format(total) : "____"}
-          </p>
-          <p className="mt-2.5 text-sm text-muted-foreground">{maths.total}</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SlotInput({
-  id,
-  value,
-  onChange,
-}: {
-  id: string;
-  value: string;
-  onChange: (v: string) => void;
-}) {
-  const shown = value ? inr.format(Number(value)) : "";
-  return (
-    <input
-      id={id}
-      type="text"
-      inputMode="numeric"
-      autoComplete="off"
-      placeholder="____"
-      value={shown}
-      onChange={(e) => onChange(digits(e.target.value))}
-      style={{ width: `${Math.max(4, shown.length + 1)}ch` }}
-      className="inline-field rounded-md bg-surface px-1.5 py-0 text-center font-display font-medium tracking-[-0.02em] text-brand outline-none ring-brand/30 transition-shadow placeholder:text-ink/30 focus:ring-2"
-    />
-  );
-}
-
-function Slot({ children }: { children: React.ReactNode }) {
-  return (
-    <span
-      className={cn(
-        "inline-block min-w-[4ch] rounded-md px-1.5 py-0 text-center font-display font-medium tracking-[-0.02em] transition-colors duration-300",
-        children ? "bg-brand-soft text-brand" : "bg-surface text-ink/30",
-      )}
-    >
-      {children ?? "____"}
-    </span>
   );
 }
 

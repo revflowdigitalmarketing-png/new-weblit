@@ -42,7 +42,7 @@ function ContactPage() {
 
         <Reveal delay={160}>
           <section aria-labelledby="next-heading" className="mt-16">
-            <h2 id="next-heading" className="font-display text-xl tracking-[-0.045em] sm:text-2xl">
+            <h2 id="next-heading" className="font-display text-xl tracking-[-0.035em] sm:text-2xl">
               {contact.nextHeading}
             </h2>
             <ol className="mt-6 grid gap-3 sm:grid-cols-3">
@@ -117,7 +117,7 @@ function ContactForm() {
             <path d="M5 12.5l4.5 4.5L19 7.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </span>
-        <p className="text-display-md max-w-[20ch] font-display tracking-[-0.045em]">
+        <p className="text-display-md max-w-[20ch] font-display tracking-[-0.035em]">
           {contact.success}
         </p>
       </div>

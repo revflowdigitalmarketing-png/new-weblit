@@ -29,14 +29,17 @@ Heading: We build websites that pay you back.
 Description: Every page we build has one job, turning the visitors you get into real enquiries.
 Block 1: Owners we've built for (inside the card heading)
 A card with pill type of cards inside, profile picture of the client and beside it client name, Industry. Below this the website URL with actual connected link, the arrow icon leading to new website.
-Block 2: Do the maths on waiting (inside card heading)
+Block 2: Price calculator (replaces "Do the maths on waiting", changed on request)
+Design: after the "Total Project" reference card. White card, our greens only.
+Labels (written for the calculator):
+* Heading: Price your website
+* Info tooltip: Our pricing is from INR 22,000 onwards.
+* Under the price: +[extras] pages and add-ons / from ₹22,000
+* Slider label: Pages (1 to 15 pages)
+* Toggles label: Add-ons (Booking system, WhatsApp chat, Blog, Online payments)
+* Summary pill: [n] pages, [n] add-ons. Get this website (links to the contact page)
+Rates live in src/content/pricing.ts.
 
-* One new client is worth ____ to you.
-* Your site gets ____ visitors a month.
-* Get 1 more visitor in 100 to enquire and that is ____ extra enquiries a month.
-* Close 1 in 4 and that is ____ clients a year who went to someone else.
-
-That total is what your current site costs you every year.
 Block 3: Get your website first. Pay then. (inside the block heading)
 
 * You spend 15 minutes telling us about your business.
