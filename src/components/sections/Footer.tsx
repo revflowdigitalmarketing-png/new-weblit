@@ -87,13 +87,13 @@ export function Footer() {
 }
 
 /**
- * Irregular hill: low on the left, peaking left of centre, easing down to the
- * right. Stacked blurred copies of the same edge, each shifted down and darker,
+ * One smooth, gentle hill: rising from the left, a soft peak left of centre,
+ * then a long easy slope to the right. Stacked blurred copies of the same edge, each shifted down and darker,
  * so the bright rim follows the curve (cream > bright green > logo green > black).
  * Stretches to any width, so phones keep the same silhouette.
  */
 const RIDGE =
-  "M0,250 C120,232 230,170 330,118 C420,72 480,46 560,50 C660,56 720,112 820,140 C930,170 1040,160 1160,168 C1280,176 1360,158 1440,150 L1440,900 L0,900 Z";
+  "M0,215 C300,120 470,92 620,92 C840,92 1120,138 1440,170 L1440,900 L0,900 Z";
 
 const LAYERS = [
   { dy: -18, fill: "#3dc072", opacity: 0.22, blur: 26 },
