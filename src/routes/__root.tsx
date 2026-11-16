@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { BUSINESS, localBusinessJsonLd } from "@/config/business";
+import { MobileCta, Nav } from "@/components/sections/Nav";
 
 function NotFoundComponent() {
   return (
@@ -124,7 +125,15 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <a
+        href="#main"
+        className="sr-only z-[60] rounded-full bg-ink px-4 py-2 text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+      >
+        Skip to content
+      </a>
+      <Nav />
       <Outlet />
+      <MobileCta />
     </QueryClientProvider>
   );
 }
