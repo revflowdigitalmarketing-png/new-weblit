@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useId, useState, type FormEvent } from "react";
-import { ButtonIcon, buttonClasses } from "@/components/site/ButtonLink";
 import { Container } from "@/components/site/Container";
+import { Logo } from "@/components/site/Logo";
 import { Nap } from "@/components/site/Nap";
 import { Reveal } from "@/components/site/Reveal";
 import { whatsappHref } from "@/config/business";
@@ -32,70 +32,98 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   return (
-    <main id="main" className="relative overflow-x-clip pb-16 pt-32 sm:pb-24 sm:pt-40">
-      <div
-        aria-hidden
-        className="glow glow-soft left-1/2 top-0 h-[50vh] w-[80vw] -translate-x-1/2"
-      />
-      <Container className="relative mx-auto max-w-[760px] text-center">
-        <Reveal>
-          <h1 className="text-display-lg mx-auto max-w-[18ch]">{contact.heading}</h1>
-        </Reveal>
-        <Reveal delay={80}>
-          <p className="mx-auto mt-5 max-w-[34rem] text-base leading-relaxed text-muted-foreground sm:text-lg">
-            {contact.description}
-          </p>
-        </Reveal>
-
-        <Reveal delay={120} className="mt-12 text-left">
-          <ContactForm />
-        </Reveal>
-
-        <Reveal delay={160}>
-          <section aria-labelledby="next-heading" className="mt-16">
-            <h2 id="next-heading" className="font-display text-xl tracking-[-0.035em] sm:text-2xl">
-              {contact.nextHeading}
-            </h2>
-            <ol className="mt-6 grid gap-3 sm:grid-cols-3">
-              {contact.next.map((step, i) => (
-                <li
-                  key={step}
-                  className="flex flex-col items-center gap-3 rounded-[1.25rem] bg-fill p-5 text-[0.9375rem] leading-snug"
+    <main id="main" className="pb-12 pt-24 sm:pb-20 sm:pt-28">
+      <Container className="max-w-[1180px]">
+        <div className="grid gap-4 lg:grid-cols-2 lg:gap-10">
+          <Reveal>
+            <LightPanel />
+          </Reveal>
+          <Reveal delay={100} className="flex items-center">
+            <div className="mx-auto w-full max-w-[460px] py-4 lg:py-10">
+              <Logo className="w-[92px]" />
+              <p className="mt-6 text-sm leading-relaxed text-ink/60 sm:text-[0.9375rem]">
+                {contact.description}
+              </p>
+              <div className="my-7 h-px bg-ink/10" />
+              <ContactForm />
+              <div className="mt-10 flex flex-col gap-3 text-[0.8125rem] leading-relaxed text-ink/55 sm:flex-row sm:items-end sm:justify-between">
+                <Nap />
+                <a
+                  href={whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-ink/80 underline-offset-4 transition-colors hover:text-brand hover:underline"
                 >
-                  <span
-                    aria-hidden
-                    className="grid size-7 place-items-center rounded-full bg-brand font-display text-xs text-paper"
-                  >
-                    {i + 1}
-                  </span>
-                  <span>{step}</span>
-                </li>
-              ))}
-            </ol>
-          </section>
-        </Reveal>
-
-        <Reveal delay={200}>
-          <div className="mt-6 flex flex-col items-center gap-5 rounded-[1.25rem] bg-fill p-6 text-sm text-ink/80">
-            <Nap />
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={buttonClasses("primary", "md", "w-full sm:w-auto sm:min-w-[200px]")}
-            >
-              <span>WhatsApp</span>
-              <ButtonIcon variant="primary" size="md" external />
-            </a>
-          </div>
-        </Reveal>
+                  WhatsApp ↗
+                </a>
+              </div>
+            </div>
+          </Reveal>
+        </div>
       </Container>
     </main>
   );
 }
 
+/** Left panel: heading and next steps over rising green and white light bars. */
+function LightPanel() {
+  const bars = [
+    { left: "0%", width: "13%", height: "46%", color: "oklch(0.99 0.01 150)" },
+    { left: "12%", width: "13%", height: "58%", color: "oklch(0.9 0.09 152)" },
+    { left: "24%", width: "13%", height: "64%", color: "oklch(0.718 0.16 153)" },
+    { left: "36%", width: "13%", height: "50%", color: "oklch(0.634 0.147 152.1)" },
+    { left: "48%", width: "13%", height: "40%", color: "oklch(0.5 0.13 151)" },
+    { left: "60%", width: "12%", height: "28%", color: "oklch(0.38 0.1 148)" },
+  ];
+  return (
+    <div className="relative isolate flex min-h-[440px] flex-col overflow-hidden rounded-[1.75rem] bg-[oklch(0.09_0.006_150)] p-7 sm:min-h-[420px] sm:p-10 lg:h-full lg:min-h-[640px]">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[38%] sm:h-[55%] lg:h-full"
+      >
+        {bars.map((b, i) => (
+          <div
+            key={i}
+            className="absolute bottom-0 blur-[6px]"
+            style={{
+              left: b.left,
+              width: b.width,
+              height: b.height,
+              background: `linear-gradient(to top, ${b.color} 0%, ${b.color} 25%, transparent 100%)`,
+            }}
+          />
+        ))}
+      </div>
+
+      <h1 className="max-w-[16ch] text-[clamp(1.5rem,1.2rem+1.4vw,2.35rem)] font-medium leading-[1.12] text-ink">
+        {contact.heading}
+      </h1>
+
+      <div className="mt-8">
+        <h2 className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink/45">
+          {contact.nextHeading}
+        </h2>
+        <ol className="mt-3 flex flex-col gap-1.5 text-sm text-ink/80">
+          {contact.next.map((step, i) => (
+            <li key={step} className="flex gap-3">
+              <span aria-hidden className="tabular-nums text-ink/35">
+                0{i + 1}
+              </span>
+              <span>{step}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Borderless fields: no stroke, ring or outline, even while typing. Focus is
+ * shown by the fill getting lighter instead.
+ */
 const field =
-  "w-full rounded-2xl bg-surface px-4 text-base text-ink outline-none ring-brand/40 transition-shadow placeholder:text-ink/35 focus:ring-2";
+  "w-full rounded-[10px] bg-white/[0.06] px-4 text-[0.9375rem] text-ink outline-none transition-colors duration-200 placeholder:text-ink/30 hover:bg-white/[0.08] focus:bg-white/[0.11] focus-visible:outline-none";
 
 function ContactForm() {
   const id = useId();
@@ -112,53 +140,37 @@ function ContactForm() {
 
   if (sent) {
     return (
-      <div
+      <p
         role="status"
-        className="aurora-card flex min-h-[360px] flex-col justify-end rounded-[2rem] p-8 text-ink sm:p-12"
+        className="py-10 text-xl font-medium leading-snug tracking-[-0.03em] text-ink sm:text-2xl"
       >
-        <span
-          aria-hidden
-          className="mb-auto grid size-12 place-items-center rounded-full bg-brand text-paper"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            className="size-5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.75"
-          >
-            <path d="M5 12.5l4.5 4.5L19 7.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </span>
-        <p className="text-display-md max-w-[20ch] font-display tracking-[-0.035em]">
-          {contact.success}
-        </p>
-      </div>
+        {contact.success}
+      </p>
     );
   }
 
   const f = contact.fields;
   return (
-    <form onSubmit={handleSubmit} className="rounded-[2rem] bg-fill p-5 sm:p-8">
-      <div className="grid gap-5 sm:grid-cols-2">
-        <Field id={`${id}-name`} label={f.name}>
-          <input
-            id={`${id}-name`}
-            name="name"
-            required
-            autoComplete="name"
-            className={cn(field, "h-14")}
-          />
-        </Field>
-        <Field id={`${id}-business`} label={f.business}>
-          <input
-            id={`${id}-business`}
-            name="business"
-            required
-            autoComplete="organization"
-            className={cn(field, "h-14")}
-          />
-        </Field>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <Field id={`${id}-name`} label={f.name}>
+        <input
+          id={`${id}-name`}
+          name="name"
+          required
+          autoComplete="name"
+          className={cn(field, "h-12")}
+        />
+      </Field>
+      <Field id={`${id}-business`} label={f.business}>
+        <input
+          id={`${id}-business`}
+          name="business"
+          required
+          autoComplete="organization"
+          className={cn(field, "h-12")}
+        />
+      </Field>
+      <div className="grid gap-4 sm:grid-cols-2">
         <Field id={`${id}-email`} label={f.email}>
           <input
             id={`${id}-email`}
@@ -166,7 +178,7 @@ function ContactForm() {
             type="email"
             required
             autoComplete="email"
-            className={cn(field, "h-14")}
+            className={cn(field, "h-12")}
           />
         </Field>
         <Field id={`${id}-phone`} label={f.phone}>
@@ -177,60 +189,47 @@ function ContactForm() {
             required
             autoComplete="tel"
             inputMode="tel"
-            className={cn(field, "h-14")}
-          />
-        </Field>
-        <Field id={`${id}-website`} label={f.website} className="sm:col-span-2">
-          <input
-            id={`${id}-website`}
-            name="website"
-            type="text"
-            inputMode="url"
-            autoComplete="url"
-            className={cn(field, "h-14")}
-          />
-        </Field>
-        <Field id={`${id}-message`} label={f.message} className="sm:col-span-2">
-          <textarea
-            id={`${id}-message`}
-            name="message"
-            required
-            defaultValue={prefill}
-            rows={5}
-            placeholder={f.messagePlaceholder}
-            className={cn(field, "resize-y py-4 leading-relaxed")}
+            className={cn(field, "h-12")}
           />
         </Field>
       </div>
+      <Field id={`${id}-website`} label={f.website}>
+        <input
+          id={`${id}-website`}
+          name="website"
+          type="text"
+          inputMode="url"
+          autoComplete="url"
+          className={cn(field, "h-12")}
+        />
+      </Field>
+      <Field id={`${id}-message`} label={f.message}>
+        <textarea
+          id={`${id}-message`}
+          name="message"
+          required
+          defaultValue={prefill}
+          rows={4}
+          placeholder={f.messagePlaceholder}
+          className={cn(field, "resize-none py-3 leading-relaxed")}
+        />
+      </Field>
 
-      <div className="mt-8 flex flex-col items-center gap-3">
-        <button
-          type="submit"
-          className={buttonClasses("primary", "lg", "w-full sm:w-auto sm:min-w-[240px]")}
-        >
-          <span>{contact.cta}</span>
-          <ButtonIcon />
-        </button>
-        <p className="text-center text-sm text-muted-foreground">{contact.underButton}</p>
-      </div>
+      <button
+        type="submit"
+        className="mt-3 h-12 w-full rounded-[10px] bg-brand text-[0.9375rem] font-medium text-paper outline-none transition-colors duration-200 hover:bg-[oklch(0.78_0.16_153)] focus-visible:bg-[oklch(0.8_0.15_153)] focus-visible:outline-none active:scale-[0.99]"
+      >
+        {contact.cta}
+      </button>
+      <p className="text-center text-[0.8125rem] text-ink/50">{contact.underButton}</p>
     </form>
   );
 }
 
-function Field({
-  id,
-  label,
-  className,
-  children,
-}: {
-  id: string;
-  label: string;
-  className?: string | undefined;
-  children: React.ReactNode;
-}) {
+function Field({ id, label, children }: { id: string; label: string; children: React.ReactNode }) {
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
-      <label htmlFor={id} className="pl-1 text-sm font-medium text-ink/75">
+    <div className="flex flex-col gap-1.5">
+      <label htmlFor={id} className="text-[0.8125rem] text-ink/55">
         {label}
       </label>
       {children}
