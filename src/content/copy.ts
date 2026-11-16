@@ -111,8 +111,11 @@ export const leadMagnet = {
   description:
     "A page-by-page guide to what a website needs to turn visitors into clients. Read it, then let us build yours.",
   cta: "Get the free blueprint",
-  /** The Converting Site Blueprint PDF (cover image is its first page). */
-  href: "/downloads/WEBLIT-Converting-Site-Blueprint.pdf",
+  /** Home section links to the blueprint page; the page links to the PDF. */
+  href: "/blueprint",
+  pdf: "/downloads/WEBLIT-Converting-Site-Blueprint.pdf",
+  /** Short line from the blueprint PDF itself (its contents page). */
+  line: "What a website needs to turn visitors into clients, one section at a time.",
 };
 
 export const faq = {
@@ -195,4 +198,25 @@ export const contact = {
   ],
   success:
     "Got it, thank you. We'll reply within 4 hours to confirm your details and start your 72 hours.",
+};
+
+/** Blueprint page (/blueprint), after the lead magnet reference layout. */
+export const blueprintPage = {
+  titleLead: "Your blueprint:",
+  title: "The Converting Site Blueprint",
+  description: "Each page covers one section: what goes in it and why it sits there.",
+  open: "Open the PDF",
+  skip: {
+    pill: "Skip the work",
+    heading: "Want us to build it for you?",
+    intro:
+      "The blueprint shows what goes into a site that converts. We build the whole thing for you.",
+    points: [
+      "Every section from the blueprint, written and designed for your business",
+      "Published in 72 hours",
+      "You pay once you've seen it",
+    ],
+    closing: "Give us 15 minutes. In 72 hours your finished website is ready to review.",
+    cta: "I want my website",
+  },
 };

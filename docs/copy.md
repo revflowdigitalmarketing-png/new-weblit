@@ -107,3 +107,17 @@ What happens next:
 
 After they submit: Got it, thank you. We'll reply within 4 hours to confirm your details and start your 72 hours.
 Contact details: same name, address and phone as the footer, plus a WhatsApp link.
+
+10. Blueprint page (/blueprint), added on request after the lead magnet reference
+Home section now: icon, pill "Free stuff for you", headline "The blueprint behind converting sites we build", line "What a website needs to turn visitors into clients, one section at a time." (from the PDF), button "Get the free blueprint" to /blueprint.
+Page copy (written for the page, drawn from the PDF and existing site copy):
+* H1: Your blueprint: The Converting Site Blueprint
+* Under it: Each page covers one section: what goes in it and why it sits there. (from the PDF)
+* PDF frame (page 1 as cover) and button: Open the PDF
+* Pill: Skip the work
+* Heading: Want us to build it for you?
+* Intro: The blueprint shows what goes into a site that converts. We build the whole thing for you.
+* Points: Every section from the blueprint, written and designed for your business / Published in 72 hours / You pay once you've seen it
+* Closing: Give us 15 minutes. In 72 hours your finished website is ready to review. (from Final CTA)
+* CTA: I want my website (contact page)
+

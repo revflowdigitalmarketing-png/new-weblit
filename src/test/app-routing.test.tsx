@@ -22,4 +22,12 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).toBe("/contact");
   });
+
+  it("matches the blueprint page", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+
+    const matches = router.matchRoutes("/blueprint");
+
+    expect(matches.at(-1)?.routeId).toBe("/blueprint");
+  });
 });
