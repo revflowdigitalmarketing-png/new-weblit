@@ -205,16 +205,22 @@ export const blueprintPage = {
   titleLead: "Your blueprint:",
   title: "The Converting Site Blueprint",
   description: "Each page covers one section: what goes in it and why it sits there.",
-  open: "Open the PDF",
+  download: {
+    prompt: "Enter your email to download the guide.",
+    label: "Your email",
+    placeholder: "you@business.com",
+    cta: "Download the Guide",
+    done: "Your download has started. Check your downloads folder.",
+  },
   skip: {
     pill: "Skip the work",
     heading: "Want us to build it for you?",
     intro:
       "The blueprint shows what goes into a site that converts. We build the whole thing for you.",
     points: [
-      "Every section from the blueprint, written and designed for your business",
+      "Persuasive copy that makes your customers pick up the phone and call you",
       "Published in 72 hours",
-      "You pay once you've seen it",
+      "On-Page SEO built in, so local customers find you on Google",
     ],
     closing: "Give us 15 minutes. In 72 hours your finished website is ready to review.",
     cta: "I want my website",

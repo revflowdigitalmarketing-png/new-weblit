@@ -27,7 +27,7 @@ export function LeadMagnet() {
           </h2>
         </Reveal>
         <Reveal delay={180}>
-          <p className="mx-auto mt-5 max-w-[30rem] text-base leading-relaxed text-ink/65 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-[30rem] text-base leading-relaxed text-white sm:text-lg">
             {leadMagnet.line}
           </p>
         </Reveal>

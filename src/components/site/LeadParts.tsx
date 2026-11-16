@@ -2,7 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-/** Glass icon tile, used at the top of lead-magnet blocks. */
+/** Icon tile, used at the top of lead-magnet blocks. No stroke. */
 export function IconTile({
   icon: Icon,
   className,
@@ -14,7 +14,7 @@ export function IconTile({
     <span
       aria-hidden
       className={cn(
-        "grid size-14 place-items-center rounded-[14px] border border-white/15 bg-white/[0.07] text-ink backdrop-blur-md sm:size-16",
+        "grid size-14 place-items-center rounded-[14px] bg-white/[0.08] text-white backdrop-blur-md sm:size-16",
         className,
       )}
     >
@@ -23,24 +23,23 @@ export function IconTile({
   );
 }
 
-/** Small label pill above a heading. */
+/** Small label pill above a heading. No stroke. */
 export function Pill({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex rounded-lg bg-white/[0.08] px-3 py-1.5 text-sm text-ink/85">
+    <span className="inline-flex rounded-lg bg-white/[0.08] px-3 py-1.5 text-sm text-white sm:text-[0.9375rem]">
       {children}
     </span>
   );
 }
 
 /** The blueprint PDF cover (page 1) in a glass frame. No shadow. */
-export function BlueprintFrame({ href, label }: { href: string; label: string }) {
+export function BlueprintFrame({ className }: { className?: string | undefined }) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener"
-      aria-label={label}
-      className="group mx-auto block w-full max-w-[880px] rounded-[1.25rem] border border-white/25 bg-white/[0.06] p-2 backdrop-blur-md transition-colors duration-500 hover:border-white/40 sm:p-2.5"
+    <div
+      className={cn(
+        "mx-auto w-full max-w-[880px] rounded-[1.25rem] border border-white/25 bg-white/[0.06] p-2 backdrop-blur-md sm:p-2.5",
+        className,
+      )}
     >
       <picture>
         <source srcSet="/brand/blueprint-cover.webp" type="image/webp" />
@@ -52,6 +51,6 @@ export function BlueprintFrame({ href, label }: { href: string; label: string })
           className="block w-full rounded-xl"
         />
       </picture>
-    </a>
+    </div>
   );
 }

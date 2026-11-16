@@ -40,6 +40,10 @@ Then set `ratesArePlaceholders: false`.
 
 ## Check before launch
 
+- **Blueprint email step** has no backend yet. It checks the email, starts the PDF download and
+  shows the confirmation, but the email isn't saved or sent anywhere. Wire `handleSubmit` in
+  `src/routes/blueprint.tsx` to your email list or CRM so the guide collects leads.
+
 - **Blueprint PDF vs pricing:** the last page of the blueprint says "Get a free landing page or
   website… Free, with no obligation", while the site says pricing starts at INR 22,000. Make
   the PDF and the site say the same thing.

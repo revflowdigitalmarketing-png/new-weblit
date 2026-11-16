@@ -113,11 +113,11 @@ Home section now: icon, pill "Free stuff for you", headline "The blueprint behin
 Page copy (written for the page, drawn from the PDF and existing site copy):
 * H1: Your blueprint: The Converting Site Blueprint
 * Under it: Each page covers one section: what goes in it and why it sits there. (from the PDF)
-* PDF frame (page 1 as cover) and button: Open the PDF
+* PDF frame (page 1 as cover), then the email step: "Enter your email to download the guide." / field "Your email" / button "Download the Guide" / after: "Your download has started. Check your downloads folder."
 * Pill: Skip the work
 * Heading: Want us to build it for you?
 * Intro: The blueprint shows what goes into a site that converts. We build the whole thing for you.
-* Points: Every section from the blueprint, written and designed for your business / Published in 72 hours / You pay once you've seen it
+* Points: Persuasive copy that makes your customers pick up the phone and call you / Published in 72 hours / On-Page SEO built in, so local customers find you on Google
 * Closing: Give us 15 minutes. In 72 hours your finished website is ready to review. (from Final CTA)
 * CTA: I want my website (contact page)
 
