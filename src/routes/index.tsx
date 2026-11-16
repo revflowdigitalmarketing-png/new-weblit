@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/sections/Hero";
+import { OurWork } from "@/components/sections/OurWork";
 import { hero } from "@/content/copy";
 import { pageHead } from "@/lib/seo";
 
@@ -17,6 +18,7 @@ function Index() {
   return (
     <main id="main">
       <Hero />
+      <OurWork />
     </main>
   );
 }
