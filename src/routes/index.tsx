@@ -4,6 +4,7 @@ import { OurWork } from "@/components/sections/OurWork";
 import { Differentiator } from "@/components/sections/Differentiator";
 import { LeadMagnet } from "@/components/sections/LeadMagnet";
 import { Faq, faqJsonLd } from "@/components/sections/Faq";
+import { FinalCta } from "@/components/sections/FinalCta";
 import { hero } from "@/content/copy";
 import { pageHead } from "@/lib/seo";
 
@@ -27,6 +28,7 @@ function Index() {
       <Differentiator />
       <LeadMagnet />
       <Faq />
+      <FinalCta />
     </main>
   );
 }
