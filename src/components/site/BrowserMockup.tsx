@@ -14,7 +14,7 @@ export function BrowserMockup({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-[1.25rem] bg-fill p-1.5 sm:rounded-[1.5rem] sm:p-2 lg:shadow-[0_40px_120px_-40px_oklch(0.718_0.16_153/0.35)]",
+        "overflow-hidden rounded-[1.25rem] bg-fill p-1.5 sm:rounded-[1.5rem] sm:p-2",
         className,
       )}
     >
@@ -31,7 +31,7 @@ export function BrowserMockup({
         </div>
         <div className="w-[38px] sm:w-[46px]" aria-hidden />
       </div>
-      <div className="relative aspect-[16/10] overflow-hidden rounded-[0.875rem] bg-paper sm:rounded-[1rem]">
+      <div className="relative aspect-[16/9] overflow-hidden rounded-[0.875rem] bg-paper sm:rounded-[1rem]">
         {children}
       </div>
     </div>

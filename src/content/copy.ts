@@ -39,31 +39,32 @@ export const work = {
     {
       name: "Real Estate",
       description:
-        "Listings that look as good as the properties, with an enquiry button on every screen.",
+        "Listings that look as good as the properties, with an enquiry button on every screen. Floor plans, prices and site visits sit one tap away, so serious buyers call you first.",
     },
     {
       name: "Healthcare",
       description:
-        "A clinic website that earns a patient's trust in seconds and makes booking an appointment take a few taps.",
+        "A clinic website that earns a patient's trust in seconds and makes booking an appointment take a few taps. Doctors, timings and directions are clear before anyone calls.",
     },
     {
       name: "Education",
       description:
-        "What you teach, what it costs and how to apply, laid out so a parent finds it in one scroll.",
+        "What you teach, what it costs and how to apply, laid out so a parent finds it in one scroll. Results, counsellors and intake dates sit up front, so enquiries turn into admissions.",
     },
     {
       name: "B2B Agencies",
       description:
-        "Your best work first, your offer in one line, and a clear way for the next client to book a call.",
+        "Your best work first, your offer in one line, and a clear way for the next client to book a call. Case studies and pricing do the selling before your first meeting.",
     },
     {
       name: "Construction Companies",
       description:
-        "Finished projects and licences up front, so a client trusts you before the first quote request.",
+        "Finished projects and licences up front, so a client trusts you before the first quote request. Every project shows the work and timeline, with a way to book a site visit.",
     },
     {
       name: "Car Retailer",
-      description: "Your stock on show and a test drive one tap away.",
+      description:
+        "Your stock on show and a test drive one tap away. Prices, specs and finance options sit beside every car, so buyers walk into the showroom ready to sign.",
     },
   ],
 };

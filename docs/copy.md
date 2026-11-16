@@ -129,3 +129,12 @@ Page copy (written for the page, drawn from the PDF and existing site copy):
 * Block 3: "Say no and the ledger keeps running. Say yes and you have a finished website to judge." removed.
 * FAQ heading: Common Questions. Removed: How can you build it in 72 hours? / Do I own the website? / What do you need from me?
 
+12. Our Work update (on request)
+Pinned stage: the text stays in place and each industry reveals in the same spot from its bottom edge. Screenshots: Real Estate (Nirvishikhara), Healthcare (Lalitha Clinics), Education (Dollar Dreams), B2B Agencies (RevFlow), Construction Companies (ARA Constructions). Descriptions lengthened to three lines:
+* Real Estate: Listings that look as good as the properties, with an enquiry button on every screen. Floor plans, prices and site visits sit one tap away, so serious buyers call you first.
+* Healthcare: A clinic website that earns a patient's trust in seconds and makes booking an appointment take a few taps. Doctors, timings and directions are clear before anyone calls.
+* Education: What you teach, what it costs and how to apply, laid out so a parent finds it in one scroll. Results, counsellors and intake dates sit up front, so enquiries turn into admissions.
+* B2B Agencies: Your best work first, your offer in one line, and a clear way for the next client to book a call. Case studies and pricing do the selling before your first meeting.
+* Construction Companies: Finished projects and licences up front, so a client trusts you before the first quote request. Every project shows the work and timeline, with a way to book a site visit.
+* Car Retailer: Your stock on show and a test drive one tap away. Prices, specs and finance options sit beside every car, so buyers walk into the showroom ready to sign.
+

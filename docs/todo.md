@@ -8,13 +8,8 @@ name, address and phone live in `src/config/business.ts`.
 
 | Where | Placeholder | What to supply | File |
 | --- | --- | --- | --- |
-| Our Work: mockup, Real Estate | `[Real Estate website screenshot]` | Screenshot of the real estate site (16:10, ~1600px wide) | `src/content/work-screens.ts` |
-| Our Work: mockup, Healthcare | `[Healthcare website screenshot]` | Screenshot | `src/content/work-screens.ts` |
-| Our Work: mockup, Education | `[Education website screenshot]` | Screenshot | `src/content/work-screens.ts` |
-| Our Work: mockup, B2B Agencies | `[B2B Agencies website screenshot]` | Screenshot | `src/content/work-screens.ts` |
-| Our Work: mockup, Construction Companies | `[Construction Companies website screenshot]` | Screenshot | `src/content/work-screens.ts` |
 | Our Work: mockup, Car Retailer | `[Car Retailer website screenshot]` | Screenshot | `src/content/work-screens.ts` |
-| Our Work: mockup address bar | `[website URL]` × 6 | Live URL of each industry site | `src/content/work-screens.ts` |
+| Our Work: mockup address bar | `[website URL]` for Education, Construction Companies and Car Retailer | Live URL (Dollar Dreams and ARA Constructions sites) | `src/content/work-screens.ts` |
 | Footer: map | `[Google Maps embed]` | Google Maps "Embed a map" iframe `src` for the business location | `src/config/business.ts` → `mapEmbedSrc` |
 
 ## Price calculator
