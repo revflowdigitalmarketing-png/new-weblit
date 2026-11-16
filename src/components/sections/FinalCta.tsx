@@ -7,28 +7,30 @@ export function FinalCta() {
   return (
     <section aria-labelledby="final-cta-heading" className="pb-6 pt-6 sm:pb-10">
       <Container>
-        <div className="relative overflow-hidden rounded-[2rem] bg-brand px-6 pb-8 pt-20 text-white sm:px-12 sm:pb-12 sm:pt-28 lg:px-16 lg:pb-16 lg:pt-40">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -left-[10%] -top-[40%] h-[120%] w-[70%] rounded-full bg-[radial-gradient(closest-side,oklch(1_0_0/0.08),transparent)]"
-          />
-          <Reveal>
-            <h2 id="final-cta-heading" className="text-display-xl relative max-w-[14ch]">
-              {finalCta.heading}
-            </h2>
-          </Reveal>
-          <div className="relative mt-12 flex flex-col gap-8 sm:mt-16 lg:flex-row lg:items-end lg:justify-between">
+        <div className="relative mx-auto max-w-[1120px] overflow-hidden rounded-[2rem] px-6 py-20 text-center sm:px-12 sm:py-28 lg:py-32">
+          {/* Aurora backdrop, decorative only */}
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <img
+              src="/brand/bg-aurora.jpg"
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 size-full rotate-180 object-cover opacity-90 [mask-image:radial-gradient(ellipse_at_center,black_45%,transparent_78%)]"
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(60%_70%_at_50%_50%,oklch(0.13_0.009_134.1/0.75),transparent)]" />
+          </div>
+          <div className="relative">
+            <Reveal>
+              <h2 id="final-cta-heading" className="text-display-xl mx-auto max-w-[16ch]">
+                {finalCta.heading}
+              </h2>
+            </Reveal>
             <Reveal delay={80}>
-              <p className="max-w-[30rem] text-lg leading-relaxed text-white/70 sm:text-xl">
+              <p className="mx-auto mt-6 max-w-[30rem] text-base leading-relaxed text-ink/75 sm:text-lg">
                 {finalCta.description}
               </p>
             </Reveal>
-            <Reveal delay={160} className="shrink-0">
-              <ButtonLink
-                to="/contact"
-                variant="inverse"
-                className="w-full sm:w-auto sm:min-w-[240px]"
-              >
+            <Reveal delay={160}>
+              <ButtonLink to="/contact" className="mt-9 w-full sm:w-auto sm:min-w-[240px]">
                 {finalCta.cta}
               </ButtonLink>
             </Reveal>

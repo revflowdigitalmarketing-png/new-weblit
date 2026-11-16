@@ -7,14 +7,14 @@ import { faq } from "@/content/copy";
 export function Faq() {
   return (
     <section id="faq" aria-labelledby="faq-heading" className="py-24 sm:py-32">
-      <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <Reveal className="lg:sticky lg:top-32 lg:h-fit">
-          <h2 id="faq-heading" className="text-display-lg max-w-[12ch]">
+      <Container className="mx-auto max-w-[860px]">
+        <Reveal className="text-center">
+          <h2 id="faq-heading" className="text-display-lg mx-auto max-w-[16ch]">
             {faq.heading}
           </h2>
         </Reveal>
 
-        <Reveal delay={80}>
+        <Reveal delay={80} className="mt-12">
           <Accordion.Root type="single" collapsible className="flex flex-col gap-2.5">
             {faq.items.map((item, i) => (
               <Accordion.Item
@@ -24,11 +24,11 @@ export function Faq() {
               >
                 <Accordion.Header asChild>
                   <h3>
-                    <Accordion.Trigger className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left font-sans text-lg font-medium tracking-[-0.015em] text-ink sm:px-7 sm:py-6 sm:text-xl">
+                    <Accordion.Trigger className="flex w-full items-center justify-between gap-6 px-5 py-4 text-left font-sans text-base font-medium tracking-[-0.01em] text-ink sm:px-6 sm:py-5 sm:text-[1.0625rem]">
                       {item.q}
                       <span
                         aria-hidden
-                        className="grid size-9 shrink-0 place-items-center rounded-full bg-white text-ink transition-transform duration-500 ease-[var(--ease-out-soft)] group-data-[state=open]:rotate-45 group-data-[state=open]:bg-brand group-data-[state=open]:text-white"
+                        className="grid size-8 shrink-0 place-items-center rounded-full bg-surface text-ink transition-transform duration-500 ease-[var(--ease-out-soft)] group-data-[state=open]:rotate-45 group-data-[state=open]:bg-brand group-data-[state=open]:text-paper"
                       >
                         <Plus className="size-4" strokeWidth={1.75} />
                       </span>
@@ -36,7 +36,7 @@ export function Faq() {
                   </h3>
                 </Accordion.Header>
                 <Accordion.Content className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-                  <p className="max-w-[40rem] px-6 pb-6 text-base leading-relaxed text-muted-foreground sm:px-7 sm:pb-7 sm:text-lg">
+                  <p className="max-w-[40rem] px-5 pb-5 text-[0.9375rem] leading-relaxed text-muted-foreground sm:px-6 sm:pb-6 sm:text-base">
                     {item.a}
                   </p>
                 </Accordion.Content>

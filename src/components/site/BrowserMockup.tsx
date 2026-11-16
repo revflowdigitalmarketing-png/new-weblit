@@ -14,7 +14,7 @@ export function BrowserMockup({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-[1.25rem] bg-fill p-1.5 sm:rounded-[1.5rem] sm:p-2 lg:shadow-[0_40px_80px_-40px_oklch(0.148_0.003_145.4/0.35)]",
+        "overflow-hidden rounded-[1.25rem] bg-fill p-1.5 sm:rounded-[1.5rem] sm:p-2 lg:shadow-[0_40px_120px_-40px_oklch(0.718_0.16_153/0.35)]",
         className,
       )}
     >
@@ -25,13 +25,13 @@ export function BrowserMockup({
           <span className="size-2 rounded-full bg-ink/15 sm:size-2.5" />
         </div>
         <div className="flex min-w-0 flex-1 justify-center">
-          <div className="truncate rounded-full bg-white px-3 py-1 text-[11px] text-ink/50 sm:text-xs">
+          <div className="truncate rounded-full bg-surface px-3 py-1 text-[11px] text-ink/50 sm:text-xs">
             {address}
           </div>
         </div>
         <div className="w-[38px] sm:w-[46px]" aria-hidden />
       </div>
-      <div className="relative aspect-[16/10] overflow-hidden rounded-[0.875rem] bg-white sm:rounded-[1rem]">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-[0.875rem] bg-paper sm:rounded-[1rem]">
         {children}
       </div>
     </div>

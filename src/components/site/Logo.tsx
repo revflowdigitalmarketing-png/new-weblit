@@ -6,7 +6,7 @@ type LogoProps = {
   className?: string | undefined;
 };
 
-export function Logo({ tone = "green", className }: LogoProps) {
+export function Logo({ tone = "white", className }: LogoProps) {
   return (
     <img
       src={BUSINESS.logo[tone]}

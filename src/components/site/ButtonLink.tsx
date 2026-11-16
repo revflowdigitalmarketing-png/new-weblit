@@ -7,15 +7,16 @@ type Variant = "primary" | "inverse" | "ink";
 type Size = "md" | "lg";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-brand text-white hover:bg-brand-deep",
-  inverse: "bg-white text-brand hover:bg-brand-soft",
-  ink: "bg-ink text-white hover:bg-brand",
+  primary:
+    "bg-brand text-paper shadow-[0_10px_40px_-12px_oklch(0.718_0.16_153/0.7)] hover:bg-[oklch(0.78_0.16_153)]",
+  inverse: "bg-ink text-paper hover:bg-white",
+  ink: "bg-surface text-ink hover:bg-fill-strong",
 };
 
 const iconWrap: Record<Variant, string> = {
-  primary: "bg-white/12 text-white",
-  inverse: "bg-brand text-white",
-  ink: "bg-white/12 text-white",
+  primary: "bg-paper/15 text-paper",
+  inverse: "bg-paper text-ink",
+  ink: "bg-white/10 text-ink",
 };
 
 const sizes: Record<Size, string> = {

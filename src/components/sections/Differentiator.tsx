@@ -12,22 +12,27 @@ const { owners, maths, offer } = differentiator;
 
 export function Differentiator() {
   return (
-    <section aria-labelledby="diff-heading" className="py-24 sm:py-32">
-      <Container>
+    <section aria-labelledby="diff-heading" className="relative overflow-x-clip py-24 sm:py-32">
+      <div
+        aria-hidden
+        className="glow glow-soft left-1/2 top-1/3 h-[40vh] w-[70vw] -translate-x-1/2"
+      />
+      <Container className="relative">
         <SectionIntro
           id="diff-heading"
           heading={differentiator.heading}
           description={differentiator.description}
         />
 
-        <div className="mt-14 grid gap-4 sm:mt-20 lg:grid-cols-12 lg:gap-5">
-          <Reveal className="lg:col-span-5">
+        {/* Three vertical blocks, together in one row on desktop */}
+        <div className="mx-auto mt-12 grid max-w-[1120px] gap-4 sm:mt-16 lg:grid-cols-3">
+          <Reveal className="h-full">
             <OwnersCard />
           </Reveal>
-          <Reveal className="lg:col-span-7" delay={80}>
+          <Reveal className="h-full" delay={80}>
             <MathsCard />
           </Reveal>
-          <Reveal className="lg:col-span-12" delay={120}>
+          <Reveal className="h-full" delay={160}>
             <OfferCard />
           </Reveal>
         </div>
@@ -36,14 +41,15 @@ export function Differentiator() {
   );
 }
 
-const card = "h-full rounded-[2rem] p-6 sm:p-9 lg:p-10";
+const card = "flex h-full flex-col rounded-[1.75rem] p-5 text-center sm:p-6";
+const cardHeading = "font-display text-xl leading-tight tracking-[-0.045em] sm:text-[1.375rem]";
 
 /* Block 1 */
 function OwnersCard() {
   return (
     <div className={cn(card, "bg-fill")}>
-      <h3 className="text-display-md">{owners.heading}</h3>
-      <ul className="mt-8 flex flex-col gap-3">
+      <h3 className={cardHeading}>{owners.heading}</h3>
+      <ul className="mt-6 flex flex-col gap-2.5 text-left">
         {owners.clients.map((c, i) => {
           const body = (
             <>
@@ -53,31 +59,31 @@ function OwnersCard() {
                   aria-label="[Client photo]"
                   title="[Client photo]"
                   data-placeholder=""
-                  className="placeholder-chip size-12 shrink-0 rounded-full !p-0"
+                  className="placeholder-chip size-10 shrink-0 rounded-full !p-0"
                 />
                 <div className="min-w-0 leading-tight">
-                  <p className="font-medium text-ink">
+                  <p className="text-sm font-medium text-ink">
                     <CopyText text={c.name} />
                   </p>
-                  <p className="mt-1.5 text-sm text-muted-foreground">
+                  <p className="mt-1 text-xs text-muted-foreground">
                     <CopyText text={c.industry} />
                   </p>
                 </div>
               </div>
-              <div className="mt-4 flex items-center justify-between gap-3 border-t border-ink/[0.06] pt-3.5">
-                <span className="truncate text-sm text-ink/70">
+              <div className="mt-3 flex items-center justify-between gap-3 border-t border-ink/[0.07] pt-3">
+                <span className="truncate text-xs text-ink/70">
                   <CopyText text={c.url ? c.url.replace(/^https?:\/\//, "") : c.urlLabel} />
                 </span>
                 <span
                   aria-hidden
-                  className="grid size-9 shrink-0 place-items-center rounded-full bg-brand text-white transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  className="grid size-8 shrink-0 place-items-center rounded-full bg-brand text-paper transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                 >
-                  <ArrowUpRight className="size-4" strokeWidth={1.75} />
+                  <ArrowUpRight className="size-3.5" strokeWidth={2} />
                 </span>
               </div>
             </>
           );
-          const cls = "group block rounded-[1.5rem] bg-white p-3 pb-3 pl-3 pr-3 sm:p-4";
+          const cls = "group block rounded-[1.25rem] bg-surface p-3";
           return (
             <li key={i}>
               {c.url ? (
@@ -113,10 +119,10 @@ function MathsCard() {
   const ready = v > 0 && n > 0;
 
   return (
-    <div className={cn(card, "flex flex-col bg-fill")}>
-      <h3 className="text-display-md">{maths.heading}</h3>
+    <div className={cn(card, "bg-fill")}>
+      <h3 className={cardHeading}>{maths.heading}</h3>
 
-      <ul className="mt-8 flex flex-col gap-4 text-lg leading-[1.9] text-ink sm:gap-5 sm:text-xl sm:leading-[2.1]">
+      <ul className="mt-6 flex flex-col gap-3 text-[0.9375rem] leading-[1.9] text-ink/90">
         <li>
           <label htmlFor={`${id}-value`}>{maths.lines[0]![0]}</label>{" "}
           <span className="inline-flex items-baseline">
@@ -142,17 +148,17 @@ function MathsCard() {
         </li>
       </ul>
 
-      <div className="mt-auto pt-10">
-        <div className="rounded-[1.5rem] bg-white p-6 sm:p-7" aria-live="polite">
+      <div className="mt-auto pt-6">
+        <div className="rounded-[1.25rem] bg-surface p-5" aria-live="polite">
           <p
             className={cn(
-              "font-display text-[clamp(2.25rem,1.6rem+2.4vw,3.5rem)] leading-none tracking-[-0.045em] transition-colors duration-500",
+              "font-display text-[2rem] leading-none tracking-[-0.045em] transition-colors duration-500",
               ready ? "text-brand" : "text-ink/20",
             )}
           >
             ₹{ready ? inr.format(total) : "____"}
           </p>
-          <p className="mt-3 text-muted-foreground">{maths.total}</p>
+          <p className="mt-2.5 text-sm text-muted-foreground">{maths.total}</p>
         </div>
       </div>
     </div>
@@ -179,7 +185,7 @@ function SlotInput({
       value={shown}
       onChange={(e) => onChange(digits(e.target.value))}
       style={{ width: `${Math.max(4, shown.length + 1)}ch` }}
-      className="inline-field rounded-lg bg-white px-2 py-0.5 text-center font-display font-medium tracking-[-0.02em] text-brand outline-none ring-brand/30 transition-shadow placeholder:text-ink/25 focus:ring-2"
+      className="inline-field rounded-md bg-surface px-1.5 py-0 text-center font-display font-medium tracking-[-0.02em] text-brand outline-none ring-brand/30 transition-shadow placeholder:text-ink/30 focus:ring-2"
     />
   );
 }
@@ -188,8 +194,8 @@ function Slot({ children }: { children: React.ReactNode }) {
   return (
     <span
       className={cn(
-        "inline-block min-w-[4ch] rounded-lg px-2 py-0.5 text-center font-display font-medium tracking-[-0.02em] transition-colors duration-300",
-        children ? "bg-brand-soft text-brand" : "bg-ink/[0.04] text-ink/25",
+        "inline-block min-w-[4ch] rounded-md px-1.5 py-0 text-center font-display font-medium tracking-[-0.02em] transition-colors duration-300",
+        children ? "bg-brand-soft text-brand" : "bg-surface text-ink/30",
       )}
     >
       {children ?? "____"}
@@ -200,34 +206,29 @@ function Slot({ children }: { children: React.ReactNode }) {
 /* Block 3 */
 function OfferCard() {
   return (
-    <div className={cn(card, "bg-brand text-white lg:p-14")}>
-      <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-        <h3 className="text-display-lg max-w-[12ch]">{offer.heading}</h3>
-        <div>
-          <ol className="flex flex-col">
-            {offer.steps.map((s, i) => (
-              <li
-                key={s}
-                className="flex gap-5 border-b border-white/10 py-5 text-lg leading-snug first:pt-0 sm:text-xl"
-              >
-                <span className="font-display text-white/45" aria-hidden>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span>{s}</span>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-8 max-w-[30rem] text-lg leading-relaxed text-white/70">
-            {offer.closing}
-          </p>
-          <ButtonLink
-            to="/contact"
-            variant="inverse"
-            className="mt-10 w-full sm:w-auto sm:min-w-[240px]"
+    <div className={cn(card, "aurora-card relative overflow-hidden text-ink")}>
+      <h3 className={cardHeading}>{offer.heading}</h3>
+      <ol className="mt-6 flex flex-col gap-2.5 text-left">
+        {offer.steps.map((s, i) => (
+          <li
+            key={s}
+            className="flex gap-3 rounded-[1.25rem] bg-paper/35 p-3.5 text-[0.9375rem] leading-snug backdrop-blur-sm"
           >
-            {offer.cta}
-          </ButtonLink>
-        </div>
+            <span
+              aria-hidden
+              className="grid size-6 shrink-0 place-items-center rounded-full bg-brand font-display text-xs text-paper"
+            >
+              {i + 1}
+            </span>
+            <span>{s}</span>
+          </li>
+        ))}
+      </ol>
+      <p className="mt-5 text-sm leading-relaxed text-ink/75">{offer.closing}</p>
+      <div className="mt-auto pt-6">
+        <ButtonLink to="/contact" variant="inverse" size="md" className="w-full">
+          {offer.cta}
+        </ButtonLink>
       </div>
     </div>
   );

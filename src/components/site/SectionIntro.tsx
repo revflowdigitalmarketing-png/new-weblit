@@ -17,7 +17,7 @@ export function SectionIntro({
   tone = "light",
 }: SectionIntroProps) {
   return (
-    <div className={cn("max-w-[56rem]", className)}>
+    <div className={cn("mx-auto max-w-[48rem] text-center", className)}>
       <Reveal>
         <h2 id={id} className="text-display-lg">
           {heading}
@@ -27,8 +27,8 @@ export function SectionIntro({
         <Reveal delay={80}>
           <p
             className={cn(
-              "mt-6 max-w-[38rem] text-lg leading-relaxed sm:text-xl",
-              tone === "light" ? "text-muted-foreground" : "text-white/70",
+              "mx-auto mt-5 max-w-[36rem] text-base leading-relaxed sm:text-lg",
+              tone === "light" ? "text-muted-foreground" : "text-ink/70",
             )}
           >
             {description}

@@ -6,16 +6,24 @@ import { hero } from "@/content/copy";
 export function Hero() {
   return (
     <section aria-labelledby="hero-heading" className="relative overflow-hidden">
-      {/* Soft brand wash, decorative only */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-[20%] -top-[30%] h-[80vh] w-[80vh] rounded-full bg-[radial-gradient(closest-side,oklch(0.925_0.011_136.6/0.9),transparent)] blur-2xl"
-      />
-      <Container className="relative flex min-h-[100svh] flex-col justify-end pb-10 pt-28 sm:min-h-[88svh] sm:pb-24 sm:pt-36 lg:min-h-[92svh] lg:pb-28">
+      {/* Black and green aurora backdrop, decorative only */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <img
+          src="/brand/bg-aurora-wide.jpg"
+          alt=""
+          className="absolute inset-0 size-full object-cover object-center opacity-70"
+          fetchPriority="high"
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_42%,oklch(0.13_0.009_134.1/0.85),transparent)]" />
+        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-b from-transparent to-paper" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-paper/80 to-transparent" />
+      </div>
+
+      <Container className="relative flex min-h-[100svh] flex-col items-center justify-center pb-16 pt-32 text-center sm:min-h-[92svh] sm:pb-24 sm:pt-36">
         <Reveal>
-          <p className="inline-flex items-center gap-2.5 rounded-full bg-fill py-2 pl-3 pr-4 text-sm text-ink/80">
+          <p className="inline-flex items-center gap-2.5 rounded-full bg-surface py-2 pl-3 pr-4 text-[0.8125rem] text-ink/85 backdrop-blur-md sm:text-sm">
             <span aria-hidden className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-brand/40 motion-reduce:hidden" />
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-brand/50 motion-reduce:hidden" />
               <span className="relative inline-flex size-2 rounded-full bg-brand" />
             </span>
             {hero.badge}
@@ -23,23 +31,22 @@ export function Hero() {
         </Reveal>
 
         <Reveal delay={90}>
-          <h1 id="hero-heading" className="text-display-xl mt-6 max-w-[15ch] text-ink">
+          <h1 id="hero-heading" className="text-display-xl mx-auto mt-7 max-w-[17ch] text-ink">
             {hero.heading}
           </h1>
         </Reveal>
 
-        <div className="mt-6 flex flex-col gap-7 sm:mt-14 sm:gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <Reveal delay={180}>
-            <p className="max-w-[34rem] text-[1.0625rem] leading-relaxed text-muted-foreground sm:text-xl">
-              {hero.description}
-            </p>
-          </Reveal>
-          <Reveal delay={260} className="shrink-0">
-            <ButtonLink id="hero-cta" to="/contact" className="w-full sm:w-auto sm:min-w-[220px]">
-              {hero.cta}
-            </ButtonLink>
-          </Reveal>
-        </div>
+        <Reveal delay={180}>
+          <p className="mx-auto mt-6 max-w-[34rem] text-base leading-relaxed text-ink/70 sm:text-lg">
+            {hero.description}
+          </p>
+        </Reveal>
+
+        <Reveal delay={260} className="mt-9 w-full sm:w-auto">
+          <ButtonLink id="hero-cta" to="/contact" className="w-full sm:w-auto sm:min-w-[220px]">
+            {hero.cta}
+          </ButtonLink>
+        </Reveal>
       </Container>
     </section>
   );

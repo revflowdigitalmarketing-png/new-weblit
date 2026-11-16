@@ -21,55 +21,62 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   return (
-    <main id="main" className="pb-16 pt-32 sm:pb-24 sm:pt-40">
-      <Container className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-x-20 lg:gap-y-16">
-        <div className="lg:col-start-1 lg:row-start-1">
-          <Reveal>
-            <h1 className="text-display-lg max-w-[16ch]">{contact.heading}</h1>
-          </Reveal>
-          <Reveal delay={80}>
-            <p className="mt-6 max-w-[34rem] text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              {contact.description}
-            </p>
-          </Reveal>
-        </div>
+    <main id="main" className="relative overflow-x-clip pb-16 pt-32 sm:pb-24 sm:pt-40">
+      <div
+        aria-hidden
+        className="glow glow-soft left-1/2 top-0 h-[50vh] w-[80vw] -translate-x-1/2"
+      />
+      <Container className="relative mx-auto max-w-[760px] text-center">
+        <Reveal>
+          <h1 className="text-display-lg mx-auto max-w-[18ch]">{contact.heading}</h1>
+        </Reveal>
+        <Reveal delay={80}>
+          <p className="mx-auto mt-5 max-w-[34rem] text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {contact.description}
+          </p>
+        </Reveal>
 
-        <Reveal delay={120} className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+        <Reveal delay={120} className="mt-12 text-left">
           <ContactForm />
         </Reveal>
 
-        <Reveal delay={160} className="lg:col-start-1 lg:row-start-2">
-          <aside className="flex flex-col gap-12">
-            <div>
-              <h2 className="font-display text-2xl tracking-[-0.045em]">{contact.nextHeading}</h2>
-              <ol className="mt-6 flex flex-col">
-                {contact.next.map((step, i) => (
-                  <li
-                    key={step}
-                    className="flex gap-5 border-b border-ink/[0.07] py-4 text-lg leading-snug first:pt-0"
+        <Reveal delay={160}>
+          <section aria-labelledby="next-heading" className="mt-16">
+            <h2 id="next-heading" className="font-display text-xl tracking-[-0.045em] sm:text-2xl">
+              {contact.nextHeading}
+            </h2>
+            <ol className="mt-6 grid gap-3 sm:grid-cols-3">
+              {contact.next.map((step, i) => (
+                <li
+                  key={step}
+                  className="flex flex-col items-center gap-3 rounded-[1.25rem] bg-fill p-5 text-[0.9375rem] leading-snug"
+                >
+                  <span
+                    aria-hidden
+                    className="grid size-7 place-items-center rounded-full bg-brand font-display text-xs text-paper"
                   >
-                    <span className="font-display text-brand" aria-hidden>
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span>{step}</span>
-                  </li>
-                ))}
-              </ol>
-            </div>
+                    {i + 1}
+                  </span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        </Reveal>
 
-            <div className="flex flex-col gap-4 rounded-[1.5rem] bg-fill p-6 text-ink/80 sm:flex-row sm:items-end sm:justify-between">
-              <Nap />
-              <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={buttonClasses("ink", "md", "w-full sm:w-auto")}
-              >
-                <span>WhatsApp</span>
-                <ButtonIcon variant="ink" size="md" external />
-              </a>
-            </div>
-          </aside>
+        <Reveal delay={200}>
+          <div className="mt-6 flex flex-col items-center gap-5 rounded-[1.25rem] bg-fill p-6 text-sm text-ink/80">
+            <Nap />
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonClasses("primary", "md", "w-full sm:w-auto sm:min-w-[200px]")}
+            >
+              <span>WhatsApp</span>
+              <ButtonIcon variant="primary" size="md" external />
+            </a>
+          </div>
         </Reveal>
       </Container>
     </main>
@@ -77,7 +84,7 @@ function ContactPage() {
 }
 
 const field =
-  "w-full rounded-2xl bg-white px-4 text-base text-ink outline-none ring-brand/40 transition-shadow placeholder:text-ink/35 focus:ring-2";
+  "w-full rounded-2xl bg-surface px-4 text-base text-ink outline-none ring-brand/40 transition-shadow placeholder:text-ink/35 focus:ring-2";
 
 function ContactForm() {
   const id = useId();
@@ -94,11 +101,11 @@ function ContactForm() {
     return (
       <div
         role="status"
-        className="flex min-h-[420px] flex-col justify-end rounded-[2rem] bg-brand p-8 text-white sm:p-12"
+        className="aurora-card flex min-h-[360px] flex-col justify-end rounded-[2rem] p-8 text-ink sm:p-12"
       >
         <span
           aria-hidden
-          className="mb-auto grid size-12 place-items-center rounded-full bg-white/12"
+          className="mb-auto grid size-12 place-items-center rounded-full bg-brand text-paper"
         >
           <svg
             viewBox="0 0 24 24"
@@ -119,7 +126,7 @@ function ContactForm() {
 
   const f = contact.fields;
   return (
-    <form onSubmit={handleSubmit} className="rounded-[2rem] bg-fill p-5 sm:p-8 lg:p-10">
+    <form onSubmit={handleSubmit} className="rounded-[2rem] bg-fill p-5 sm:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
         <Field id={`${id}-name`} label={f.name}>
           <input
@@ -182,7 +189,7 @@ function ContactForm() {
         </Field>
       </div>
 
-      <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-5">
+      <div className="mt-8 flex flex-col items-center gap-3">
         <button
           type="submit"
           className={buttonClasses("primary", "lg", "w-full sm:w-auto sm:min-w-[240px]")}
@@ -190,9 +197,7 @@ function ContactForm() {
           <span>{contact.cta}</span>
           <ButtonIcon />
         </button>
-        <p className="text-center text-sm text-muted-foreground sm:text-left">
-          {contact.underButton}
-        </p>
+        <p className="text-center text-sm text-muted-foreground">{contact.underButton}</p>
       </div>
     </form>
   );

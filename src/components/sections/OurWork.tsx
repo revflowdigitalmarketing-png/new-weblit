@@ -47,13 +47,18 @@ export function OurWork() {
   const screen = workScreens[active] ?? workScreens[0];
 
   return (
-    <section id="work" aria-labelledby="work-heading" className="py-24 sm:py-32">
-      <Container>
+    <section
+      id="work"
+      aria-labelledby="work-heading"
+      className="relative overflow-x-clip py-24 sm:py-32"
+    >
+      <div aria-hidden className="glow glow-soft -right-[15%] top-[20%] h-[50vh] w-[60vw]" />
+      <Container className="relative">
         <SectionIntro id="work-heading" heading={work.heading} description={work.description} />
 
         <div className="mt-14 grid gap-x-16 sm:mt-20 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
           {/* Mockup: sticky on the right (desktop), sticky on top (mobile) */}
-          <div className="sticky top-[76px] z-10 -mx-5 bg-white px-5 pb-6 pt-2 sm:-mx-8 sm:px-8 lg:order-2 lg:top-[calc(50vh-min(22vw,300px))] lg:mx-0 lg:h-fit lg:bg-transparent lg:px-0 lg:pb-0">
+          <div className="sticky top-[72px] z-10 -mx-5 bg-paper px-5 pb-6 pt-2 sm:-mx-8 sm:px-8 lg:order-2 lg:top-[calc(50vh-min(22vw,300px))] lg:mx-0 lg:h-fit lg:bg-transparent lg:px-0 lg:pb-0">
             <BrowserMockup
               address={
                 screen.url ? (
@@ -109,7 +114,7 @@ export function OurWork() {
                   itemRefs.current[i] = el;
                 }}
                 className={cn(
-                  "flex min-h-[46svh] flex-col justify-center py-10 transition-opacity duration-500 lg:min-h-[72svh]",
+                  "flex min-h-[46svh] flex-col items-center justify-center py-10 text-center transition-opacity duration-500 lg:min-h-[72svh]",
                   i === active ? "opacity-100" : "opacity-25",
                 )}
               >
@@ -117,7 +122,7 @@ export function OurWork() {
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="text-display-md mt-3">{item.name}</h3>
-                <p className="mt-4 max-w-[28rem] text-lg leading-relaxed text-muted-foreground">
+                <p className="mx-auto mt-3 max-w-[26rem] text-base leading-relaxed text-muted-foreground sm:text-[1.0625rem]">
                   {item.description}
                 </p>
               </li>

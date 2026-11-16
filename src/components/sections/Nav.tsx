@@ -32,7 +32,7 @@ export function Nav() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-500",
         scrolled || open
-          ? "bg-white/85 shadow-[0_1px_0_0_oklch(0.148_0.003_145.4/0.06)] backdrop-blur-xl"
+          ? "bg-paper/70 shadow-[0_1px_0_0_oklch(1_0_0/0.06)] backdrop-blur-xl"
           : "bg-transparent",
       )}
     >
@@ -87,7 +87,7 @@ export function Nav() {
       <div
         id="mobile-menu"
         hidden={!open}
-        className="border-t border-ink/5 bg-white/95 backdrop-blur-xl md:hidden"
+        className="border-t border-ink/5 bg-paper/95 backdrop-blur-xl md:hidden"
       >
         <Container className="pb-8 pt-4">
           <ul className="flex flex-col">
@@ -140,13 +140,13 @@ export function MobileCta() {
     <div
       className={cn(
         "fixed inset-x-0 bottom-0 z-40 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-6 transition-[opacity,transform] duration-500 ease-[var(--ease-out-soft)] md:hidden",
-        "bg-gradient-to-t from-white via-white/80 to-white/0",
+        "bg-gradient-to-t from-paper via-paper/80 to-paper/0",
         show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-full opacity-0",
       )}
     >
       <ButtonLink
         to="/contact"
-        className="w-full shadow-[0_10px_30px_-10px_oklch(0.299_0.076_144.7/0.5)]"
+        className="w-full shadow-[0_10px_30px_-10px_oklch(0.718_0.16_153/0.6)]"
       >
         {nav.cta}
       </ButtonLink>
