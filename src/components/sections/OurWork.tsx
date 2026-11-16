@@ -56,9 +56,9 @@ export function OurWork() {
       <Container className="relative">
         <SectionIntro id="work-heading" heading={work.heading} description={work.description} />
 
-        <div className="mt-14 grid gap-x-16 sm:mt-20 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
+        <div className="mt-14 grid gap-x-16 sm:mt-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           {/* Mockup: sticky on the right (desktop), sticky on top (mobile) */}
-          <div className="sticky top-[72px] z-10 -mx-5 bg-paper px-5 pb-6 pt-2 sm:-mx-8 sm:px-8 lg:order-2 lg:top-[calc(50vh-min(22vw,300px))] lg:mx-0 lg:h-fit lg:bg-transparent lg:px-0 lg:pb-0">
+          <div className="sticky top-[72px] z-10 -mx-5 bg-paper px-5 pb-6 pt-2 sm:-mx-8 sm:px-8 lg:order-1 lg:top-[calc(50vh-min(22vw,300px))] lg:mx-0 lg:h-fit lg:bg-transparent lg:px-0 lg:pb-0">
             <BrowserMockup
               address={
                 screen.url ? (
@@ -106,7 +106,7 @@ export function OurWork() {
           </div>
 
           {/* Industries scroll on the left */}
-          <ol className="lg:order-1">
+          <ol className="lg:order-2">
             {work.industries.map((item, i) => (
               <li
                 key={item.name}
@@ -114,15 +114,14 @@ export function OurWork() {
                   itemRefs.current[i] = el;
                 }}
                 className={cn(
-                  "flex min-h-[46svh] flex-col items-center justify-center py-10 text-center transition-opacity duration-500 lg:min-h-[72svh]",
+                  "flex min-h-[46svh] flex-col items-start justify-center py-10 text-left transition-opacity duration-500 lg:min-h-[72svh]",
                   i === active ? "opacity-100" : "opacity-25",
                 )}
               >
-                <span className="font-display text-sm tracking-[-0.01em] text-brand" aria-hidden>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className="text-display-md mt-3">{item.name}</h3>
-                <p className="mx-auto mt-3 max-w-[26rem] text-base leading-relaxed text-muted-foreground sm:text-[1.0625rem]">
+                <h3 className="text-[clamp(1.6rem,1.25rem+1.4vw,2.5rem)] font-medium leading-[1.08]">
+                  {item.name}
+                </h3>
+                <p className="mt-4 max-w-[28rem] text-base leading-relaxed text-muted-foreground sm:text-[1.0625rem]">
                   {item.description}
                 </p>
               </li>

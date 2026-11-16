@@ -15,7 +15,7 @@ export function Footer() {
       <Container className="relative z-10">
         <div className="grid grid-cols-2 gap-x-6 gap-y-4 border-t border-ink/[0.08] pt-5 text-[0.8125rem] leading-relaxed text-ink/70 sm:pt-10 md:grid-cols-12 md:gap-8 md:text-sm">
           <p className="col-span-2 max-w-[22ch] font-display text-base leading-snug tracking-[-0.03em] text-ink sm:text-xl md:col-span-4 md:max-w-[14ch]">
-            {BUSINESS.tagline}
+            {BUSINESS.tagline.replace(/\.$/, "")}
           </p>
 
           <div className="md:col-span-3">

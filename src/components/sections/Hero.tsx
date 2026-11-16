@@ -127,20 +127,23 @@ function BriefCard() {
 function AuroraBackdrop() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-paper">
-      {/* flowing green glows */}
-      <div className="flow-a absolute -bottom-[30%] left-1/2 h-[95%] w-[150%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.718_0.16_153),oklch(0.5_0.13_151/0.85)_45%,transparent_75%)] blur-3xl will-change-transform" />
-      <div className="flow-b absolute -bottom-[15%] -left-[15%] h-[75%] w-[70%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.38_0.1_148/0.95),transparent_70%)] blur-3xl will-change-transform" />
-      <div className="flow-c absolute -bottom-[20%] -right-[12%] h-[75%] w-[65%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.78_0.15_155/0.85),transparent_70%)] blur-3xl will-change-transform" />
+      {/* the glowing hill: deep emerald on the left, electric green through the middle, bright mint on the right */}
+      <div className="flow-a absolute -bottom-[58%] left-1/2 h-[112%] w-[140%] -translate-x-1/2 rounded-[50%] bg-[linear-gradient(90deg,oklch(0.42_0.16_162)_0%,oklch(0.62_0.22_150)_28%,oklch(0.78_0.25_146)_52%,oklch(0.86_0.2_152)_74%,oklch(0.66_0.2_156)_100%)] blur-[42px] will-change-transform" />
 
-      {/* white light rising through the green */}
-      <div className="flow-b absolute -bottom-[12%] left-[30%] h-[45%] w-[45%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.99_0.01_150/0.9),transparent_72%)] blur-2xl will-change-transform" />
-      <div className="flow-a absolute -bottom-[8%] right-[8%] h-[30%] w-[35%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.97_0.03_150/0.75),transparent_72%)] blur-2xl will-change-transform" />
+      {/* saturated depth at the left edge, like the reference's indigo */}
+      <div className="flow-b absolute -bottom-[10%] -left-[18%] h-[70%] w-[55%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.45_0.18_165/0.95),transparent_72%)] blur-3xl will-change-transform" />
+
+      {/* electric highlight on the right */}
+      <div className="flow-c absolute -right-[10%] bottom-[5%] h-[55%] w-[50%] rounded-[50%] bg-[radial-gradient(closest-side,oklch(0.88_0.22_148/0.9),transparent_70%)] blur-3xl will-change-transform" />
+
+      {/* white light core rising from the bottom */}
+      <div className="flow-b absolute -bottom-[22%] left-1/2 h-[55%] w-[85%] -translate-x-1/2 rounded-[50%] bg-[radial-gradient(closest-side,oklch(1_0_0),oklch(0.96_0.06_150/0.9)_40%,transparent_75%)] blur-2xl will-change-transform" />
 
       {/* clean bright finish along the bottom edge */}
-      <div className="absolute inset-x-0 bottom-0 h-[34%] bg-[linear-gradient(to_top,oklch(0.995_0.004_150)_0%,oklch(0.96_0.03_152/0.95)_14%,oklch(0.85_0.09_153/0.6)_38%,transparent_100%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-[26%] bg-[linear-gradient(to_top,oklch(1_0_0)_0%,oklch(0.97_0.04_150/0.92)_22%,transparent_100%)]" />
 
-      {/* keep the top black behind the heading */}
-      <div className="absolute inset-x-0 top-0 h-[55%] bg-gradient-to-b from-paper via-paper/80 to-transparent" />
+      {/* black sky behind the heading, short so the glow stays bright */}
+      <div className="absolute inset-x-0 top-0 h-[38%] bg-gradient-to-b from-paper to-transparent" />
     </div>
   );
 }

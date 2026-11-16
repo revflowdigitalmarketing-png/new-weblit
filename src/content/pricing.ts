@@ -1,32 +1,37 @@
 /**
- * Price calculator settings (Differentiator, block 2).
+ * Price calculator (Differentiator, block 2).
  *
- * Only `base` is a confirmed price ("from INR 22,000 onwards"). Every other
- * rate below is a PLACEHOLDER until real rates are supplied: the card shows a
- * "[placeholder rates]" marker while `ratesArePlaceholders` is true.
- * Replace the numbers, then set ratesArePlaceholders to false. See docs/todo.md.
+ * 1. Current rate        = enquiries / visitors
+ * 2. Gap                 = targetRate - current rate (minimum 0)
+ * 3. Extra enquiries/mo  = visitors x gap x captureShare
+ * 4. Extra clients/mo    = extra enquiries x (clients per 10 / 10)
+ * 5. Extra return/year   = extra clients x value x 12
+ * 6. Price               = feeShare of extra return, at least minPrice, at most maxPrice
  */
 export const pricing = {
-  ratesArePlaceholders: true,
   currency: "₹",
-  base: 22000,
-  includedPages: 5, // placeholder
-  perExtraPage: 2500, // placeholder
-  minPages: 1,
-  maxPages: 15,
-  defaultPages: 5,
-  addOns: [
-    { id: "booking", label: "Booking system", price: 6000 }, // placeholder
-    { id: "whatsapp", label: "WhatsApp chat", price: 2000 }, // placeholder
-    { id: "blog", label: "Blog", price: 4000 }, // placeholder
-    { id: "payments", label: "Online payments", price: 5000 }, // placeholder
-  ],
-} as const;
+  targetRate: 0.03,
+  captureShare: 0.25,
+  feeShare: 0.1,
+  minPrice: 22000,
+  /** Highest price the calculator will show. null = no cap (set your max here). */
+  maxPrice: null as number | null,
+};
 
-export function priceFor(pages: number, addOnIds: readonly string[]) {
-  const extraPages = Math.max(0, pages - pricing.includedPages) * pricing.perExtraPage;
-  const addOns = pricing.addOns
-    .filter((a) => addOnIds.includes(a.id))
-    .reduce((sum, a) => sum + a.price, 0);
-  return { total: pricing.base + extraPages + addOns, extras: extraPages + addOns };
+export type PriceInputs = {
+  visitors: number;
+  enquiries: number;
+  clientsPer10: number;
+  value: number;
+};
+
+export function priceFor({ visitors, enquiries, clientsPer10, value }: PriceInputs) {
+  const currentRate = visitors > 0 ? enquiries / visitors : 0;
+  const gap = Math.max(0, pricing.targetRate - currentRate);
+  const extraEnquiries = visitors * gap * pricing.captureShare;
+  const extraClients = extraEnquiries * (clientsPer10 / 10);
+  const extraReturnYear = extraClients * value * 12;
+  let price = Math.max(pricing.minPrice, extraReturnYear * pricing.feeShare);
+  if (pricing.maxPrice !== null) price = Math.min(price, pricing.maxPrice);
+  return { price: Math.round(price), extraEnquiries, extraClients, extraReturnYear };
 }

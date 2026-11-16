@@ -1,7 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { ButtonLink } from "@/components/site/ButtonLink";
 import { Container } from "@/components/site/Container";
-import { CopyText } from "@/components/site/Placeholder";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionIntro } from "@/components/site/SectionIntro";
 import { PriceCalculator } from "@/components/sections/PriceCalculator";
@@ -44,6 +43,17 @@ export function Differentiator() {
 const card = "flex h-full flex-col rounded-[1.75rem] p-5 text-center sm:p-6";
 const cardHeading = "font-display text-xl leading-tight tracking-[-0.035em] sm:text-[1.375rem]";
 
+/** "Dr. Rajeshwar Prasad" -> "RP", "Vinay & Vijay" -> "VV" */
+function initials(name: string) {
+  return name
+    .replace(/^Dr\.?\s+/i, "")
+    .split(/[\s&]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase())
+    .join("");
+}
+
 /* Block 1 */
 function OwnersCard() {
   return (
@@ -54,25 +64,25 @@ function OwnersCard() {
           const body = (
             <>
               <div className="flex items-center gap-3.5">
+                {/* Plain white avatar until client photos are supplied */}
                 <span
-                  role="img"
-                  aria-label="[Client photo]"
-                  title="[Client photo]"
-                  data-placeholder=""
-                  className="placeholder-chip size-10 shrink-0 rounded-full !p-0"
-                />
+                  aria-hidden
+                  className="grid size-10 shrink-0 place-items-center rounded-full bg-white text-[11px] font-semibold tracking-wide text-paper"
+                >
+                  {initials(c.name)}
+                </span>
                 <div className="min-w-0 leading-tight">
-                  <p className="text-sm font-medium text-ink">
-                    <CopyText text={c.name} />
+                  <p className="truncate text-xs text-ink/65">
+                    {c.role ? `${c.name}, ${c.role}` : c.name}
                   </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    <CopyText text={c.industry} />
+                  <p className="mt-0.5 truncate text-base font-medium tracking-[-0.01em] text-ink">
+                    {c.business}
                   </p>
                 </div>
               </div>
               <div className="mt-3 flex items-center justify-between gap-3 border-t border-ink/[0.07] pt-3">
                 <span className="truncate text-xs text-ink/70">
-                  <CopyText text={c.url ? c.url.replace(/^https?:\/\//, "") : c.urlLabel} />
+                  {c.url.replace(/^https?:\/\//, "")}
                 </span>
                 <span
                   aria-hidden
@@ -86,13 +96,15 @@ function OwnersCard() {
           const cls = "group block rounded-[1.25rem] bg-surface p-3";
           return (
             <li key={i}>
-              {c.url ? (
-                <a href={c.url} target="_blank" rel="noopener noreferrer" className={cls}>
-                  {body}
-                </a>
-              ) : (
-                <div className={cls}>{body}</div>
-              )}
+              <a
+                href={c.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${c.business} website (opens in a new tab)`}
+                className={cls}
+              >
+                {body}
+              </a>
             </li>
           );
         })}
@@ -122,7 +134,6 @@ function OfferCard() {
           </li>
         ))}
       </ol>
-      <p className="mt-5 text-sm leading-relaxed text-ink/75">{offer.closing}</p>
       <div className="mt-auto pt-6">
         <ButtonLink to="/contact" variant="inverse" size="md" className="w-full">
           {offer.cta}

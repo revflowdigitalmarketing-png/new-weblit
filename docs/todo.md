@@ -15,24 +15,15 @@ name, address and phone live in `src/config/business.ts`.
 | Our Work: mockup, Construction Companies | `[Construction Companies website screenshot]` | Screenshot | `src/content/work-screens.ts` |
 | Our Work: mockup, Car Retailer | `[Car Retailer website screenshot]` | Screenshot | `src/content/work-screens.ts` |
 | Our Work: mockup address bar | `[website URL]` × 6 | Live URL of each industry site | `src/content/work-screens.ts` |
-| Differentiator: Owners we've built for | `[Client photo]` × 3 | Client profile photo (square, 160px+) | `src/content/copy.ts` → `differentiator.owners.clients` |
-| Differentiator: Owners we've built for | `[Client name]` × 3 | Client name | same |
-| Differentiator: Owners we've built for | `[Industry]` × 3 | Client industry | same |
-| Differentiator: Owners we've built for | `[website URL]` × 3 | Live website URL (set `url` too, so the arrow link goes live) | same |
 | Footer: map | `[Google Maps embed]` | Google Maps "Embed a map" iframe `src` for the business location | `src/config/business.ts` → `mapEmbedSrc` |
 
-## Price calculator rates (placeholders)
+## Price calculator
 
-The calculator in the Differentiator section shows a `[placeholder rates]` marker until real
-rates are in `src/content/pricing.ts`. Only the ₹22,000 base is confirmed. Supply:
+Four required answers (monthly visitors, monthly enquiries, clients per 10 enquiries, value per
+client). Price = 10% of the extra yearly return from lifting the enquiry rate toward 3%, at least
+INR 22,000. Settings live in `src/content/pricing.ts`.
 
-- Pages included in the ₹22,000 base (placeholder: 5)
-- Price per extra page (placeholder: ₹2,500)
-- Maximum pages on the slider (currently 15)
-- Add-ons and their prices (placeholders: Booking system ₹6,000, WhatsApp chat ₹2,000,
-  Blog ₹4,000, Online payments ₹5,000)
-
-Then set `ratesArePlaceholders: false`.
+- **Set your maximum price:** `maxPrice` is `null` (no cap) until you give a number.
 
 ## Links to pages not built yet
 
@@ -53,6 +44,7 @@ Then set `ratesArePlaceholders: false`.
 - **Address** is `Global Designing Agency`, as given. If the Google Business Profile shows a
   street address, put it in `BUSINESS.address` exactly as written there (it feeds the
   footer, the contact page and the LocalBusiness JSON-LD).
+- **Client photos:** the three owner cards use plain white avatars with initials. Send photos to replace them.
 - **Contact form** has no backend yet. It validates and shows the success message, but the
   answers aren't sent anywhere. Wire `handleSubmit` in `src/routes/contact.tsx` to an
   email service, a Lovable Cloud function or a form endpoint.
