@@ -1,23 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Hero } from "@/components/sections/Hero";
+import { hero } from "@/content/copy";
+import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "WEBLIT" },
-      { name: "description", content: "WEBLIT" },
-      { property: "og:title", content: "WEBLIT" },
-      { property: "og:description", content: "WEBLIT" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: "WEBLIT | Websites built to get you more customers, published in 72 hours",
+      description: hero.description,
+      path: "/",
+    }),
   component: Index,
 });
 
 function Index() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background">
-      <h1 className="text-4xl font-semibold text-foreground">WEBLIT</h1>
+    <main id="main">
+      <Hero />
     </main>
   );
 }
