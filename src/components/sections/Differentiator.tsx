@@ -71,13 +71,11 @@ function OwnersCard() {
                 {initials(c.name)}
               </span>
               <div className="min-w-0 flex-1 leading-tight">
-                <p className="truncate text-xs text-ink/65">
-                  {c.role ? `${c.name}, ${c.role}` : c.name}
+                <p className="truncate text-[0.9375rem] font-medium leading-snug tracking-[-0.01em] text-ink">
+                  {c.name}
                 </p>
-                <p className="mt-0.5 text-[0.9375rem] font-medium leading-snug tracking-[-0.01em] text-ink">
-                  {c.business}
-                </p>
-                <p className="mt-0.5 truncate text-xs text-ink/50">
+                <p className="mt-0.5 truncate text-xs text-ink/55">
+                  {c.role ? `${c.role} · ` : ""}
                   {c.url.replace(/^https?:\/\//, "")}
                 </p>
               </div>
