@@ -77,7 +77,7 @@ export function PriceCalculator() {
                 onChange={(e) => set(k, e.target.value)}
                 placeholder={k === "clientsPer10" ? "0 to 10" : "0"}
                 className={cn(
-                  "h-9 w-full rounded-[10px] bg-black/[0.05] px-3 text-sm font-medium tabular-nums text-black outline-none transition-colors duration-200 placeholder:font-normal placeholder:text-black/30 hover:bg-black/[0.07] focus:bg-black/[0.09] focus-visible:outline-none",
+                  "h-9 w-full rounded-[10px] bg-[oklch(0.93_0.003_150)] px-3 text-sm font-medium tabular-nums text-black outline-none transition-colors duration-200 placeholder:font-normal placeholder:text-black/30 hover:bg-[oklch(0.9_0.004_150)] focus:bg-[oklch(0.88_0.005_150)] focus-visible:outline-none",
                   k === "value" && "pl-7",
                 )}
               />

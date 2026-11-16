@@ -294,15 +294,18 @@
   }
 
   /* Scroll reveal (see components/site/Reveal.tsx). Visible by default without JS. */
+  /* Content rises in from the bottom of the screen, unblurring as it arrives. */
   .reveal {
     transition:
-      opacity 0.9s var(--ease-out-soft),
-      transform 0.9s var(--ease-out-soft);
+      opacity 1s var(--ease-out-soft),
+      transform 1s var(--ease-out-soft),
+      filter 1.1s var(--ease-out-soft);
     transition-delay: var(--reveal-delay, 0ms);
   }
   .js .reveal:not(.is-visible) {
     opacity: 0;
     transform: translateY(18px);
+    filter: blur(14px);
   }
 
   /* Clearly marked placeholder: anything still to be supplied. */

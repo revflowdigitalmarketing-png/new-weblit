@@ -78,7 +78,7 @@ export const differentiator = {
       {
         name: "Rahul Chandra",
         role: "Founder",
-        business: "RevFlow Marketing Agency",
+        business: "RevFlow Marketing",
         url: "https://revflowmarketing.in",
       },
       {

@@ -83,7 +83,7 @@ function OwnersCard() {
               </div>
               <span
                 aria-hidden
-                className="grid size-8 shrink-0 place-items-center rounded-full bg-brand text-paper transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                className="grid size-8 shrink-0 place-items-center rounded-full bg-white text-paper transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               >
                 <ArrowUpRight className="size-3.5" strokeWidth={2} />
               </span>
@@ -122,7 +122,7 @@ function OfferCard() {
           >
             <span
               aria-hidden
-              className="grid size-6 shrink-0 place-items-center rounded-full bg-brand font-display text-xs text-paper"
+              className="grid size-6 shrink-0 place-items-center rounded-full bg-white font-display text-xs text-paper"
             >
               {i + 1}
             </span>
