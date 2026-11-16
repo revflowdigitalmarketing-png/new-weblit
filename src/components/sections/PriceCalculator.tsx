@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ChevronRight, Info } from "lucide-react";
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { differentiator } from "@/content/copy";
 import { priceFor, pricing, type PriceInputs } from "@/content/pricing";
 import { cn } from "@/lib/utils";
@@ -31,14 +31,15 @@ export function PriceCalculator() {
   const complete =
     nums.visitors > 0 && vals.enquiries !== "" && vals.clientsPer10 !== "" && nums.value > 0;
   const { price } = priceFor(nums);
+  const shown = useCountUp(complete ? price : pricing.minPrice);
 
   const set = (k: Key, v: string) =>
     setVals((cur) => ({ ...cur, [k]: k === "clientsPer10" ? digits(v, 2) : digits(v) }));
 
   return (
-    <div className="flex h-full flex-col rounded-[1.75rem] bg-white p-5 text-left text-[oklch(0.16_0.01_150)] shadow-[0_30px_80px_-40px_oklch(0.718_0.16_153/0.45)] sm:p-6">
+    <div className="flex h-full flex-col rounded-[1.5rem] bg-white p-4 text-left text-[oklch(0.16_0.01_150)] shadow-[0_30px_80px_-40px_oklch(0.718_0.16_153/0.45)] sm:p-5">
       <div className="flex items-center gap-2">
-        <h3 className="text-lg font-medium tracking-[-0.035em] sm:text-xl">{t.heading}</h3>
+        <h3 className="text-lg font-medium tracking-[-0.035em] sm:text-[1.1875rem]">{t.heading}</h3>
         <span title={t.note} className="text-black/35">
           <Info className="size-4" strokeWidth={1.75} aria-hidden />
           <span className="sr-only">{t.note}</span>
@@ -76,7 +77,7 @@ export function PriceCalculator() {
                 onChange={(e) => set(k, e.target.value)}
                 placeholder={k === "clientsPer10" ? "0 to 10" : "0"}
                 className={cn(
-                  "h-10 w-full rounded-[10px] bg-black/[0.05] px-3 text-sm font-medium tabular-nums text-black outline-none transition-colors duration-200 placeholder:font-normal placeholder:text-black/30 hover:bg-black/[0.07] focus:bg-black/[0.09] focus-visible:outline-none",
+                  "h-9 w-full rounded-[10px] bg-black/[0.05] px-3 text-sm font-medium tabular-nums text-black outline-none transition-colors duration-200 placeholder:font-normal placeholder:text-black/30 hover:bg-black/[0.07] focus:bg-black/[0.09] focus-visible:outline-none",
                   k === "value" && "pl-7",
                 )}
               />
@@ -89,12 +90,12 @@ export function PriceCalculator() {
       <p
         aria-live="polite"
         className={cn(
-          "mt-6 text-[2.4rem] font-semibold leading-none tracking-[-0.04em] tabular-nums transition-colors duration-300",
+          "mt-5 text-[2rem] font-semibold leading-none tracking-[-0.04em] tabular-nums transition-colors duration-300",
           complete ? "text-black" : "text-black/20",
         )}
       >
         {pricing.currency}
-        {inr.format(complete ? price : pricing.minPrice)}
+        {inr.format(shown)}
       </p>
 
       {/* Summary pill */}
@@ -112,4 +113,37 @@ export function PriceCalculator() {
       </div>
     </div>
   );
+}
+
+/**
+ * Smoothly counts the shown price to its new value (ease-out, ~0.7s).
+ * Jumps straight there for reduced-motion users.
+ */
+function useCountUp(target: number, duration = 700) {
+  const [value, setValue] = useState(target);
+  const fromRef = useRef(target);
+
+  useEffect(() => {
+    const from = fromRef.current;
+    if (from === target) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      fromRef.current = target;
+      setValue(target);
+      return;
+    }
+    let raf = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const next = Math.round(from + (target - from) * eased);
+      fromRef.current = next;
+      setValue(next);
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, duration]);
+
+  return value;
 }

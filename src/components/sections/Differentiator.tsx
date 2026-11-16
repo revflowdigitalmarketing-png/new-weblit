@@ -24,7 +24,7 @@ export function Differentiator() {
         />
 
         {/* Three vertical blocks, together in one row on desktop */}
-        <div className="mx-auto mt-12 grid max-w-[1120px] gap-4 sm:mt-16 lg:grid-cols-3">
+        <div className="mx-auto mt-12 grid max-w-[960px] gap-3 sm:mt-14 lg:grid-cols-3">
           <Reveal className="h-full">
             <OwnersCard />
           </Reveal>
@@ -40,8 +40,8 @@ export function Differentiator() {
   );
 }
 
-const card = "flex h-full flex-col rounded-[1.75rem] p-5 text-center sm:p-6";
-const cardHeading = "font-display text-xl leading-tight tracking-[-0.035em] sm:text-[1.375rem]";
+const card = "flex h-full flex-col rounded-[1.5rem] p-4 text-center sm:p-5";
+const cardHeading = "font-display text-lg leading-tight tracking-[-0.035em] sm:text-[1.1875rem]";
 
 /** "Dr. Rajeshwar Prasad" -> "RP", "Vinay & Vijay" -> "VV" */
 function initials(name: string) {
@@ -59,7 +59,7 @@ function OwnersCard() {
   return (
     <div className={cn(card, "bg-fill")}>
       <h3 className={cardHeading}>{owners.heading}</h3>
-      <ul className="mt-6 flex flex-col gap-2.5 text-left">
+      <ul className="mt-5 flex flex-col gap-2 text-left">
         {owners.clients.map((c, i) => {
           const body = (
             <>
