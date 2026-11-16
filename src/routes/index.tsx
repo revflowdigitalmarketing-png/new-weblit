@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/sections/Hero";
 import { OurWork } from "@/components/sections/OurWork";
+import { Differentiator } from "@/components/sections/Differentiator";
 import { hero } from "@/content/copy";
 import { pageHead } from "@/lib/seo";
 
@@ -19,6 +20,7 @@ function Index() {
     <main id="main">
       <Hero />
       <OurWork />
+      <Differentiator />
     </main>
   );
 }
