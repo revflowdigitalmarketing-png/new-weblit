@@ -6,9 +6,9 @@
  */
 export const LINES = {
   /** px from one line to the next */
-  pitch: 5,
+  pitch: 6,
   /** px line thickness */
-  width: 2,
+  width: 3,
   /** share of the hero height the tallest lines reach */
   reach: 0.62,
   /** share of the tallest height the lines never drop below */
