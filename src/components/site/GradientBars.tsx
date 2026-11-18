@@ -1,88 +1,75 @@
-import { useMemo } from "react";
-
 /**
- * Port of the Framer "Gradient bars background" component (G_bars_background),
- * same layout, keyframes and timing, in WEBLIT's dark greens.
- * The WebGL hero background (FluidBars) draws the identical scene from these settings.
+ * Hero background scene: thin, tightly packed vertical lines along the bottom.
+ * The lines never move; a soft band of visibility sweeps from left to right,
+ * so they seem to rise and fall. The WebGL background (FluidBars) draws the
+ * same scene from these settings; this CSS version is the fallback.
  */
-export const BARS = {
-  numBars: 16,
-  /** Bar height in px; capped at the container height (min(100%, h)). */
-  barHeight: 1000,
-  gap: 4,
-  padding: 6,
-  gradientFrom: "#06150a", // top: near-black green
-  gradientTo: "#1d6e3b", // bottom: dark green
+export const LINES = {
+  /** px from one line to the next */
+  pitch: 5,
+  /** px line thickness */
+  width: 2,
+  /** share of the hero height the tallest lines reach */
+  reach: 0.62,
+  /** share of the tallest height the lines never drop below */
+  floor: 0.16,
+  /** width of the visible band, as a share of the hero width */
+  band: 0.32,
+  /** seconds for the band to travel across */
+  duration: 9,
+  colorTip: "#0d3a1d", // where a line fades out
+  colorBase: "#2fa35c", // bright green at the bottom
   backgroundColor: "#040805",
-  /** seconds per float cycle */
-  duration: 5,
-  /** 0..100, as in the original */
-  intensity: 60,
-  /** seconds between neighbouring bars, which makes the light sweep across */
-  stagger: 0.08,
 } as const;
 
-export function barsDerived(b = BARS) {
-  const f = Math.max(0, Math.min(100, b.intensity)) / 100;
-  return {
-    translatePercent: 4 + f * 26,
-    minOpacity: 0.15 + (1 - f) * 0.35,
-    maxOpacity: Math.min(1, 0.35 + f * 0.65),
-  };
-}
-
 const KEYFRAMES = `
-@keyframes gbFloatY {
-  0% { transform: translateY(var(--gb-translate)); opacity: var(--gb-min-opacity); }
-  50% { transform: translateY(calc(var(--gb-translate) * -1)); opacity: var(--gb-max-opacity); }
-  100% { transform: translateY(var(--gb-translate)); opacity: var(--gb-min-opacity); }
+@keyframes linesSweep {
+  from { -webkit-mask-position: -60vw 100%, 0 0; mask-position: -60vw 100%, 0 0; }
+  to { -webkit-mask-position: 100vw 100%, 0 0; mask-position: 100vw 100%, 0 0; }
 }`;
 
-/** CSS version: first paint, touch devices (animated) and reduced motion (still). */
+/** CSS version: first paint, touch devices (sweeping) and reduced motion (still). */
 export function GradientBars({ animate = true }: { animate?: boolean }) {
-  const d = barsDerived();
-  const bars = useMemo(
-    () =>
-      Array.from({ length: BARS.numBars }, (_, i) => {
-        const base = 0.25 + (i / BARS.numBars) * 0.5;
-        const still = Math.min(1, Math.max(base, (d.minOpacity + d.maxOpacity) / 2));
-        return (
-          <div
-            key={i}
-            style={
-              {
-                flex: "1 1 4px",
-                minWidth: 4,
-                height: `min(100%, ${BARS.barHeight}px)`,
-                background: `linear-gradient(180deg, ${BARS.gradientFrom}, ${BARS.gradientTo})`,
-                opacity: animate ? base : still,
-                animation: animate
-                  ? `gbFloatY ${BARS.duration}s ease-in-out ${BARS.stagger * i}s infinite`
-                  : "none",
-                willChange: animate ? "transform, opacity" : undefined,
-                "--gb-translate": `${d.translatePercent}%`,
-                "--gb-min-opacity": `${d.minOpacity}`,
-                "--gb-max-opacity": `${d.maxOpacity}`,
-              } as React.CSSProperties
-            }
-          />
-        );
-      }),
-    [animate, d.maxOpacity, d.minOpacity, d.translatePercent],
-  );
-
+  const L = LINES;
+  const band = `${Math.round(L.band * 190)}vw`;
+  const mask = [
+    `radial-gradient(ellipse 50% 100% at 50% 100%, #000 0%, rgba(0,0,0,.6) 50%, transparent 85%)`,
+    `linear-gradient(to top, #000 0%, transparent ${Math.round(L.floor * 100 + 6)}%)`,
+  ].join(", ");
   return (
     <div
       aria-hidden
       className="absolute inset-0 overflow-hidden"
-      style={{ backgroundColor: BARS.backgroundColor }}
+      style={{ backgroundColor: L.backgroundColor }}
     >
       <style>{KEYFRAMES}</style>
       <div
-        className="absolute inset-0 flex flex-row items-center justify-center"
-        style={{ gap: BARS.gap, padding: BARS.padding }}
+        className="absolute inset-x-0 bottom-0"
+        style={
+          {
+            height: `${L.reach * 100}%`,
+            maskImage: mask,
+            WebkitMaskImage: mask,
+            maskSize: `${band} 100%, 100% 100%`,
+            WebkitMaskSize: `${band} 100%, 100% 100%`,
+            maskRepeat: "no-repeat",
+            WebkitMaskRepeat: "no-repeat",
+            maskPosition: "10vw 100%, 0 0",
+            WebkitMaskPosition: "10vw 100%, 0 0",
+            animation: animate ? `linesSweep ${L.duration}s linear infinite` : "none",
+          } as React.CSSProperties
+        }
       >
-        {bars}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `repeating-linear-gradient(90deg, currentColor 0 ${L.width}px, transparent ${L.width}px ${L.pitch}px)`,
+            color: L.colorBase,
+            maskImage: "linear-gradient(to top, #000 0%, rgba(0,0,0,.45) 45%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to top, #000 0%, rgba(0,0,0,.45) 45%, transparent 100%)",
+          }}
+        />
       </div>
     </div>
   );

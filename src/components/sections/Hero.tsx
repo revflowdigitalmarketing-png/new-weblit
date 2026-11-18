@@ -45,7 +45,7 @@ export function Hero() {
         </Container>
 
         {/* badge sits in the white finish, after the reference */}
-        <p className="absolute inset-x-0 bottom-6 z-10 px-4 text-center text-sm font-medium tracking-[-0.01em] text-white/80 sm:bottom-8 sm:text-base">
+        <p className="absolute inset-x-0 bottom-6 z-10 px-4 text-center text-sm font-medium tracking-[-0.01em] text-white [text-shadow:0_1px_14px_#040805,0_0_28px_#040805] sm:bottom-8 sm:text-base">
           {hero.badge}
         </p>
       </div>

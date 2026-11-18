@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Mesh, Program, Renderer, RenderTarget, Triangle, type Texture } from "ogl";
-import { BARS, barsDerived, GradientBars } from "@/components/site/GradientBars";
+import { GradientBars, LINES } from "@/components/site/GradientBars";
 
 /**
- * Hero background: the gradient-bars scene drawn in WebGL, distorted by a
+ * Hero background: the thin-lines scene drawn in WebGL, distorted by a
  * fluid velocity field the cursor stirs (water / glass refraction with ripple
  * rings). Only this background distorts; text and UI sit on top untouched.
  *
@@ -200,43 +200,28 @@ uniform vec2 texelSize;
 uniform vec2 uRes;          // CSS px
 uniform float uTime;
 uniform float uStrength;
-uniform float uN, uGap, uPad, uBarH, uDur, uStagger, uTranslate, uMinO, uMaxO;
-uniform vec3 uFrom, uTo, uBg;
+uniform float uPitch, uLineW, uReach, uFloor, uBand, uDur;
+uniform vec3 uTip, uBase, uBg;
 
-float ease(float x) { return x * x * (3.0 - 2.0 * x); }
-
+// Thin static lines along the bottom; a band of visibility sweeps left to right.
 vec3 scene(vec2 uv) {
   vec2 px = vec2(uv.x * uRes.x, (1.0 - uv.y) * uRes.y);
-  float contentW = uRes.x - 2.0 * uPad;
-  float barW = (contentW - uGap * (uN - 1.0)) / uN;
-  float x = px.x - uPad;
-  float idx = floor(x / (barW + uGap));
-  if (idx < 0.0 || idx > uN - 1.0) return uBg;
-  float lx = x - idx * (barW + uGap);
-  float H = min(uRes.y - 2.0 * uPad, uBarH);
+  float lx = mod(px.x, uPitch);
+  float cov = clamp(min(lx, uLineW - lx) + 0.5, 0.0, 1.0);
+  float yb = uRes.y - px.y;              // px up from the bottom edge
+  float area = uRes.y * uReach;
 
-  float delay = uStagger * idx;
-  float t = uTime - delay;
-  float ty, op;
-  if (t < 0.0) {
-    ty = 0.0;
-    op = 0.25 + idx / uN * 0.5;
-  } else {
-    float ph = mod(t, uDur) / uDur;
-    float T = uTranslate * 0.01 * H;
-    if (ph < 0.5) {
-      float s = ease(ph * 2.0);
-      ty = mix(T, -T, s); op = mix(uMinO, uMaxO, s);
-    } else {
-      float s = ease((ph - 0.5) * 2.0);
-      ty = mix(-T, T, s); op = mix(uMaxO, uMinO, s);
-    }
-  }
-  float top = (uRes.y - H) * 0.5 + ty;
-  float ly = px.y - top;
-  float cov = clamp(min(lx, barW - lx) + 0.5, 0.0, 1.0) * clamp(min(ly, H - ly) + 0.5, 0.0, 1.0);
-  vec3 col = mix(uFrom, uTo, clamp(ly / H, 0.0, 1.0));
-  return mix(uBg, col, op * cov);
+  float c = fract(uTime / uDur) * 1.6 - 0.3; // band centre: -0.3 -> 1.3 of the width
+  float d = (uv.x - c) / uBand;
+  float bump = exp(-d * d);
+  float h = area * (uFloor + (1.0 - uFloor) * bump);
+
+  float v = clamp(1.0 - yb / h, 0.0, 1.0);
+  float a = pow(v, 1.6) * cov;
+  vec3 line = mix(uTip, uBase, v);
+  // faint light behind the tallest lines
+  float glow = exp(-d * d * 0.8) * clamp(1.0 - yb / area, 0.0, 1.0) * 0.08;
+  return uBg + uBase * glow + line * a;
 }
 
 void main () {
@@ -380,24 +365,20 @@ function startFluid(wrap: HTMLDivElement, cfgRef: { current: FluidSettings }): (
     uVelocity: { value: NO_TEX },
   });
 
-  const d = barsDerived();
   const display = prog(displayShader, {
     uVelocity: { value: NO_TEX },
     uRes: { value: [1, 1] },
     uTime: { value: 0 },
     uStrength: { value: 1 },
-    uN: { value: BARS.numBars },
-    uGap: { value: BARS.gap },
-    uPad: { value: BARS.padding },
-    uBarH: { value: BARS.barHeight },
-    uDur: { value: BARS.duration },
-    uStagger: { value: BARS.stagger },
-    uTranslate: { value: d.translatePercent },
-    uMinO: { value: d.minOpacity },
-    uMaxO: { value: d.maxOpacity },
-    uFrom: { value: hexToRgb(BARS.gradientFrom) },
-    uTo: { value: hexToRgb(BARS.gradientTo) },
-    uBg: { value: hexToRgb(BARS.backgroundColor) },
+    uPitch: { value: LINES.pitch },
+    uLineW: { value: LINES.width },
+    uReach: { value: LINES.reach },
+    uFloor: { value: LINES.floor },
+    uBand: { value: LINES.band },
+    uDur: { value: LINES.duration },
+    uTip: { value: hexToRgb(LINES.colorTip) },
+    uBase: { value: hexToRgb(LINES.colorBase) },
+    uBg: { value: hexToRgb(LINES.backgroundColor) },
   });
 
   const run = (p: { mesh: Mesh }, target: RenderTarget) =>
