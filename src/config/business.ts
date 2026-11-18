@@ -7,7 +7,7 @@ export const BUSINESS = {
   name: "WEBLIT",
   /** Written exactly as it appears on the Google Business Profile. */
   address: "Global Designing Agency",
-  phones: ["+91 8074398610", "+91 79820139"],
+  phones: ["+91 8074398610", "+91 7981720139"],
   email: "weblitofficial@gmail.com",
   tagline: "Websites that pay you back.",
   url: "https://www.weblit.online",
