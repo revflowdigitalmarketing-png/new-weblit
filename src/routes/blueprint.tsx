@@ -58,20 +58,11 @@ function BlueprintPage() {
               {skip.heading}
             </h2>
           </Reveal>
-          <Reveal delay={160}>
-            <p className="mx-auto mt-6 max-w-[34rem] text-lg leading-relaxed sm:text-xl">
-              {skip.intro}
-            </p>
-          </Reveal>
           <Reveal delay={200}>
-            <ul className="mx-auto mt-8 flex max-w-[34rem] flex-col gap-4 text-left text-lg sm:text-xl">
+            <ul className="mx-auto mt-8 flex max-w-[30rem] flex-col gap-3 text-left text-base sm:text-[1.0625rem]">
               {skip.points.map((p) => (
                 <li key={p} className="flex gap-3.5">
-                  <Check
-                    className="mt-1.5 size-5 shrink-0 text-brand"
-                    strokeWidth={2}
-                    aria-hidden
-                  />
+                  <Check className="mt-1 size-4 shrink-0 text-brand" strokeWidth={2} aria-hidden />
                   <span>{p}</span>
                 </li>
               ))}

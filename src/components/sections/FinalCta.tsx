@@ -20,7 +20,7 @@ export function FinalCta() {
           </div>
           <div className="relative">
             <Reveal>
-              <h2 id="final-cta-heading" className="text-display-xl mx-auto max-w-[16ch]">
+              <h2 id="final-cta-heading" className="text-display-lg mx-auto max-w-[16ch]">
                 {finalCta.heading}
               </h2>
             </Reveal>

@@ -81,7 +81,7 @@ export const differentiator = {
     {
       label: "Step 2",
       title: "We write it and design it",
-      body: "Your copy comes first, written so customers want to pick up the phone. Then we design every page around it.",
+      body: "Your copy first, then structure and our secret ingredient.",
       big: "72 hours",
       bigNote: "from our call to your finished website",
     },
@@ -192,12 +192,10 @@ export const blueprintPage = {
   skip: {
     pill: "Skip the work",
     heading: "Want us to build it for you?",
-    intro:
-      "The blueprint shows what goes into a site that converts. We build the whole thing for you.",
     points: [
-      "Persuasive copy that makes your customers pick up the phone and call you",
+      "Persuasive copy that makes your customers call you",
       "Published in 72 hours",
-      "On-Page SEO built in, so local customers find you on Google",
+      "On-Page SEO done, so local customers find you on Google",
     ],
     closing: "Give us 15 minutes. In 72 hours your finished website is ready to review.",
     cta: "I want my website",

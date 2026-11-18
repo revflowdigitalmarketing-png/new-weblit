@@ -6,7 +6,7 @@ import { work } from "@/content/copy";
 import { workScreens } from "@/content/work-screens";
 import { cn } from "@/lib/utils";
 
-/** One frame shape for every site, tall enough for the tallest screenshot, so nothing is cropped. */
+/** One frame shape for every site (the tallest screenshot); shorter shots zoom to fill it. */
 const FRAME_RATIO = Math.max(...workScreens.map((s) => s.h / s.w));
 
 /** Scroll distance (in viewport heights) each industry holds the stage. */
@@ -82,18 +82,10 @@ export function OurWork() {
                           i === active ? "scale-100 opacity-100" : "scale-[1.03] opacity-0",
                         )}
                       >
-                        {/* blurred copy fills any space around a shorter screenshot */}
-                        <img
-                          src={s.image}
-                          alt=""
-                          aria-hidden
-                          className="absolute inset-0 size-full scale-110 object-cover opacity-60 blur-2xl"
-                          loading={i === 0 ? "eager" : "lazy"}
-                        />
                         <img
                           src={s.image}
                           alt={`${work.industries[i]?.name} website we built`}
-                          className="relative size-full object-contain"
+                          className="size-full object-cover object-top"
                           width={s.w}
                           height={s.h}
                           loading={i === 0 ? "eager" : "lazy"}

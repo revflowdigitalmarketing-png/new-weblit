@@ -116,8 +116,7 @@ Page copy (written for the page, drawn from the PDF and existing site copy):
 * PDF frame (page 1 as cover), then the email step: "Enter your email to download the guide." / field "Your email" / button "Download the Guide" / after: "Your download has started. Check your downloads folder."
 * Pill: Skip the work
 * Heading: Want us to build it for you?
-* Intro: The blueprint shows what goes into a site that converts. We build the whole thing for you.
-* Points: Persuasive copy that makes your customers pick up the phone and call you / Published in 72 hours / On-Page SEO built in, so local customers find you on Google
+* Points: Persuasive copy that makes your customers call you / Published in 72 hours / On-Page SEO done, so local customers find you on Google
 * Closing: Give us 15 minutes. In 72 hours your finished website is ready to review. (from Final CTA)
 * CTA: I want my website (contact page)
 
@@ -142,7 +141,7 @@ Pinned stage: the text stays in place and each industry reveals in the same spot
 Hero: the brief card moved out of the hero; the hero button is "Get Started" (original copy), linking to step 1.
 Section heading and description unchanged: "We build websites that pay you back" / "Every page we build has one job, turning the visitors you get into real enquiries."
 * Step 1: Tell us about your business (the brief card: describe your business, industry chips, "I want my website", which opens the contact page prefilled)
-* Step 2: We write it and design it / "Your copy comes first, written so customers want to pick up the phone. Then we design every page around it." / 72 hours (large, one line) / "from our call to your finished website"
+* Step 2: We write it and design it / "Your copy comes first, (changed) Your copy first, then structure and our secret ingredient." / 72 hours (large, one line) / "from our call to your finished website"
 * Step 3: See it first. Pay after / "Click through every page on your phone, ask for changes, and pay once it feels right. If it still isn't right, you owe us nothing." / I want my website
 Our Work: each frame opens the live site in a new tab.
 
