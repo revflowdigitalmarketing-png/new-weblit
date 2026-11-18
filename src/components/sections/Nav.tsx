@@ -32,7 +32,8 @@ export function Nav() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-500",
         scrolled || open
-          ? "bg-paper/70 shadow-[0_1px_0_0_oklch(1_0_0/0.06)] backdrop-blur-xl"
+          ? // noir glass: dark, see-through, heavily blurred, with a faint light edge
+            "bg-[linear-gradient(180deg,oklch(0.16_0.01_150/0.55),oklch(0.12_0.008_150/0.3))] shadow-[inset_0_-1px_0_0_oklch(1_0_0/0.07),0_12px_32px_-16px_oklch(0_0_0/0.7)] backdrop-blur-[22px] backdrop-saturate-[1.6]"
           : "bg-transparent",
       )}
     >
@@ -87,7 +88,7 @@ export function Nav() {
       <div
         id="mobile-menu"
         hidden={!open}
-        className="border-t border-ink/5 bg-paper/95 backdrop-blur-xl md:hidden"
+        className="border-t border-ink/5 bg-[oklch(0.12_0.008_150/0.55)] backdrop-blur-[22px] backdrop-saturate-[1.6] md:hidden"
       >
         <Container className="pb-8 pt-4">
           <ul className="flex flex-col">
