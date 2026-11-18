@@ -7,8 +7,11 @@
 export const LINES = {
   /** px from one line to the next */
   pitch: 36,
+  /** desktop (768px and wider) */
+  pitchDesktop: 41,
   /** px line thickness */
   width: 30,
+  widthDesktop: 35,
   /** share of the hero height the tallest lines reach */
   reach: 0.62,
   /** share of the tallest height the lines never drop below */
@@ -61,9 +64,9 @@ export function GradientBars({ animate = true }: { animate?: boolean }) {
         }
       >
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 [--lp:36px] [--lw:30px] md:[--lp:41px] md:[--lw:35px]"
           style={{
-            background: `repeating-linear-gradient(90deg, currentColor 0 ${L.width}px, transparent ${L.width}px ${L.pitch}px)`,
+            background: `repeating-linear-gradient(90deg, currentColor 0 var(--lw), transparent var(--lw) var(--lp))`,
             color: L.colorBase,
             maskImage: "linear-gradient(to top, #000 0%, rgba(0,0,0,.45) 45%, transparent 100%)",
             WebkitMaskImage:

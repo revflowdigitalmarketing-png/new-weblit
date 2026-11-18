@@ -370,8 +370,8 @@ function startFluid(wrap: HTMLDivElement, cfgRef: { current: FluidSettings }): (
     uRes: { value: [1, 1] },
     uTime: { value: 0 },
     uStrength: { value: 1 },
-    uPitch: { value: LINES.pitch },
-    uLineW: { value: LINES.width },
+    uPitch: { value: LINES.pitch as number },
+    uLineW: { value: LINES.width as number },
     uReach: { value: LINES.reach },
     uFloor: { value: LINES.floor },
     uBand: { value: LINES.band },
@@ -405,6 +405,9 @@ function startFluid(wrap: HTMLDivElement, cfgRef: { current: FluidSettings }): (
       texel.value = [1 / simW, 1 / simH];
     }
     display.u.uRes.value = [cssW, cssH];
+    const desktop = window.innerWidth >= 768;
+    display.u.uPitch.value = desktop ? LINES.pitchDesktop : LINES.pitch;
+    display.u.uLineW.value = desktop ? LINES.widthDesktop : LINES.width;
   };
   resize();
   const ro = new ResizeObserver(resize);
