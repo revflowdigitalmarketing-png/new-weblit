@@ -69,7 +69,7 @@ export function OurWork() {
                   aria-label={`Open the ${name} website we built, ${screen.url} (new tab)`}
                   className="block transition-transform duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1"
                 >
-                  <BrowserMockup address={screen.url}>
+                  <BrowserMockup address={screen.url} ratio={screen.h / screen.w}>
                     {workScreens.map((s, i) => (
                       <div
                         key={i}
@@ -83,6 +83,8 @@ export function OurWork() {
                           src={s.image}
                           alt={`${work.industries[i]?.name} website we built`}
                           className="size-full object-cover object-top"
+                          width={s.w}
+                          height={s.h}
                           loading={i === 0 ? "eager" : "lazy"}
                         />
                       </div>

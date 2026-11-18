@@ -6,8 +6,11 @@ export function BrowserMockup({
   address,
   children,
   className,
+  ratio = 641 / 1366,
 }: {
   address: ReactNode;
+  /** viewport height / width; changes animate smoothly */
+  ratio?: number;
   children: ReactNode;
   className?: string | undefined;
 }) {
@@ -31,7 +34,10 @@ export function BrowserMockup({
         </div>
         <div className="w-[38px] sm:w-[46px]" aria-hidden />
       </div>
-      <div className="relative aspect-[1366/641] overflow-hidden rounded-[0.875rem] bg-paper sm:rounded-[1rem]">
+      <div
+        className="relative overflow-hidden rounded-[0.875rem] bg-paper transition-[padding] duration-700 ease-[var(--ease-out-soft)] sm:rounded-[1rem]"
+        style={{ paddingTop: `${ratio * 100}%` }}
+      >
         {children}
       </div>
     </div>
