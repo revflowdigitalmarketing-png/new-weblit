@@ -26,8 +26,6 @@ name, address and phone live in `src/config/business.ts`.
   website… Free, with no obligation", while the site says pricing starts at INR 22,000. Make
   the PDF and the site say the same thing.
 
-- **Second phone number** `+91 79820139` has 8 digits after +91. Indian mobiles have 10.
-  Confirm it against the Google Business Profile and fix it in `src/config/business.ts`.
 - **Address** is `Global Designing Agency`, as given. If the Google Business Profile shows a
   street address, put it in `BUSINESS.address` exactly as written there (it feeds the
   footer, the contact page and the LocalBusiness JSON-LD).
