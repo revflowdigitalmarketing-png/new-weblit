@@ -33,7 +33,11 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={180} className="mt-8 w-full sm:w-auto">
-            <ButtonLink to="/#start" variant="inverse" className="w-full sm:w-auto sm:min-w-[200px]">
+            <ButtonLink
+              to="/#start"
+              variant="inverse"
+              className="w-full sm:w-auto sm:min-w-[200px]"
+            >
               {hero.cta}
             </ButtonLink>
           </Reveal>
