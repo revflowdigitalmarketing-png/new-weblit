@@ -90,6 +90,11 @@ export const differentiator = {
       title: "See it first. Pay after",
       body: "Click through every page on your phone, ask for changes, and pay once it feels right. If it still isn't right, you owe us nothing.",
       cta: "I want my website",
+      /** card figures, after the reference card */
+      tag: "03",
+      figure: "₹0",
+      figureNote: "upfront",
+      stages: ["Review", "Changes", "Then pay"],
     },
   ],
 };
