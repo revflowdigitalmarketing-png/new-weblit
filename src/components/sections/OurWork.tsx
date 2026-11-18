@@ -1,19 +1,21 @@
 import { useEffect, useRef, useState } from "react";
-import { BrowserMockup, WireframeScreen } from "@/components/site/BrowserMockup";
+import { BrowserMockup } from "@/components/site/BrowserMockup";
 import { Container } from "@/components/site/Container";
-import { Placeholder } from "@/components/site/Placeholder";
 import { SectionIntro } from "@/components/site/SectionIntro";
 import { work } from "@/content/copy";
-import { workScreens, workUrlPlaceholder } from "@/content/work-screens";
+import { workScreens } from "@/content/work-screens";
 import { cn } from "@/lib/utils";
 
 /** Scroll distance (in viewport heights) each industry holds the stage. */
 const STEP_VH = 70;
 
+const swapIn = (delay: number) =>
+  ({ animation: `swap-in 0.8s var(--ease-out-soft) ${delay}s both` }) as const;
+
 /**
  * Pinned stage: the mockup and text stay in place while the visitor scrolls.
- * Each step swaps the mockup (crossfade) and reveals the next industry's text
- * in the same spot, rising from its bottom edge, instead of scrolling a list.
+ * Each step crossfades the mockup, the old text softly blurs away, and the
+ * next industry settles into the same spot (heading, then description).
  */
 export function OurWork() {
   const n = work.industries.length;
@@ -45,6 +47,8 @@ export function OurWork() {
   }, [n]);
 
   const screen = workScreens[active] ?? workScreens[0];
+  const href = `https://${screen.url}`;
+  const name = work.industries[active]?.name ?? "";
 
   return (
     <section id="work" aria-labelledby="work-heading" className="pt-24 sm:pt-32">
@@ -56,41 +60,35 @@ export function OurWork() {
         <div className="sticky top-0 flex h-[100svh] items-center pt-[72px]">
           <Container>
             <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-16">
-              {/* Mockup */}
+              {/* Mockup: the whole frame opens the live site in a new tab */}
               <div>
-                <BrowserMockup
-                  address={
-                    screen.url ? (
-                      screen.url
-                    ) : (
-                      <Placeholder className="text-[10px] sm:text-[11px]">
-                        {workUrlPlaceholder}
-                      </Placeholder>
-                    )
-                  }
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open the ${name} website we built, ${screen.url} (new tab)`}
+                  className="block transition-transform duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1"
                 >
-                  {workScreens.map((s, i) => (
-                    <div
-                      key={i}
-                      aria-hidden={i !== active}
-                      className={cn(
-                        "absolute inset-0 transition-[opacity,transform] duration-700 ease-[var(--ease-out-soft)]",
-                        i === active ? "scale-100 opacity-100" : "scale-[1.03] opacity-0",
-                      )}
-                    >
-                      {s.image ? (
+                  <BrowserMockup address={screen.url}>
+                    {workScreens.map((s, i) => (
+                      <div
+                        key={i}
+                        aria-hidden={i !== active}
+                        className={cn(
+                          "absolute inset-0 transition-[opacity,transform] duration-700 ease-[var(--ease-out-soft)]",
+                          i === active ? "scale-100 opacity-100" : "scale-[1.03] opacity-0",
+                        )}
+                      >
                         <img
                           src={s.image}
                           alt={`${work.industries[i]?.name} website we built`}
                           className="size-full object-cover object-top"
                           loading={i === 0 ? "eager" : "lazy"}
                         />
-                      ) : (
-                        <WireframeScreen variant={i} label={s.placeholder} />
-                      )}
-                    </div>
-                  ))}
-                </BrowserMockup>
+                      </div>
+                    ))}
+                  </BrowserMockup>
+                </a>
                 <div className="mt-4 flex justify-center gap-1.5 lg:mt-5" aria-hidden>
                   {work.industries.map((_, i) => (
                     <span
@@ -113,16 +111,22 @@ export function OurWork() {
                       key={item.name}
                       aria-hidden={!on}
                       className={cn(
-                        "absolute inset-x-0 top-0",
-                        on
-                          ? "translate-y-0 opacity-100 [clip-path:inset(0_0_0_0)] [transition:clip-path_0.9s_var(--ease-out-soft)_0.2s,transform_0.9s_var(--ease-out-soft)_0.2s,opacity_0.4s_ease_0.2s]"
-                          : "pointer-events-none translate-y-4 opacity-0 [clip-path:inset(100%_0_0_0)] [transition:opacity_0.3s_ease,clip-path_0s_linear_0.3s,transform_0s_linear_0.3s]",
+                        "absolute inset-x-0 top-0 transition-[opacity,filter] duration-300",
+                        on ? "opacity-100" : "pointer-events-none opacity-0 blur-sm",
                       )}
                     >
-                      <h3 className="text-[clamp(1.6rem,1.25rem+1.4vw,2.5rem)] font-medium leading-[1.08]">
+                      <h3
+                        key={on ? "on" : "off"}
+                        style={on ? swapIn(0.15) : undefined}
+                        className="text-[clamp(1.6rem,1.25rem+1.4vw,2.5rem)] font-medium leading-[1.08]"
+                      >
                         {item.name}
                       </h3>
-                      <p className="mt-4 max-w-[27rem] text-[0.875rem] leading-relaxed text-muted-foreground sm:text-[1.0625rem]">
+                      <p
+                        key={on ? "p-on" : "p-off"}
+                        style={on ? swapIn(0.3) : undefined}
+                        className="mt-4 max-w-[27rem] text-[0.875rem] leading-relaxed text-muted-foreground sm:text-[1.0625rem]"
+                      >
                         {item.description}
                       </p>
                     </div>

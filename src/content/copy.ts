@@ -72,48 +72,26 @@ export const work = {
 export const differentiator = {
   heading: "We build websites that pay you back",
   description: "Every page we build has one job, turning the visitors you get into real enquiries.",
-  owners: {
-    heading: "Owners we've built for",
-    /** Placeholders until real clients are supplied. Set url to the live site. */
-    clients: [
-      {
-        name: "Rahul Chandra",
-        business: "RevFlow Marketing",
-        url: "https://revflowmarketing.in",
-      },
-      {
-        name: "Vinay & Vijay",
-        business: "Nirvishikhara",
-        url: "https://nirvishikhara.com",
-      },
-      {
-        name: "Dr. Rajeshwar Prasad",
-        business: "Lalitha Clinics",
-        url: "https://lalithaclinics.org",
-      },
-    ],
-  },
-  /** Block 2: price calculator. Labels written for the calculator (see docs/copy.md). */
-  price: {
-    heading: "Price your website",
-    note: "Our pricing is from INR 22,000 onwards.",
-    fields: {
-      visitors: "Monthly visitors",
-      enquiries: "Monthly enquiries",
-      clientsPer10: "Clients per 10 enquiries",
-      value: "Value per client",
+  /** Three-step process (replaces the owners / price / offer cards, on request). */
+  steps: [
+    {
+      label: "Step 1",
+      title: "Tell us about your business",
     },
-    cta: "Get this website",
-  },
-  offer: {
-    heading: "Get your website first. Pay then",
-    steps: [
-      "You spend 15 minutes telling us about your business.",
-      "We build your website in 72 hours.",
-      "You see it finished, and you pay once you've seen it.",
-    ],
-    cta: "I want my website",
-  },
+    {
+      label: "Step 2",
+      title: "We write it and design it",
+      body: "Your copy comes first, written so customers want to pick up the phone. Then we design every page around it.",
+      big: "72 hours",
+      bigNote: "from our call to your finished website",
+    },
+    {
+      label: "Step 3",
+      title: "See it first. Pay after",
+      body: "Click through every page on your phone, ask for changes, and pay once it feels right. If it still isn't right, you owe us nothing.",
+      cta: "I want my website",
+    },
+  ],
 };
 
 export const leadMagnet = {

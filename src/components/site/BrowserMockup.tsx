@@ -31,7 +31,7 @@ export function BrowserMockup({
         </div>
         <div className="w-[38px] sm:w-[46px]" aria-hidden />
       </div>
-      <div className="relative aspect-[16/9] overflow-hidden rounded-[0.875rem] bg-paper sm:rounded-[1rem]">
+      <div className="relative aspect-[1366/641] overflow-hidden rounded-[0.875rem] bg-paper sm:rounded-[1rem]">
         {children}
       </div>
     </div>

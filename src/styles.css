@@ -375,3 +375,17 @@
     transform: translate3d(3%, 5%, 0) scale(1.08) rotate(-4deg);
   }
 }
+
+/* Our Work: the active industry's text settles in, heading then description. */
+@keyframes swap-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}

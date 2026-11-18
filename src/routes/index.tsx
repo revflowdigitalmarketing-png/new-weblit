@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/sections/Hero";
 import { OurWork } from "@/components/sections/OurWork";
-import { Differentiator } from "@/components/sections/Differentiator";
+import { Process } from "@/components/sections/Process";
 import { LeadMagnet } from "@/components/sections/LeadMagnet";
 import { Faq, faqJsonLd } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
@@ -25,7 +25,7 @@ function Index() {
     <main id="main">
       <Hero />
       <OurWork />
-      <Differentiator />
+      <Process />
       <LeadMagnet />
       <Faq />
       <FinalCta />

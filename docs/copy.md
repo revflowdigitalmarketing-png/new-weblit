@@ -138,3 +138,11 @@ Pinned stage: the text stays in place and each industry reveals in the same spot
 * Construction Companies: Finished projects and licences up front, so a client trusts you before the first quote request. Every project shows the work and timeline, with a way to book a site visit.
 * Car Retailer: Your stock on show and a test drive one tap away. Prices, specs and finance options sit beside every car, so buyers walk into the showroom ready to sign.
 
+13. Process section (replaces the owners, price calculator and offer cards, on request)
+Hero: the brief card moved out of the hero; the hero button is "Get Started" (original copy), linking to step 1.
+Section heading and description unchanged: "We build websites that pay you back" / "Every page we build has one job, turning the visitors you get into real enquiries."
+* Step 1: Tell us about your business (the brief card: describe your business, industry chips, "I want my website", which opens the contact page prefilled)
+* Step 2: We write it and design it / "Your copy comes first, written so customers want to pick up the phone. Then we design every page around it." / 72 hours (large, one line) / "from our call to your finished website"
+* Step 3: See it first. Pay after / "Click through every page on your phone, ask for changes, and pay once it feels right. If it still isn't right, you owe us nothing." / I want my website
+Our Work: each frame opens the live site in a new tab.
+
