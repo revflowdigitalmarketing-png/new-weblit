@@ -19,7 +19,7 @@ export const LINES = {
   /** width of the visible band, as a share of the hero width */
   band: 0.32,
   /** seconds for the band to travel across */
-  duration: 9,
+  duration: 6,
   colorTip: "#0d3a1d", // where a line fades out
   colorBase: "#2fa35c", // bright green at the bottom
   backgroundColor: "#040805",
@@ -27,16 +27,18 @@ export const LINES = {
 
 const KEYFRAMES = `
 @keyframes linesSweep {
-  from { -webkit-mask-position: -60vw 100%, 0 0; mask-position: -60vw 100%, 0 0; }
-  to { -webkit-mask-position: 100vw 100%, 0 0; mask-position: 100vw 100%, 0 0; }
+  from { -webkit-mask-position: 0 100%, 0 0; mask-position: 0 100%, 0 0; }
+  to { -webkit-mask-position: 160vw 100%, 0 0; mask-position: 160vw 100%, 0 0; }
 }`;
 
 /** CSS version: first paint, touch devices (sweeping) and reduced motion (still). */
 export function GradientBars({ animate = true }: { animate?: boolean }) {
   const L = LINES;
-  const band = `${Math.round(L.band * 190)}vw`;
+  // one repeating tile per loop period (1.6x the width) so the sweep wraps seamlessly
+  const tile = "160vw";
+  const rx = `${Math.round(((L.band * 95) / 160) * 100)}%`;
   const mask = [
-    `radial-gradient(ellipse 50% 100% at 50% 100%, #000 0%, rgba(0,0,0,.6) 50%, transparent 85%)`,
+    `radial-gradient(ellipse ${rx} 100% at 50% 100%, #000 0%, rgba(0,0,0,.6) 50%, transparent 85%)`,
     `linear-gradient(to top, #000 0%, transparent ${Math.round(L.floor * 100 + 6)}%)`,
   ].join(", ");
   return (
@@ -53,10 +55,10 @@ export function GradientBars({ animate = true }: { animate?: boolean }) {
             height: `${L.reach * 100}%`,
             maskImage: mask,
             WebkitMaskImage: mask,
-            maskSize: `${band} 100%, 100% 100%`,
-            WebkitMaskSize: `${band} 100%, 100% 100%`,
-            maskRepeat: "no-repeat",
-            WebkitMaskRepeat: "no-repeat",
+            maskSize: `${tile} 100%, 100% 100%`,
+            WebkitMaskSize: `${tile} 100%, 100% 100%`,
+            maskRepeat: "repeat-x, no-repeat",
+            WebkitMaskRepeat: "repeat-x, no-repeat",
             maskPosition: "10vw 100%, 0 0",
             WebkitMaskPosition: "10vw 100%, 0 0",
             animation: animate ? `linesSweep ${L.duration}s linear infinite` : "none",

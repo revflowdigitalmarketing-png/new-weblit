@@ -238,8 +238,11 @@ vec3 scene(vec2 uv) {
   float yb = uRes.y - px.y;              // px up from the bottom edge
   float area = uRes.y * uReach;
 
-  float c = fract(uTime / uDur) * 1.6 - 0.3; // band centre: -0.3 -> 1.3 of the width
-  float d = (uv.x - c) / uBand;
+  // seamless loop: the band travels one period P per cycle and wraps, so it
+  // re-enters on the left exactly as it leaves on the right (no jump)
+  const float P = 1.6;
+  float c = fract(uTime / uDur) * P;
+  float d = (mod(uv.x - c + 0.5 * P, P) - 0.5 * P) / uBand;
   float bump = exp(-d * d);
   float h = area * (uFloor + (1.0 - uFloor) * bump);
 
