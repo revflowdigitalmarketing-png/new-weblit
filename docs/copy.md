@@ -146,3 +146,4 @@ Section heading and description unchanged: "We build websites that pay you back"
 * Step 3: See it first. Pay after / "Click through every page on your phone, ask for changes, and pay once it feels right. If it still isn't right, you owe us nothing." / I want my website
 Our Work: each frame opens the live site in a new tab.
 
+14. Footer redesign (on request): logo, divider and tagline; Pages (Work, FAQ, Contact) and Contact (email, phones, name and address, WhatsApp) columns; copyright with Privacy and Terms below; the WEBLIT wordmark large at the bottom with the hero's liquid cursor effect. Google Maps embed removed.

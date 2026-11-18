@@ -120,7 +120,7 @@ function CountUpBig({ text }: { text: string }) {
       aria-label={text}
       className="whitespace-nowrap bg-[linear-gradient(160deg,#3dc072_0%,#2a8f50_45%,#0c2414_100%)] bg-clip-text pb-1 text-[clamp(3rem,2.2rem+3vw,4.5rem)] font-semibold leading-none tracking-[-0.045em] text-transparent"
     >
-      <span aria-hidden className="inline-block min-w-[2ch] tabular-nums">
+      <span aria-hidden className="inline-block min-w-[1.7ch] tracking-[-0.085em] tabular-nums">
         {match ? n : ""}
       </span>
       <span aria-hidden>{rest}</span>

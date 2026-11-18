@@ -44,7 +44,7 @@ export function FluidBars({ settings }: { settings?: Partial<FluidSettings> }) {
     if (touch) return; // animated CSS bars, no distortion
     const wrap = wrapRef.current;
     if (!wrap) return;
-    const stop = startFluid(wrap, cfgRef);
+    const stop = startFluid(wrap, cfgRef, heroScene);
     if (stop) {
       setMode("webgl");
       return stop;
@@ -191,8 +191,8 @@ void main () {
   gl_FragColor = vec4(velocity, 0.0, 1.0);
 }`;
 
-/** Draws the bars scene (same maths as the CSS port) at distorted UVs. */
-const displayShader = /* glsl */ `
+/** Shared display pass: samples the fluid and draws `scene(uv)` at distorted UVs. */
+const displayHead = /* glsl */ `
 precision highp float;
 varying vec2 vUv;
 uniform sampler2D uVelocity;
@@ -200,30 +200,9 @@ uniform vec2 texelSize;
 uniform vec2 uRes;          // CSS px
 uniform float uTime;
 uniform float uStrength;
-uniform float uPitch, uLineW, uReach, uFloor, uBand, uDur;
-uniform vec3 uTip, uBase, uBg;
+`;
 
-// Thin static lines along the bottom; a band of visibility sweeps left to right.
-vec3 scene(vec2 uv) {
-  vec2 px = vec2(uv.x * uRes.x, (1.0 - uv.y) * uRes.y);
-  float lx = mod(px.x, uPitch);
-  float cov = clamp(min(lx, uLineW - lx) + 0.5, 0.0, 1.0);
-  float yb = uRes.y - px.y;              // px up from the bottom edge
-  float area = uRes.y * uReach;
-
-  float c = fract(uTime / uDur) * 1.6 - 0.3; // band centre: -0.3 -> 1.3 of the width
-  float d = (uv.x - c) / uBand;
-  float bump = exp(-d * d);
-  float h = area * (uFloor + (1.0 - uFloor) * bump);
-
-  float v = clamp(1.0 - yb / h, 0.0, 1.0);
-  float a = pow(v, 1.6) * cov;
-  vec3 line = mix(uTip, uBase, v);
-  // faint light behind the tallest lines
-  float glow = exp(-d * d * 0.8) * clamp(1.0 - yb / area, 0.0, 1.0) * 0.08;
-  return uBg + uBase * glow + line * a;
-}
-
+const displayMain = /* glsl */ `
 void main () {
   // soft 5-tap sample so the surface reads as water, not noise
   vec2 t = texelSize * 1.5;
@@ -247,17 +226,76 @@ void main () {
   gl_FragColor = vec4(col, 1.0);
 }`;
 
+/** Hero scene: thin static lines along the bottom, a band of visibility sweeps left to right. */
+export const linesScene = /* glsl */ `
+uniform float uPitch, uLineW, uReach, uFloor, uBand, uDur;
+uniform vec3 uTip, uBase, uBg;
+// Thin static lines along the bottom; a band of visibility sweeps left to right.
+vec3 scene(vec2 uv) {
+  vec2 px = vec2(uv.x * uRes.x, (1.0 - uv.y) * uRes.y);
+  float lx = mod(px.x, uPitch);
+  float cov = clamp(min(lx, uLineW - lx) + 0.5, 0.0, 1.0);
+  float yb = uRes.y - px.y;              // px up from the bottom edge
+  float area = uRes.y * uReach;
+
+  float c = fract(uTime / uDur) * 1.6 - 0.3; // band centre: -0.3 -> 1.3 of the width
+  float d = (uv.x - c) / uBand;
+  float bump = exp(-d * d);
+  float h = area * (uFloor + (1.0 - uFloor) * bump);
+
+  float v = clamp(1.0 - yb / h, 0.0, 1.0);
+  float a = pow(v, 1.6) * cov;
+  vec3 line = mix(uTip, uBase, v);
+  // faint light behind the tallest lines
+  float glow = exp(-d * d * 0.8) * clamp(1.0 - yb / area, 0.0, 1.0) * 0.08;
+  return uBg + uBase * glow + line * a;
+}
+`;
+
 /* ------------------------------------------------------------- simulation */
 
-const NO_TEX = null as Texture | null;
-
-function hexToRgb(hex: string): [number, number, number] {
+export function hexToRgb(hex: string): [number, number, number] {
   const n = parseInt(hex.slice(1), 16);
   return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
 }
 
-/** Starts the WebGL background inside `wrap`. Returns a cleanup fn, or null if unsupported. */
-function startFluid(wrap: HTMLDivElement, cfgRef: { current: FluidSettings }): (() => void) | null {
+const heroScene: FluidScene = {
+  code: linesScene,
+  uniforms: () => ({
+    uPitch: { value: LINES.pitch as number },
+    uLineW: { value: LINES.width as number },
+    uReach: { value: LINES.reach },
+    uFloor: { value: LINES.floor },
+    uBand: { value: LINES.band },
+    uDur: { value: LINES.duration },
+    uTip: { value: hexToRgb(LINES.colorTip) },
+    uBase: { value: hexToRgb(LINES.colorBase) },
+    uBg: { value: hexToRgb(LINES.backgroundColor) },
+  }),
+  onResize: (u) => {
+    const desktop = window.innerWidth >= 768;
+    u["uPitch"]!.value = desktop ? LINES.pitchDesktop : LINES.pitch;
+    u["uLineW"]!.value = desktop ? LINES.widthDesktop : LINES.width;
+  },
+};
+
+const NO_TEX = null as Texture | null;
+
+type Uniforms = Record<string, { value: unknown }>;
+
+/** What the fluid distorts: GLSL defining `vec3 scene(vec2 uv)`, its uniforms, and a resize hook. */
+export type FluidScene = {
+  code: string;
+  uniforms: (gl: Renderer["gl"]) => Uniforms;
+  onResize?: (u: Uniforms, cssW: number, cssH: number) => void;
+};
+
+/** Starts a fluid-distorted scene inside `wrap`. Returns a cleanup fn, or null if unsupported. */
+export function startFluid(
+  wrap: HTMLDivElement,
+  cfgRef: { current: FluidSettings },
+  scene: FluidScene,
+): (() => void) | null {
   let renderer: Renderer;
   try {
     renderer = new Renderer({
@@ -320,7 +358,7 @@ function startFluid(wrap: HTMLDivElement, cfgRef: { current: FluidSettings }): (
   let curl = new RenderTarget(gl, rtOpts(simW, simH, true));
   const texel = { value: [1 / simW, 1 / simH] };
 
-  const prog = <T extends Record<string, { value: unknown }>>(fragment: string, u: T) => ({
+  const prog = <T extends Uniforms>(fragment: string, u: T) => ({
     mesh: new Mesh(gl, {
       geometry: triangle,
       program: new Program(gl, {
@@ -365,20 +403,12 @@ function startFluid(wrap: HTMLDivElement, cfgRef: { current: FluidSettings }): (
     uVelocity: { value: NO_TEX },
   });
 
-  const display = prog(displayShader, {
+  const display = prog(displayHead + scene.code + displayMain, {
     uVelocity: { value: NO_TEX },
     uRes: { value: [1, 1] },
     uTime: { value: 0 },
     uStrength: { value: 1 },
-    uPitch: { value: LINES.pitch as number },
-    uLineW: { value: LINES.width as number },
-    uReach: { value: LINES.reach },
-    uFloor: { value: LINES.floor },
-    uBand: { value: LINES.band },
-    uDur: { value: LINES.duration },
-    uTip: { value: hexToRgb(LINES.colorTip) },
-    uBase: { value: hexToRgb(LINES.colorBase) },
-    uBg: { value: hexToRgb(LINES.backgroundColor) },
+    ...scene.uniforms(gl),
   });
 
   const run = (p: { mesh: Mesh }, target: RenderTarget) =>
@@ -405,9 +435,7 @@ function startFluid(wrap: HTMLDivElement, cfgRef: { current: FluidSettings }): (
       texel.value = [1 / simW, 1 / simH];
     }
     display.u.uRes.value = [cssW, cssH];
-    const desktop = window.innerWidth >= 768;
-    display.u.uPitch.value = desktop ? LINES.pitchDesktop : LINES.pitch;
-    display.u.uLineW.value = desktop ? LINES.widthDesktop : LINES.width;
+    scene.onResize?.(display.u, cssW, cssH);
   };
   resize();
   const ro = new ResizeObserver(resize);

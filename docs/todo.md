@@ -8,7 +8,6 @@ name, address and phone live in `src/config/business.ts`.
 
 | Where | Placeholder | What to supply | File |
 | --- | --- | --- | --- |
-| Footer: map | `[Google Maps embed]` | Google Maps "Embed a map" iframe `src` for the business location | `src/config/business.ts` → `mapEmbedSrc` |
 
 ## Links to pages not built yet
 

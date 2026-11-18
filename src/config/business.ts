@@ -14,8 +14,6 @@ export const BUSINESS = {
   displayUrl: "www.weblit.online",
   /** WhatsApp number in international format, digits only. */
   whatsapp: "918074398610",
-  /** Paste the Google Maps "Embed a map" iframe src here. Empty = placeholder shown. */
-  mapEmbedSrc: "",
   logo: {
     green: "/brand/weblit-logo-green.png",
     white: "/brand/weblit-logo-white.png",
