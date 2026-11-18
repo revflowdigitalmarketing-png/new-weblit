@@ -14,6 +14,12 @@ export const BUSINESS = {
   displayUrl: "www.weblit.online",
   /** WhatsApp number in international format, digits only. */
   whatsapp: "918074398610",
+  /** Social profile URLs. Empty = not supplied yet (see docs/todo.md). */
+  socials: {
+    instagram: "",
+    linkedin: "",
+    x: "",
+  },
   logo: {
     green: "/brand/weblit-logo-green.png",
     white: "/brand/weblit-logo-white.png",

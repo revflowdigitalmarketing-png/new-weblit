@@ -1,4 +1,10 @@
-import { FluidWordmark } from "@/components/site/FluidWordmark";
+import { useState } from "react";
+import {
+  FooterFluid,
+  WORDMARK_DEFAULT_ASPECT,
+  WordmarkSpacer,
+} from "@/components/site/FluidWordmark";
+import { SocialIcons } from "@/components/site/SocialIcons";
 import { Container } from "@/components/site/Container";
 import { Logo } from "@/components/site/Logo";
 import { BUSINESS, telHref, whatsappHref } from "@/config/business";
@@ -11,18 +17,25 @@ const link = "text-ink/55 transition-colors duration-300 hover:text-ink";
 export function Footer() {
   const legal = footer.links.filter((l) => l.label === "Privacy" || l.label === "Terms");
   const pages = footer.links.filter((l) => !legal.includes(l));
+  const [aspect, setAspect] = useState(WORDMARK_DEFAULT_ASPECT);
 
   return (
-    <footer className="relative mt-12 overflow-hidden sm:mt-16">
+    <footer className="relative isolate mt-12 overflow-hidden sm:mt-16">
+      <FooterFluid aspect={aspect} onAspect={setAspect} />
       <Container>
         <div className="grid gap-8 border-t border-ink/[0.08] pt-8 text-[0.8125rem] sm:pt-12 md:grid-cols-12 md:gap-8">
           {/* Brand */}
-          <div className="flex items-start gap-4 md:col-span-6">
-            <Logo className="mt-0.5 w-[84px] shrink-0" />
-            <span aria-hidden className="h-6 w-px shrink-0 bg-ink/15" />
-            <p className="max-w-[17rem] leading-relaxed text-ink/55">
-              {BUSINESS.tagline.replace(/\.$/, "")}
-            </p>
+          <div className="md:col-span-6">
+            <div className="flex items-center gap-4">
+              <Logo className="w-[96px] shrink-0 sm:w-[112px]" />
+              <span aria-hidden className="h-8 w-px shrink-0 bg-ink/15" />
+              <p className="text-lg leading-snug tracking-[-0.02em] text-ink/75 sm:text-xl">
+                {BUSINESS.tagline.replace(/\.$/, "")}
+              </p>
+            </div>
+            <div className="mt-6">
+              <SocialIcons />
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-8 md:col-span-6 md:grid-cols-[1fr_1.4fr]">
@@ -86,7 +99,7 @@ export function Footer() {
         </div>
       </Container>
 
-      <FluidWordmark />
+      <WordmarkSpacer aspect={aspect} />
     </footer>
   );
 }

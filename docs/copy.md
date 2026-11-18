@@ -147,3 +147,4 @@ Section heading and description unchanged: "We build websites that pay you back"
 Our Work: each frame opens the live site in a new tab.
 
 14. Footer redesign (on request): logo, divider and tagline; Pages (Work, FAQ, Contact) and Contact (email, phones, name and address, WhatsApp) columns; copyright with Privacy and Terms below; the WEBLIT wordmark large at the bottom with the hero's liquid cursor effect. Google Maps embed removed.
+15. Footer update: Instagram, LinkedIn, WhatsApp and X icons under the logo and tagline (Instagram, LinkedIn and X URLs not supplied yet); larger tagline; the big WEBLIT set in Inter Tight, black at the W and T with green through the centre (E B L); liquid cursor effect across the whole footer.

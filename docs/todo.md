@@ -15,6 +15,9 @@ name, address and phone live in `src/config/business.ts`.
 
 ## Check before launch
 
+- **Social links:** the footer shows Instagram, LinkedIn and X icons, but no profile URLs were
+  supplied, so they point nowhere. Add them in `src/config/business.ts` -> `socials`.
+
 - **Blueprint email step** has no backend yet. It checks the email, starts the PDF download and
   shows the confirmation, but the email isn't saved or sent anywhere. Wire `handleSubmit` in
   `src/routes/blueprint.tsx` to your email list or CRM so the guide collects leads.
