@@ -11,7 +11,7 @@ import { pageHead } from "@/lib/seo";
 export const Route = createFileRoute("/")({
   head: () => ({
     ...pageHead({
-      title: "WEBLIT | Websites built to get you more customers, published in 72 hours",
+      title: "WEBLIT | Design Agency",
       description: hero.description,
       path: "/",
     }),

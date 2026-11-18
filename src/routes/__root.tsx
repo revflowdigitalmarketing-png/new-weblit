@@ -82,7 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: BUSINESS.name },
+      { title: "WEBLIT | Design Agency" },
       { name: "theme-color", content: "#060805" },
       { property: "og:site_name", content: BUSINESS.name },
       { property: "og:type", content: "website" },
@@ -97,7 +97,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         crossOrigin: "anonymous",
       },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", href: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
     scripts: [
       // Marks JS as available so reveal animations can start hidden (content stays visible without JS).
