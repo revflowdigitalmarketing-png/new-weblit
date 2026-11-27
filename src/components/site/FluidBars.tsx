@@ -19,6 +19,10 @@ export type FluidSettings = {
   dissipation: number;
   /** vorticity confinement: how much the fluid curls into swirls */
   swirl: number;
+  /** brightness of the ripple rings (0..1) */
+  ring: number;
+  /** share of the rings kept over dark/black areas (0 = none on black, 1 = same everywhere) */
+  ringOnDark: number;
 };
 
 export const FLUID_DEFAULTS: FluidSettings = {
@@ -26,6 +30,18 @@ export const FLUID_DEFAULTS: FluidSettings = {
   radius: 0.25,
   dissipation: 1.6,
   swirl: 12,
+  ring: 0.22,
+  ringOnDark: 1,
+};
+
+/** Hero: calmer than the footer, and barely visible over the black sky. */
+export const HERO_FLUID: Partial<FluidSettings> = {
+  strength: 0.38,
+  radius: 0.2,
+  dissipation: 2.2,
+  swirl: 7,
+  ring: 0.1,
+  ringOnDark: 0.12,
 };
 
 type Mode = "css" | "css-still" | "webgl";
@@ -200,6 +216,8 @@ uniform vec2 texelSize;
 uniform vec2 uRes;          // CSS px
 uniform float uTime;
 uniform float uStrength;
+uniform float uRing;
+uniform float uRingOnDark;
 `;
 
 const displayMain = /* glsl */ `
@@ -222,7 +240,9 @@ void main () {
   // ripple rings where the fluid moves
   float m = length(vel);
   float ring = pow(0.5 + 0.5 * sin(m * 0.045), 8.0) * clamp(m * 0.0025, 0.0, 1.0);
-  col += ring * 0.22 * vec3(0.75, 1.0, 0.85);
+  float lum = dot(col, vec3(0.299, 0.587, 0.114));
+  float onDark = mix(uRingOnDark, 1.0, smoothstep(0.03, 0.25, lum));
+  col += ring * uRing * onDark * vec3(0.75, 1.0, 0.85);
   gl_FragColor = vec4(col, 1.0);
 }`;
 
@@ -411,6 +431,8 @@ export function startFluid(
     uRes: { value: [1, 1] },
     uTime: { value: 0 },
     uStrength: { value: 1 },
+    uRing: { value: 0.22 },
+    uRingOnDark: { value: 1 },
     ...scene.uniforms(gl),
   });
 
@@ -546,6 +568,8 @@ export function startFluid(
     u.uVelocity.value = velocity.read.texture;
     u.uTime.value = (now - start) / 1000;
     u.uStrength.value = cfgRef.current.strength;
+    u.uRing.value = cfgRef.current.ring;
+    u.uRingOnDark.value = cfgRef.current.ringOnDark;
     renderer.render({ scene: display.mesh });
     raf = requestAnimationFrame(frame);
   };

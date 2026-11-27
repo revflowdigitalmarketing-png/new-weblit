@@ -1,5 +1,5 @@
 import { ButtonLink } from "@/components/site/ButtonLink";
-import { FluidBars } from "@/components/site/FluidBars";
+import { FluidBars, HERO_FLUID } from "@/components/site/FluidBars";
 import { Container } from "@/components/site/Container";
 import { Reveal } from "@/components/site/Reveal";
 import { hero } from "@/content/copy";
@@ -14,7 +14,7 @@ export function Hero() {
   return (
     <section aria-labelledby="hero-heading" className="p-2 sm:p-3">
       <div className="relative isolate overflow-hidden rounded-[1.75rem] sm:rounded-[2.25rem]">
-        <FluidBars />
+        <FluidBars settings={HERO_FLUID} />
 
         <Container className="relative flex min-h-[calc(100svh-1rem)] flex-col items-center justify-center pb-28 pt-28 text-center sm:min-h-[calc(100svh-1.5rem)] sm:pb-32 sm:pt-32">
           <Reveal>
